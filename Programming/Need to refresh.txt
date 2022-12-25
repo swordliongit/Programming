@@ -1,0 +1,14 @@
+1- Discrete Math
+2 - Digital systems
+3 - Computer organization and architecture
+4 - Algorithms
+5 - Database systems
+6 - System programming
+7 - Structural languages and Automata
+8 - Software engineering
+9 - Embedded Systems Design
+10 - Signals for computer engineering
+11 - Computer networks
+12 - Artificial Intelligence
+13 - Machine Learning
+14 - Cryptography
