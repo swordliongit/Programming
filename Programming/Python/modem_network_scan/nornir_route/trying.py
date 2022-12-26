@@ -21,7 +21,7 @@ def write_file(self, file_type=0, filename="inventory/hosts.yaml"):
 
 
 # Define the network to scan
-my_network = "192.168.117.0/24"
+my_network = "192.168.5.0/24"
 
 # Create the object
 my_scan = networkscan.Networkscan(my_network)

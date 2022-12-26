@@ -1,4 +1,2 @@
-
-
-R3000admin
-admin
+target=192.168.5.0/24
+mac_filter=1c:18:4a
