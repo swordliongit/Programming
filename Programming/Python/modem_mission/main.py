@@ -22,7 +22,7 @@ def main(output):
     # start of main operation
     ########################
     
-    create_directory("./hosts/") #create our directory four host files
+    create_directory("./hosts/") #create our directory for our host files
 
     hosts = host_finder(target_ip, output) # network scan
 

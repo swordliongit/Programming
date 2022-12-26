@@ -1,9 +1,9 @@
 
 
 
-###########################
-# How to turn your .py into .exe
-###########################
+"""
+How to turn your .py into .exe
+"""
 
 # pip install pyinstaller
 # pyinstaller main.py --onefile
@@ -71,8 +71,6 @@ str.endswith("str to find") # -> returns True/False
 str.upper()
 str.lower()
 str.isdigit() # if all chars are digit, True
-
-
 
 """
 MODULES
@@ -283,6 +281,27 @@ for i in generator(): # Can be used in loops like an iterable
 
 gen = (i for i in range(10)) # same thing, () creates generator expressions
 
+"""
+MULTI-THREADING
+"""
+import threading
+
+def func():
+    thread = threading.Thread(target=another_func args=(arg1,)) # calls another function while running this function
+    thread.start()
+
+# multi-threads
+
+threads = []
+
+for ip in ip_list: # call multiple versions of the function simultaneously
+    t = threading.Thread(target=modem_login, args=(driver, ip, output))
+    threads.append(t)
+    t.start()
+    
+for t in threads: # wait for all threads to finish
+    t.join()
+
 
 
 """
@@ -427,9 +446,9 @@ rads = math.radians(degree)
 import random
 print(random.randint(a, b)) # --> random int
 
-##################
+"""
 NETWORKING
-##################
+"""
 # Local
 #ip addresses
 import netifaces
@@ -447,6 +466,51 @@ for interface in netifaces.interfaces():
 # gateways
 import netifaces
 netifaces.gateways()["default"][netifaces.AF_INET]
+
+
+
+#general network scan ( scapy )
+
+from scapy.all import ARP, Ether, srp
+#target_ip = "192.168.5.0/24"
+# IP Address for the destination
+# create ARP packet
+arp = ARP(pdst=target_ip)
+# create the Ether broadcast packet
+# ff:ff:ff:ff:ff:ff MAC address indicates broadcasting
+ether = Ether(dst="ff:ff:ff:ff:ff:ff")
+# stack them
+packet = ether/arp
+result = srp(packet, timeout=3, verbose=0)[0]
+# a list of clients, we will fill this in the upcoming loop
+clients = []
+for sent, received in result:
+    # for each response, append ip and mac address to `clients` list
+    clients.append({'ip': received.psrc, 'mac': received.hwsrc})
+
+
+"""
+BASIC GUI
+"""
+import PySimpleGUI
+
+label = PySimpleGUI.Text("Press Start")
+
+window = PySimpleGUI.Window("Modem Config Engine", layout=[""])
+window.read()
+window.close()
+
+
+"""
+DIRECTORY
+"""
+def create_directory(filename): # create directory based on filename e.g. = "./hosts/"
+    # Extract the directory name from the file path
+    dirname = os.path.dirname(filename)
+    
+    # Create the directory if it does not exist
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
 
 
 """

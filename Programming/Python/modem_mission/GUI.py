@@ -38,14 +38,3 @@ while True:
 window.close()
 
 
-
-"""import PySimpleGUI
-
-
-label = PySimpleGUI.Text("Press Start")
-
-window = PySimpleGUI.Window("Modem Config Engine", layout=[""])
-
-window.read()
-
-window.close()"""
