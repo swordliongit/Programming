@@ -1,9 +1,11 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
-from mission import modem_login_init, modem_login
+from modem_login import modem_login_init, modem_login
+from http_request import odoo_login, send_datato_odoo
 import threading
+from interface_operation import interface_operation_read
 
-def main(output):
+def main():
     
     fhfile = "hosts/found_hosts.json" # found hosts file
     mhfile = "hosts/modem_hosts.json" # modem hosts file   
@@ -24,9 +26,9 @@ def main(output):
     
     create_directory("./hosts/") #create our directory for our host files
 
-    hosts = host_finder(target_ip, output) # network scan
+    hosts = host_finder(target_ip ) # network scan
 
-    host_writer(fhfile, hosts, output) # write found hosts into fhfile
+    host_writer(fhfile, hosts ) # write found hosts into fhfile
 
     needed_hosts = host_analyzer(fhfile, mhfile, mac_filter) # filter found hosts based on 1c:18:4a mac and return a list of them
     
@@ -41,10 +43,25 @@ def main(output):
 
     threads = []
     
+    from queue import Queue
+    
+    queue = Queue()
+    
     for ip in ip_list: # call multiple versions of the function simultaneously
-        t = threading.Thread(target=modem_login, args=(driver, ip, output))
+        t = threading.Thread(target=modem_login, args=(driver, ip, queue))
         threads.append(t)
         t.start()
         
     for t in threads: # wait for all threads to finish
         t.join()
+        
+    #########################
+    
+    result = queue.get()
+    
+    odoo_login()
+    
+    send_datato_odoo(result)
+
+if __name__ == "__main__":
+    main()

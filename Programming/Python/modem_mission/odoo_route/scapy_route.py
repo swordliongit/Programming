@@ -1,12 +1,12 @@
 
 """import subprocess
-output = subprocess.check_output(("arp", "-a"))
+ = subprocess.check_(("arp", "-a"))
 
-print(output.decode("ascii"))"""
+print(.decode("ascii"))"""
 
 import json
 
-def host_finder(target_ip, output):
+def host_finder(target_ip ):
     """
     This function sends packages to each host in the network and fetches their ip and mac addresses
 
@@ -16,7 +16,7 @@ def host_finder(target_ip, output):
     from scapy.all import ARP, Ether, srp
 
     ############################# XXX
-    output.print("\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
+    print("\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
     ############################# XXX
 
     #target_ip = "192.168.5.0/24"
@@ -39,13 +39,13 @@ def host_finder(target_ip, output):
         clients.append({'ip': received.psrc, 'mac': received.hwsrc})
     
     ############################# XXX
-    output.print("Found hosts!")    
+    print("Found hosts!")    
     ############################# XXX
     
     return clients
 
 
-def host_writer(fhfile, clients, output):
+def host_writer(fhfile, clients ):
     """
     This function writes found list of dictionaries from the network scan result, into a json file
 
@@ -56,8 +56,8 @@ def host_writer(fhfile, clients, output):
 
     # print clients
     ############################# XXX
-    output.print("Available devices in the network:")
-    output.print("IP" + " "*22+"MAC")
+    print("Available devices in the network:")
+    print("IP" + " "*22+"MAC")
     ############################# XXX
     
     with open(fhfile, "w") as file:
@@ -66,7 +66,7 @@ def host_writer(fhfile, clients, output):
     for client in clients:
         #file.write(f"{client['ip']:16}    {client['mac']}\n")
         ############################# XXX
-        output.print("{:16}      {}\n".format(client['ip'], client['mac']))
+        print("{:16}      {}\n".format(client['ip'], client['mac']))
         ############################# XXX
  
 def host_analyzer(fhfile, mhfile, mac_filter):
