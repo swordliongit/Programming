@@ -5,4 +5,4 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
-
+from selenium.webdriver.common.alert import Alert

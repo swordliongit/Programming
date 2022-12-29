@@ -30,7 +30,7 @@ def odoo_login():
 
 ########################
 
-def send_datato_odoo(modem_data):
+def send_datato_odoo(modem_data: dict):
     url = 'http://localhost:8069/web/dataset/call_kw/res.partner/create'
     headers = {
         "Connection": "keep-alive",

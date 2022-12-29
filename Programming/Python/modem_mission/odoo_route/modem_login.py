@@ -1,8 +1,6 @@
 from selenium_dependencies import *
 from time import sleep
 
-from interface_operation import interface_operation_read
-
 def modem_login_init():
     """function to set browser to run in background, initialize driver object
 
@@ -12,19 +10,17 @@ def modem_login_init():
     
     from selenium.webdriver.chrome.options import Options
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless") # silent browser
+    #chrome_options = Options()
+    #chrome_options.add_argument("--headless") # silent browser
     
-    # our driver
+    #driver = webdriver.Chrome("chromedriver", options=chrome_options)
     
-    driver = webdriver.Chrome("chromedriver", options=chrome_options)
-    
-    #driver = webdriver.Chrome("chromedriver")
+    driver = webdriver.Chrome("chromedriver")
     
     return driver
     
     
-def modem_login(driver, ip, queue, username="R3000admin", password="admin"):
+def modem_login(driver, ip, username="R3000admin", password="admin"):
     """function to read username and password and open the login screen to log into the site
     
     """  
@@ -55,9 +51,7 @@ def modem_login(driver, ip, queue, username="R3000admin", password="admin"):
         print("Login failed!")
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
-    
-    interface_operation_read(driver, queue)
-   
+
     
     """current_url = driver.current_url"""
 

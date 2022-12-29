@@ -6,7 +6,7 @@ print(.decode("ascii"))"""
 
 import json
 
-def host_finder(target_ip ):
+def host_finder(target_ip: str) -> list:
     """
     This function sends packages to each host in the network and fetches their ip and mac addresses
 
@@ -45,7 +45,7 @@ def host_finder(target_ip ):
     return clients
 
 
-def host_writer(fhfile, clients ):
+def host_writer(fhfile: str, clients: list):
     """
     This function writes found list of dictionaries from the network scan result, into a json file
 
@@ -57,7 +57,7 @@ def host_writer(fhfile, clients ):
     # print clients
     ############################# XXX
     print("Available devices in the network:")
-    print("IP" + " "*22+"MAC")
+    print("IP" + " "*20+"MAC")
     ############################# XXX
     
     with open(fhfile, "w") as file:
@@ -69,7 +69,7 @@ def host_writer(fhfile, clients ):
         print("{:16}      {}\n".format(client['ip'], client['mac']))
         ############################# XXX
  
-def host_analyzer(fhfile, mhfile, mac_filter):
+def host_analyzer(fhfile: str, mhfile: str, mac_filter: str) -> dict:
     """
     This function takes a found hosts file and fetches only necessary mac addresses, then dumps them
     into another file.
@@ -92,7 +92,17 @@ def host_analyzer(fhfile, mhfile, mac_filter):
             
         with open(mhfile, "r") as file:
             return json.loads(file.read())   # return the data from modem hosts file
+        
 
-def ip_retriever(filtered_hosts):
+def ip_retriever(filtered_hosts: dict):
+    """This generator sends items values of elements with 'ip' keys to the caller.
+    For performance purposes, it sends them one by one.
+
+    Args:
+        filtered_hosts (dict): _description_
+
+    Yields:
+        str: ip values
+    """
     for host in filtered_hosts:
         yield host['ip']
