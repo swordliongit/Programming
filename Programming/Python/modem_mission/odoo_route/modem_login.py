@@ -20,7 +20,7 @@ def modem_login_init():
     return driver
     
     
-def modem_login(driver, ip, username="R3000admin", password="admin"):
+def modem_login(driver, ip, dhcp_mode=False, username="R3000admin", password="admin"):
     """function to read username and password and open the login screen to log into the site
     
     """  
@@ -38,11 +38,15 @@ def modem_login(driver, ip, username="R3000admin", password="admin"):
     
     try:
         print("Trying to log in...")
-        driver.get(url) # open the url
-        
-        driver.find_element(By.ID, "username").send_keys(username)
-        driver.find_element(By.NAME, "password").send_keys(password)
-        driver.find_element(By.ID, "login_in").click() # login button
+        if dhcp_mode:
+            driver.find_element(By.ID, "username").send_keys(username)
+            driver.find_element(By.NAME, "password").send_keys(password)
+            driver.find_element(By.ID, "login_in").click() # login button
+        else:
+            driver.get(url) # open the url
+            driver.find_element(By.ID, "username").send_keys(username)
+            driver.find_element(By.NAME, "password").send_keys(password)
+            driver.find_element(By.ID, "login_in").click() # login button
         #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/form/div[3]/button[1]"))).click()
 
         #WebDriverWait(driver, 5).until(lambda driver: "http://192.168.1.1/cgi-bin/luci/admin/" != driver.current_url)

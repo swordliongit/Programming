@@ -1,11 +1,26 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
 from modem_login import modem_login_init, modem_login
-from http_request import odoo_login, send_datato_odoo
+from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 from interface_operation import login_controller
 import threading
 
 from time import sleep
+
+def network_scan(target_ip, fhfile, mhfile, mac_filter):
+    hosts: list = host_finder(target_ip) # network scan
+
+    host_writer(fhfile, hosts ) # write found hosts into fhfile
+
+    needed_hosts: dict = host_analyzer(fhfile, mhfile, mac_filter) # filter found hosts based on 1c:18:4a mac and return a list of them
+    
+    if not needed_hosts:
+        print("No modems found!")
+        return
+    
+    return needed_hosts
+
+    
 def main():
     
     fhfile: str = "hosts/found_hosts.json" # found hosts file
@@ -22,110 +37,85 @@ def main():
             file.writelines("target=192.168.5.0/24")
             file.writelines("mac_filter=1c:18:4a")
 
-    # start of main operation
-    ########################
+    create_directory("./hosts/") # create our directory for our host files
     
-    create_directory("./hosts/") #create our directory for our host files
+    while True:
 
-    hosts: list = host_finder(target_ip ) # network scan
-
-    host_writer(fhfile, hosts ) # write found hosts into fhfile
-
-    needed_hosts: dict = host_analyzer(fhfile, mhfile, mac_filter) # filter found hosts based on 1c:18:4a mac and return a list of them
-    
-    if not needed_hosts:
-        print("No modems found!")
-        return
-    
-    # host operation finished
-    ########################
-    
-
-    driver = modem_login_init() #initialize the chrome driver
-
-    ip_list = []
-    for ip in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
-        ip_list.append(ip)
-
-
-    ########################
-    # First read operation start
-
-    threads1 = []
-    threads2 = []
-
-    mode = "read"
-
-    for ip in ip_list: # call multiple versions of the function simultaneously
-        t1 = threading.Thread(target=modem_login, args=(driver, ip))
-        t2 = threading.Thread(target=login_controller, args=(driver, mode))
-        threads1.append(t1)
-        threads2.append(t2)
-        t1.start()
-        t2.start()
+        needed_hosts = network_scan(target_ip, fhfile, mhfile, mac_filter)
         
-    for t1, t2 in zip(threads1, threads2): # wait for all threads to finish
-        t1.join()
-        t2.join()
+        driver = modem_login_init() #initialize the chrome driver
 
-    sleep(1.5)
-    # First read operation end
-    #########################
-    
-    
-    
-    ##########################
-    # Modify operation start
-    
-    mode = "modify"
-    
-    
-    login_controller(driver, mode, ip_for_dhcp=ip)
-    
-    sleep(1.5)
-    
-    # Modify operation end
-    #######################
-    
-    
-    
-    ########################
-    # Second read operation start
-    from queue import Queue
-    queue = Queue()
-    
-    mode = "read"
-    
-    threads1.clear()
-    threads2.clear()
+        ip_list = []
+        for ip in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
+            ip_list.append(ip)
 
-    for ip in ip_list: # call multiple versions of the function simultaneously
-        t1 = threading.Thread(target=modem_login, args=(driver, ip))
-        t2 = threading.Thread(target=login_controller, args=(driver, mode, "", queue))
-        threads1.append(t1)
-        threads2.append(t2)
-        t1.start()
-        t2.start()
+
+        ########################
+        # Read operation start
+
+        from queue import Queue
+        queue = Queue()
         
-    for t1, t2 in zip(threads1, threads2): # wait for all threads to finish
-        t1.join()
-        t2.join()
-      
-    # Second read operation end  
-    ########################
-    
-    # Modem data retrieved, time to send it to Odoo 
-    print("Logging in Odoo..")
-    odoo_login()
-    print("Sending data to Odoo..")
-    #print(queue.qsize())
-    result: dict = queue.get() # result is obj_dict
-    
-    send_datato_odoo(result)
+        mode = "read"
         
-    print("Data sent!..")
-    
-    #########################
+        threads1 = []
+        threads2 = []
+
+        for ip in ip_list: # call multiple versions of the function simultaneously
+            t1 = threading.Thread(target=modem_login, args=(driver, ip))
+            t2 = threading.Thread(target=login_controller, args=(driver, mode, [], "", queue))
+            threads1.append(t1)
+            threads2.append(t2)
+            t1.start()
+            t2.start()
+            
+        for t1, t2 in zip(threads1, threads2): # wait for all threads to finish
+            t1.join()
+            t2.join()
+        
+        # Read operation end
+        #########################
+        
+        
+        ############################
+        # Modem data retrieved, time to send it to Odoo 
+        
+        print("Logging in Odoo for send..")
+        odoo_login()
+        print("Sending data to Odoo..")
+        #print(queue.qsize())
+        result: dict = queue.get() # result is obj_dict
+        
+        send_datato_odoo(result)
+            
+        print("Data sent!..")
+        
+        ############################
+        
+        input("Press enter to start fetching if you have done modifying..")
+        
+        ############################
+        # Time to get all the changed modems' data from Odoo
+        print("Logging in Odoo for fetch..")
+        odoo_login()
+        print("Fetching data from Odoo..")
+        fetched_modem_list: list = fetch_datafrom_odoo()
+        
+        ############################
+        
+        ##########################
+        # Modify operation start
+        
+        mode = "modify"
+        
+        
+        login_controller(driver, mode, fetched_modem_list=fetched_modem_list, ip_for_dhcp=ip)
+        
+        input("Press enter to loop again")
+        
+        # Modify operation end
+        #######################
+        
 
 if __name__ == "__main__":
     main()
