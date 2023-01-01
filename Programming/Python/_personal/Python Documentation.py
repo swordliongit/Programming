@@ -15,6 +15,36 @@ dir(str)
 
 help(str.capitalize())
 
+"""
+Shallow and Deep Copy
+"""
+
+list1 = [1, 2, 3]
+
+list2 = list1
+
+list2[0] = 4 # Also changes list1 - Shallow copy
+
+------------
+
+list2 = list1[:]
+
+list2[0] = 4 # Doesn't change list1
+
+#but if;
+list1 = [1, 2, 3, [4, 5]]
+
+list2 = list1[:]
+
+list2[3][0] = 6 # Also changes list1's sublist
+
+------------
+
+from copy import deepcopy
+
+list2 = deepcopy(list1)
+
+list2[3][0] = 6 #Doesn't change list1's sublist now
 
 
 """
@@ -28,6 +58,7 @@ Built in arsenal
 # for a or b     -> if a is True then b won't be evaluated
 # in = containment test operator
 # *arg -> variable argument
+# objects are passed as references(e.g. -> Queue() )
 
 None # null
 ...  # -> means we don't know what to come
@@ -140,6 +171,27 @@ DICTIONARY
 
 ndict = {'key1' : 1, 'key2': 2, 'key3': [3, 4, 5]}
 
+# XXX XXXXXXXXXXXXXXXXXXXXXXX
+Dictionary Comprehension
+# XXX XXXXXXXXXXXXXXXXXXXXXXX
+
+dict = {key_expr:val_expr for item in iterable}
+# XXX #
+
+dict = {'key1' : 1, 'key2': 2, 'key3': 3}
+
+key_list = ['key1', 'key2']
+
+filtered_dict = {key: dict[key] for key in key_list} # creates a dictionary that's filtered by the key_list's items as keys
+                                                     # and values as the dictionary's values which we want to filter
+
+numbers = [1, 2, 3]
+
+new_dict = {item: item**2 for item in numbers} # creates a dictionary that has value as square of items in the numbers list and keys
+                                               # as those numbers in the list
+
+
+
 """
 DICTIONARY METHODS
 """
@@ -149,6 +201,12 @@ dict.values()
 dict.clear()
 dict.get(key)
 dict.__reversed__()
+dict.update(dict) # e.g. dict.update({k:v})
+
+dict.items() -> dict_items([('key1', val1), ('key2', val2), ('key3', val3)])
+for x in our_dict.items():
+    print(x[0]) # x[0] == 'key1'  x[1] == val1
+
 
 """
 TERNARY
@@ -341,9 +399,9 @@ METHODS & FUNCTIONS
 ######################################
 """
 
-"""
+#############################
 MAP
-"""
+#############################
 map(func, *iterables)  # -> map object
 # calls the function on each element of the iterable
 
@@ -356,9 +414,12 @@ numbers = (1, 2, 3, 4)
 result = map(addition, numbers)
 print(list(result))
 
-"""
+
+
+#############################
 FILTER
-"""
+#############################
+
 filter(function or None, iterable) # --> filter object
 #  Return an iterator yielding those items of iterable for which function(item)
 #  is true. If function is None, return the items that are true.
@@ -374,7 +435,13 @@ print(list(result))
 result = filter(lambda x: x % 2 == 0, seq)
 print(list(result))
 
+# Dictionary Filter
 
+# Original dictionary
+d = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+# Use filter() to filter out odd values
+filtered_dict = dict(filter(lambda x: x[1] % 2 == 0, d.items()))
 
 
 """
@@ -399,7 +466,7 @@ if os.stat("total amount.txt").st_size == 0: # if empty
 
 
 """
-Useful Functions
+Useful Functions and Modules
 """
 
 input() # --> str
@@ -414,37 +481,77 @@ exit("msg") # shows red text
 help(func_name)
 all(iterable) # --> True if all elements are True or the list is empty
 
+#############################
+TIME
+#############################
 import time
 print(time.strftime("%Y")) #year format %A : current day - Thursday, a% - Thu 
 
+#############################
+GLOB
+#############################
 import glob
 filepaths = glob.glob("*.txt") # --> a list containing all file names ending with .txt
 
+#############################
+JSON
+#############################
 import json                                                       #.json file, must enclose in [] or {}
 with open("questions.json") as file:                                     [
                                                                              ...
     data = json.loads(file.read())      # --> list of the content        ]
     
-    
+    json.dump(data_list, file, indent=5) # --> write a list into a json file
+
+#############################
+CSV
+#############################
 import csv                                                              #.csv file
 with open("weather.csv") as file:                                       "Antalya", "40"
                                                                         "Mersin", "38"
     data = list(csv.reader(file))     # --> list of lines as lists      "İstanbul", "30"   
 
-
+#############################
+BROWSER
+#############################
 import webbrowser
 webbrowser.open("https://www.google.com/search?q=" + "steam") #searches "steam" on google
 
-
+#############################
+ZIP/ARCHIVE
+#############################
 import shutil
 shutil.make_archive("output", "zip", "folder") #creates zip named "output" from the folder named "folder"
 
 
+#############################
+MATH
+#############################
 import math
 rads = math.radians(degree)
 
+#############################
+RANDOM NUMBERS
+#############################
+
 import random
 print(random.randint(a, b)) # --> random int
+
+
+#############################
+QUEUE
+#############################
+
+# Thread safe, dynamic
+
+from queue import Queue
+
+queue = Queue()
+
+queue.put(obj)
+
+print(queue.get())
+
 
 """
 NETWORKING

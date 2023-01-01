@@ -7,7 +7,7 @@ default_fields_dict = {}
 
 x_wireless_status = "disable"
 
-def login_controller(driver, mode, fetched_modem_list: list, ip_for_dhcp="", queue=Queue()):
+def login_controller(driver, mode, fetched_modem_list: list, ip_for_dhcp="", queue=None):
      
     global default_fields_dict
     if mode == "read":
@@ -192,7 +192,7 @@ def interface_operation_modify_compare(fetched_modem_list: list, default_fields_
                 fields_to_change[k] = v # if a field is modified, add it into our dict
         yield fields_to_change # modify for each modem   
     
-def interface_operation_modify(driver, fields_to_change: dict, ip):
+def interface_operation_modify(driver, fields_to_change: dict, ip_for_dhcp):
     print("Modify Operation launched..")
     for k, v in fields_to_change.items():
         match k:
@@ -211,7 +211,7 @@ def interface_operation_modify(driver, fields_to_change: dict, ip):
             case 'x_subnet':
                 modify_x_subnet(driver, v)
             case 'x_dhcp':
-                modify_x_dhcp(driver, v, ip)
+                modify_x_dhcp(driver, v, ip_for_dhcp)
             case 'x_enable_wireless':
                 modify_x_enable_wireless(driver, v)
             case 'x_enable_ssid1':
