@@ -1,5 +1,5 @@
 
 
-def func(queue):
+def func(item, queue):
     
-    queue.put(5)
+    queue.put(item)

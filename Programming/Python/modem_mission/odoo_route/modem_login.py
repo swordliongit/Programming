@@ -19,7 +19,12 @@ def modem_login_init():
     
     return driver
     
-    
+ 
+def modem_logout(driver):
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
+    WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
+    sleep(0.5)  
+     
 def modem_login(driver, ip, dhcp_mode=False, username="R3000admin", password="admin"):
     """function to read username and password and open the login screen to log into the site
     

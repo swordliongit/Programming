@@ -3,6 +3,57 @@ import PySimpleGUI as sg
 from main import main
 import threading
 
+def button_function(output, x_hotel_name):  #Call main function while still being able to log into screen
+    
+    thread = threading.Thread(target=main, args=(x_hotel_name,))
+    thread.start()
+    
+    #main(x_hotel_name)
+    
+    output.print(x_hotel_name)
+    print("Program is running...")
+
+layout = [
+    [sg.Text("Otel adı girin"), sg.Button("Başlat", key="button", button_color=('white', 'green'), size=(6, 2))],
+    [sg.InputText()],
+    [sg.Multiline(size=(160, 80), key="output")]
+]
+
+window = sg.Window("Modem Configuration Program", layout, size=(300, 200))
+
+window.finalize()
+
+button = window.Element("button")
+button.set_tooltip("Click this button to start configuring modems")
+output = window.Element("output") #sg.Multiline
+
+while True:
+    event, values = window.read()
+    if event == "button":
+        button_function(output, values[0])
+    elif event == sg.WIN_CLOSED:
+        break
+
+window.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
 def maincaller(output):
 
     main(output) # XXX MAIN CALL -->> PROGRAM STARTS HERE !!!
@@ -36,5 +87,6 @@ while True:
         break
 
 window.close()
+"""
 
 

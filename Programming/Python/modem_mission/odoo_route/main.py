@@ -1,8 +1,8 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
-from modem_login import modem_login_init, modem_login
+from modem_login import modem_login_init, modem_login, modem_logout
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
-from interface_operation import login_controller
+from interface_operation import operation_controller
 import threading
 
 from time import sleep
@@ -21,7 +21,7 @@ def network_scan(target_ip, fhfile, mhfile, mac_filter):
     return needed_hosts
 
     
-def main():
+def main(x_hotel_name):
     
     fhfile: str = "hosts/found_hosts.json" # found hosts file
     mhfile: str = "hosts/modem_hosts.json" # modem hosts file   
@@ -63,7 +63,7 @@ def main():
 
         for ip in ip_list: # call multiple versions of the function simultaneously
             t1 = threading.Thread(target=modem_login, args=(driver, ip))
-            t2 = threading.Thread(target=login_controller, args=(driver, mode, [], "", queue))
+            t2 = threading.Thread(target=operation_controller, args=(driver, mode, [], x_hotel_name, "", queue))
             threads1.append(t1)
             threads2.append(t2)
             t1.start()
@@ -75,8 +75,7 @@ def main():
         
         # Read operation end
         #########################
-        
-        
+
         ############################
         # Modem data retrieved, time to send it to Odoo 
         
@@ -84,9 +83,10 @@ def main():
         odoo_login()
         print("Sending data to Odoo..")
         #print(queue.qsize())
-        result: dict = queue.get() # result is obj_dict
         
-        send_datato_odoo(result)
+        for ip in ip_list:
+            result: dict = queue.get() # result is obj_dict
+            send_datato_odoo(result)
             
         print("Data sent!..")
         
@@ -108,9 +108,12 @@ def main():
         
         mode = "modify"
         
-        
-        login_controller(driver, mode, fetched_modem_list=fetched_modem_list, ip_for_dhcp=ip)
-        
+        threads1.clear()
+        threads2.clear()
+
+        modem_login(driver, ip)
+        operation_controller(driver, mode, fetched_modem_list, "", ip, None)
+
         input("Press enter to loop again")
         
         # Modify operation end
