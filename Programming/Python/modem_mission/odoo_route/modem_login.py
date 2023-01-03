@@ -1,7 +1,9 @@
 from selenium_dependencies import *
 from time import sleep
+from queue import Queue
+#from interface_operation import operation_controller
 
-def modem_login_init():
+def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode=False, queue=None):
     """function to set browser to run in background, initialize driver object
 
     Returns:
@@ -17,7 +19,9 @@ def modem_login_init():
     
     driver = webdriver.Chrome("chromedriver")
     
-    return driver
+    #return driver
+    
+    modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode, queue)
     
  
 def modem_logout(driver):
@@ -25,7 +29,7 @@ def modem_logout(driver):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(0.5)  
      
-def modem_login(driver, ip, dhcp_mode=False, username="R3000admin", password="admin"):
+def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode=False, queue=None):
     """function to read username and password and open the login screen to log into the site
     
     """  
@@ -61,6 +65,8 @@ def modem_login(driver, ip, dhcp_mode=False, username="R3000admin", password="ad
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
 
+    operation_controller(driver, mode, fetched_modem_list, x_hotel_name, ip_for_dhcp=ip, queue=queue) 
+    
     
     """current_url = driver.current_url"""
 

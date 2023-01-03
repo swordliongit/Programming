@@ -1,8 +1,7 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
-from modem_login import modem_login_init, modem_login, modem_logout
+from interface_operation import modem_login_init
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
-from interface_operation import operation_controller
 import threading
 
 from time import sleep
@@ -39,11 +38,13 @@ def main(x_hotel_name):
 
     create_directory("./hosts/") # create our directory for our host files
     
+    
+    
     while True:
 
         needed_hosts = network_scan(target_ip, fhfile, mhfile, mac_filter)
         
-        driver = modem_login_init() #initialize the chrome driver
+        #driver = modem_login_init() #initialize the chrome driver
 
         ip_list = []
         for ip in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
@@ -53,25 +54,29 @@ def main(x_hotel_name):
         ########################
         # Read operation start
 
-        from queue import Queue
-        queue = Queue()
+        
+        
+        #lock = threading.Lock()
         
         mode = "read"
         
-        threads1 = []
-        threads2 = []
-
+        threads = []
+         
+        from queue import Queue
+        queue = Queue()       
+    
         for ip in ip_list: # call multiple versions of the function simultaneously
-            t1 = threading.Thread(target=modem_login, args=(driver, ip))
-            t2 = threading.Thread(target=operation_controller, args=(driver, mode, [], x_hotel_name, "", queue))
-            threads1.append(t1)
-            threads2.append(t2)
-            t1.start()
-            t2.start()
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, [], x_hotel_name, queue, False))
+            threads.append(t)
+            threads[-1].start()
             
-        for t1, t2 in zip(threads1, threads2): # wait for all threads to finish
-            t1.join()
-            t2.join()
+        for t in threads:
+            t.join()
+
+        while not queue.empty():
+            print(queue.get(block=True))
+            print("\n")
+        
         
         # Read operation end
         #########################
@@ -81,12 +86,18 @@ def main(x_hotel_name):
         
         print("Logging in Odoo for send..")
         odoo_login()
-        print("Sending data to Odoo..")
-        #print(queue.qsize())
         
-        for ip in ip_list:
+        """print("Sending data to Odoo..")
+        for t in threads:
+            print("\n")
+            print(queue.get())"""
+        
+        input("Queue size..")
+        
+        
+        """for ip in ip_list:
             result: dict = queue.get() # result is obj_dict
-            send_datato_odoo(result)
+            send_datato_odoo(result)"""
             
         print("Data sent!..")
         
@@ -108,11 +119,18 @@ def main(x_hotel_name):
         
         mode = "modify"
         
-        threads1.clear()
-        threads2.clear()
+        threads.clear()
 
-        modem_login(driver, ip)
-        operation_controller(driver, mode, fetched_modem_list, "", ip, None)
+        for ip in ip_list: # call multiple versions of the function simultaneously
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, fetched_modem_list, "", False, None))
+            threads.append(t)
+            
+            #threads2.append(t2)
+            t.start()
+            #t2.start()
+            
+        for t in threads:# wait for all threads to finish
+            t.join()
 
         input("Press enter to loop again")
         

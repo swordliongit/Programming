@@ -5,13 +5,15 @@ import threading
 
 def button_function(output, x_hotel_name):  #Call main function while still being able to log into screen
     
-    thread = threading.Thread(target=main, args=(x_hotel_name,))
-    thread.start()
+    #thread = threading.Thread(target=main, args=(x_hotel_name,))
+    #thread.start()
     
-    #main(x_hotel_name)
+    main(x_hotel_name)
     
     output.print(x_hotel_name)
     print("Program is running...")
+    
+    #thread.join()
 
 layout = [
     [sg.Text("Otel adı girin"), sg.Button("Başlat", key="button", button_color=('white', 'green'), size=(6, 2))],
