@@ -38,16 +38,20 @@ queue = Queue()
 
 threads = []
 
-for i in range(0, 5):
+queue_list = [Queue() for i in range(0, 5)]
+
+for i, queue in zip(range(0, 5), queue_list):
     t = threading.Thread(target=func, args=(i, queue))
     threads.append(t)
     t.start()
     
 for t in threads:
     t.join()
+  
+  
+  
     
-    
-for t in threads:
+for queue in queue_list:
     print(queue.get())
 
 
