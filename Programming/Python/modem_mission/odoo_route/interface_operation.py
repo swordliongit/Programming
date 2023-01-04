@@ -7,12 +7,12 @@ from threading import Lock
 from time import sleep
 from modem_login import modem_login, modem_logout
 
-default_fields_dict = {}
-
-x_wireless_status = "disable"
 
 
-def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, queue, dhcp_mode=False):
+
+
+
+def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, read_queue, modify_queue, fields_to_compare, dhcp_mode=False):
     """function to set browser to run in background, initialize driver object
 
     Returns:
@@ -28,11 +28,20 @@ def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, queue, dhcp_mod
     
     driver = webdriver.Chrome("chromedriver")
     
-    #return driver
+    if mode == "read":
+        field_list_and_read_data = modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, fields_to_compare, dhcp_mode=dhcp_mode)
     
-    obj_dict = modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode=dhcp_mode)
+        default_fields_dict = field_list_and_read_data[0]
     
-    queue.put(obj_dict)
+        read_data = field_list_and_read_data[1]
+    
+        read_queue.put(read_data)
+    
+        modify_queue.put(default_fields_dict)
+    elif mode == "modify":
+        modem_login(driver, ip, mode, fetched_modem_list, None, fields_to_compare, dhcp_mode=dhcp_mode)
+    
+    
     
  
 def modem_logout(driver):
@@ -40,7 +49,7 @@ def modem_logout(driver):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(0.5)  
      
-def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode=False):
+def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, fields_to_compare, dhcp_mode=False):
     """function to read username and password and open the login screen to log into the site
     
     """  
@@ -76,23 +85,26 @@ def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, dhcp_mode=Fa
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
 
-    return operation_controller(driver, mode, fetched_modem_list, x_hotel_name, ip_for_dhcp=ip) 
+    return operation_controller(driver, mode, fetched_modem_list, x_hotel_name, fields_to_compare, ip_for_dhcp=ip) 
     
     
     """current_url = driver.current_url"""
 
 
 
-def operation_controller(driver, mode: str, fetched_modem_list: list, x_hotel_name: str, ip_for_dhcp=""):
+def operation_controller(driver, mode: str, fetched_modem_list: list, x_hotel_name: str, fields_to_compare, ip_for_dhcp=""):
      
-    global default_fields_dict
+    # XXX global default_fields_dict XXX try this
+     
     if mode == "read":
+        default_fields_dict = {}
         output = interface_operation_read(driver, x_hotel_name)
         default_fields_dict = output[0]
-        return output[1]
+        return default_fields_dict, output[1]
     elif mode == "modify":
-        for fields_to_change in interface_operation_modify_compare(fetched_modem_list, default_fields_dict):
+        for fields_to_change in interface_operation_modify_compare(fetched_modem_list, fields_to_compare):
             interface_operation_modify(driver, fields_to_change, ip_for_dhcp)
+        return None
         
 def interface_operation_read(driver, x_hotel_name):
     """function that does the actual search operation inside the page and retrieves elements
@@ -119,7 +131,7 @@ def interface_operation_read(driver, x_hotel_name):
     
     sleep(0.5)
     
-    global default_fields_dict
+    default_fields_dict = {}
     
     x_uptime = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "uptime"))).text
     default_fields_dict['x_uptime'] = x_uptime
@@ -130,7 +142,7 @@ def interface_operation_read(driver, x_hotel_name):
     
     sleep(0.5)
     
-    global x_wireless_status
+    x_wireless_status = "disable"
     
     
     x_wireless_status = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "wlan-ifc-status"))).text
@@ -237,9 +249,10 @@ def interface_operation_read(driver, x_hotel_name):
     for k, v in default_fields_dict.items():
         obj_dict['params']['args'][0].update({k:v}) # add newly fetched fields into the main dict
     
+    print("\n")
     #queue.put(obj_dict) 
     
-    sleep(5)
+    #sleep(1)
     
     return default_fields_dict, obj_dict
        
@@ -269,7 +282,9 @@ def interface_operation_modify_compare(fetched_modem_list: list, default_fields_
                     is_x_dhcp_present = True
         if is_x_dhcp_present:
             fields_to_change['x_dhcp'] = x_dhcp_temp     # put it back to the end of the dict
-        yield fields_to_change # modify for each modem   
+        print(fields_to_change)
+        yield fields_to_change # modify for each modem
+    print("Values compared..")   
     
 def interface_operation_modify(driver, fields_to_change: dict, ip_for_dhcp):
     print("Modify Operation launched..")
@@ -343,7 +358,7 @@ def modify_x_dhcp(driver, ip):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(50)
     
-    modem_login(driver, ip, dhcp_mode=True)
+    modem_login(driver, ip, None, None, None, None, dhcp_mode=True)
     sleep(0.5)
     
 def modify_x_enable_wireless(driver, x_enable_wireless_routine):

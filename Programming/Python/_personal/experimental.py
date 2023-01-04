@@ -6,7 +6,6 @@ from datetime import datetime
 from selenium import webdriver
 
 
-
 """# List of URLs to scrape
 urls = ['http://192.168.5.1/cgi-bin/luci', 'http://192.168.5.2/cgi-bin/luci']
 
@@ -27,32 +26,24 @@ for url in urls:
 """
 
 
+import threading
+import queue
 
+q = queue.Queue()
 
-    
-
-#env['modem.profile'].search([x_update_date,"<",datetime.datetime.now()]).unlink()
-
-queue = Queue()
-
+item_list = [1, 2, 3, 4, 5]
 
 threads = []
 
-queue_list = [Queue() for i in range(0, 5)]
-
-for i, queue in zip(range(0, 5), queue_list):
-    t = threading.Thread(target=func, args=(i, queue))
+for item in item_list:
+    t = threading.Thread(target=func, args=(item, q))
     threads.append(t)
     t.start()
-    
+
+
 for t in threads:
     t.join()
-  
-  
-  
-    
-for queue in queue_list:
-    print(queue.get())
 
 
-
+for i in range(0, len(item_list)):
+    print(q.get())

@@ -61,23 +61,20 @@ def main(x_hotel_name):
         mode = "read"
         
         threads = []
-         
+        
         from queue import Queue
-        queue = Queue()       
-    
+        
+        read_queue = Queue()
+        compare_queue = Queue()
+
         for ip in ip_list: # call multiple versions of the function simultaneously
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, [], x_hotel_name, queue, False))
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, [], x_hotel_name, read_queue, compare_queue, None, False))
             threads.append(t)
-            threads[-1].start()
-            
+            t.start()
+
         for t in threads:
             t.join()
 
-        while not queue.empty():
-            print(queue.get(block=True))
-            print("\n")
-        
-        
         # Read operation end
         #########################
 
@@ -86,19 +83,19 @@ def main(x_hotel_name):
         
         print("Logging in Odoo for send..")
         odoo_login()
+        result = read_queue.get() # result is obj_dict
+        send_datato_odoo(result)
         
-        """print("Sending data to Odoo..")
-        for t in threads:
-            print("\n")
-            print(queue.get())"""
+        print("Sending data to Odoo..")
         
-        input("Queue size..")
+        #while not read_queue.empty():
         
         
-        """for ip in ip_list:
-            result: dict = queue.get() # result is obj_dict
-            send_datato_odoo(result)"""
-            
+        sleep(5)
+        
+        #odoo_login()
+        result = read_queue.get() 
+        send_datato_odoo(result)    
         print("Data sent!..")
         
         ############################
@@ -121,13 +118,13 @@ def main(x_hotel_name):
         
         threads.clear()
 
+        # Order problem XXX NEEDS TO BE FIXED
+
         for ip in ip_list: # call multiple versions of the function simultaneously
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, fetched_modem_list, "", False, None))
+            fields_to_compare = compare_queue.get()
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, fetched_modem_list, "", None, None, fields_to_compare, False))
             threads.append(t)
-            
-            #threads2.append(t2)
             t.start()
-            #t2.start()
             
         for t in threads:# wait for all threads to finish
             t.join()

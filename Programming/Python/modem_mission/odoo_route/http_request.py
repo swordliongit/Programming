@@ -40,6 +40,7 @@ def send_datato_odoo(modem_data: dict):
         }
     myobj = modem_data 
     
+    print("Im in...")
     
     """{"id":43,"jsonrpc":"2.0","method":"call","params":{
         "args":[
