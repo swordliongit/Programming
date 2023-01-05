@@ -7,12 +7,12 @@ from threading import Lock
 from time import sleep
 from modem_login import modem_login, modem_logout
 
+from collections import OrderedDict
 
 
 
 
-
-def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, read_queue, modify_queue, fields_to_compare, dhcp_mode=False):
+def modem_login_init(ip, mode, x_hotel_name, read_queue, compare_queue, fields_to_change, dhcp_mode=False):
     """function to set browser to run in background, initialize driver object
 
     Returns:
@@ -29,7 +29,7 @@ def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, read_queue, mod
     driver = webdriver.Chrome("chromedriver")
     
     if mode == "read":
-        field_list_and_read_data = modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, fields_to_compare, dhcp_mode=dhcp_mode)
+        field_list_and_read_data = modem_login(driver, ip, mode, x_hotel_name, None, dhcp_mode=False)
     
         default_fields_dict = field_list_and_read_data[0]
     
@@ -37,9 +37,9 @@ def modem_login_init(ip, mode, fetched_modem_list, x_hotel_name, read_queue, mod
     
         read_queue.put(read_data)
     
-        modify_queue.put(default_fields_dict)
+        compare_queue.put(default_fields_dict)
     elif mode == "modify":
-        modem_login(driver, ip, mode, fetched_modem_list, None, fields_to_compare, dhcp_mode=dhcp_mode)
+        modem_login(driver, ip, mode, None, fields_to_change, dhcp_mode=dhcp_mode)
     
     
     
@@ -49,7 +49,7 @@ def modem_logout(driver):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(0.5)  
      
-def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, fields_to_compare, dhcp_mode=False):
+def modem_login(driver, ip, mode, x_hotel_name, fields_to_change, dhcp_mode=False):
     """function to read username and password and open the login screen to log into the site
     
     """  
@@ -85,26 +85,25 @@ def modem_login(driver, ip, mode, fetched_modem_list, x_hotel_name, fields_to_co
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
 
-    return operation_controller(driver, mode, fetched_modem_list, x_hotel_name, fields_to_compare, ip_for_dhcp=ip) 
+    return operation_controller(driver, mode, x_hotel_name, fields_to_change, ip_for_dhcp=ip) 
     
     
     """current_url = driver.current_url"""
 
 
 
-def operation_controller(driver, mode: str, fetched_modem_list: list, x_hotel_name: str, fields_to_compare, ip_for_dhcp=""):
+def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, ip_for_dhcp=""):
      
     # XXX global default_fields_dict XXX try this
      
     if mode == "read":
-        default_fields_dict = {}
-        output = interface_operation_read(driver, x_hotel_name)
-        default_fields_dict = output[0]
-        return default_fields_dict, output[1]
+        #default_fields_dict = {}
+        read_data = interface_operation_read(driver, x_hotel_name)
+        default_fields_dict = read_data[0]
+        return default_fields_dict, read_data[1]
     elif mode == "modify":
-        for fields_to_change in interface_operation_modify_compare(fetched_modem_list, fields_to_compare):
-            interface_operation_modify(driver, fields_to_change, ip_for_dhcp)
-        return None
+        interface_operation_modify(driver, fields_to_change, ip_for_dhcp)
+    return None
         
 def interface_operation_read(driver, x_hotel_name):
     """function that does the actual search operation inside the page and retrieves elements
@@ -142,9 +141,6 @@ def interface_operation_read(driver, x_hotel_name):
     
     sleep(0.5)
     
-    x_wireless_status = "disable"
-    
-    
     x_wireless_status = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "wlan-ifc-status"))).text
     default_fields_dict['x_wireless_status'] = x_wireless_status
     
@@ -153,7 +149,7 @@ def interface_operation_read(driver, x_hotel_name):
         x_channel = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "wlan-ifc-channel")))
         default_fields_dict['x_channel'] = x_channel.text
     else:
-        default_fields_dict['x_channel'] = "-"
+        default_fields_dict['x_channel'] = ""
 
         
     x_mac = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "ra0-ifc-mac"))).text
@@ -256,7 +252,7 @@ def interface_operation_read(driver, x_hotel_name):
     
     return default_fields_dict, obj_dict
        
-def interface_operation_modify_compare(fetched_modem_list: list, default_fields_dict: dict):
+def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
     
     # fetched_modem_list = [{'x_ip': "192.168.5.1", ...}, {'x_ip: "192.168.5.2", ...}, ...]
 
@@ -265,59 +261,66 @@ def interface_operation_modify_compare(fetched_modem_list: list, default_fields_
     fields_we_want = ['x_ip', 'x_subnet', 'x_dhcp', 'x_enable_wireless', 'x_enable_ssid1', 
                       'x_enable_ssid2', 'x_enable_ssid3', 'x_enable_ssid4', 'x_manual_time',
                       'x_new_password']
-    for modem in fetched_modem_list: # modem = {'x_ip': "192.168.5.1", ...}
+    for modem, fields_to_compare in zip(fetched_modem_list, fields_to_compare_list): # modem = {'x_ip': "192.168.5.1", ...}
         
         filtered_modem = {key: modem[key] for key in fields_we_want}
         fields_to_change = {}
         
-        # we need to put x_dhcp to the end of the dict of fields that need to be modified, 
-        # to avoid long wait times that cause problems
-        is_x_dhcp_present = False
-        
         for k, v in filtered_modem.items(): # e.g. k = 'x_ip' v = "192.168.5.1"
-            if v != default_fields_dict[k]: # if "192.168.5.1" != default_fields_dict['x_ip']
+            if v != fields_to_compare[k]: # if "192.168.5.1" != default_fields_dict['x_ip']
                 fields_to_change[k] = v # if a field is modified, add it into our dict
-                if k == 'x_dhcp':
-                    x_dhcp_temp = fields_to_change.pop('x_dhcp') # x_dhcp present, take it out
-                    is_x_dhcp_present = True
-        if is_x_dhcp_present:
-            fields_to_change['x_dhcp'] = x_dhcp_temp     # put it back to the end of the dict
-        print(fields_to_change)
+        print(fields_to_change, "\n")
         yield fields_to_change # modify for each modem
     print("Values compared..")   
     
 def interface_operation_modify(driver, fields_to_change: dict, ip_for_dhcp):
     print("Modify Operation launched..")
     
-    x_enable_wireless_routine = []
+    x_enable_wireless_task_list = []
     
     for k, v in fields_to_change.items():
+        
         match k:
             case 'x_ip':
                 modify_x_ip(driver, v)
             case 'x_subnet':
                 modify_x_subnet(driver, v)
             case 'x_dhcp':
-                modify_x_dhcp(driver, ip_for_dhcp)
+                pass
             case 'x_enable_wireless':
-                x_enable_wireless_routine.append(k)
+                x_enable_wireless_task_list.append(k)
+                x_enable_wireless_task_list.append(v)
             case 'x_enable_ssid1':
-                x_enable_wireless_routine.append(k)
+                x_enable_wireless_task_list.append(k)
             case 'x_enable_ssid2':
-                x_enable_wireless_routine.append(k)
+                x_enable_wireless_task_list.append(k)
             case 'x_enable_ssid3':
-                x_enable_wireless_routine.append(k)
+                x_enable_wireless_task_list.append(k)
             case 'x_enable_ssid4':
-                x_enable_wireless_routine.append(k)
+                x_enable_wireless_task_list.append(k)
             case 'x_manual_time':
                 modify_x_manual_time(driver, v)
             case 'x_new_password':
                 modify_x_new_password(driver, v)
-                
-    modify_x_enable_wireless(driver, x_enable_wireless_routine)
+    
+ 
+    if len(x_enable_wireless_task_list) != 0:
+        if 'x_enable_wireless' in x_enable_wireless_task_list:
+            x_enable_wireless_task_list.remove('x_enable_wireless')
+            x_enable_wireless_task_list.insert(0, 'x_enable_wireless')      
+        modify_x_enable_wireless(driver, x_enable_wireless_task_list)
+    
+    dhcp_present = False
+    
+    if 'x_dhcp' in fields_to_change:
+        dhcp_present = True
+        modify_x_dhcp(driver)
+        driver.close()
+    
     print("Modify operation completed..")
     
-    #modem_logout(driver)
+    if not dhcp_present:
+        modem_logout(driver)
     
 def modify_x_ip(driver, v):
     
@@ -343,7 +346,7 @@ def modify_x_subnet(driver, v):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
     sleep(1)
     
-def modify_x_dhcp(driver, ip):
+def modify_x_dhcp(driver):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "LAN Settings"))).click()
@@ -356,35 +359,35 @@ def modify_x_dhcp(driver, ip):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
     
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
-    sleep(50)
+
+    sleep(5)
     
-    modem_login(driver, ip, None, None, None, None, dhcp_mode=True)
-    sleep(0.5)
-    
-def modify_x_enable_wireless(driver, x_enable_wireless_routine):
+def modify_x_enable_wireless(driver, x_enable_wireless_task_list):
     
     WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "WLAN"))).click()
     sleep(1.5)
     
-    for field in x_enable_wireless_routine:
+    x_enable_wireless = True if True in x_enable_wireless_task_list else False
+    
+    for field in x_enable_wireless_task_list:
         match field:
             case 'x_enable_wireless':  
-                
                 field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.wifi_ctrl_0\.enabled")))
-                
-                if not field.is_selected():
-                    field.click()
-                    break
+                field.click()
             case 'x_enable_ssid1':
-                modify_x_enable_ssid1(driver)
+                if x_enable_wireless:
+                    modify_x_enable_ssid1(driver) 
             case 'x_enable_ssid2':
-                modify_x_enable_ssid2(driver)
+                if x_enable_wireless:
+                    modify_x_enable_ssid2(driver)
             case 'x_enable_ssid3':
-                modify_x_enable_ssid3(driver)
+                if x_enable_wireless:
+                    modify_x_enable_ssid3(driver)
             case 'x_enable_ssid4':
-                modify_x_enable_ssid4(driver)
+                if x_enable_wireless:
+                    modify_x_enable_ssid4(driver)
     # Apply button
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
     sleep(10)

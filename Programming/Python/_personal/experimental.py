@@ -6,6 +6,26 @@ from datetime import datetime
 from selenium import webdriver
 
 
+
+
+_list = [1, 2]
+
+
+_list.append({'key':3})
+
+print(_list)
+
+
+
+
+
+
+
+
+
+
+
+
 """# List of URLs to scrape
 urls = ['http://192.168.5.1/cgi-bin/luci', 'http://192.168.5.2/cgi-bin/luci']
 
@@ -25,25 +45,8 @@ for url in urls:
   t.start()
 """
 
+"""d = {'a': 1, 'b': 2, 'c': 3}
+lst = ['x', 'y', 'z']
 
-import threading
-import queue
-
-q = queue.Queue()
-
-item_list = [1, 2, 3, 4, 5]
-
-threads = []
-
-for item in item_list:
-    t = threading.Thread(target=func, args=(item, q))
-    threads.append(t)
-    t.start()
-
-
-for t in threads:
-    t.join()
-
-
-for i in range(0, len(item_list)):
-    print(q.get())
+for key, value, item in zip(d, d.values(), lst):
+    print(key, value, item)"""

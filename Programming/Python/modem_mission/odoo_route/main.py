@@ -1,6 +1,6 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
-from interface_operation import modem_login_init
+from interface_operation import modem_login_init, interface_operation_modify_compare
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 import threading
 
@@ -68,7 +68,7 @@ def main(x_hotel_name):
         compare_queue = Queue()
 
         for ip in ip_list: # call multiple versions of the function simultaneously
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, [], x_hotel_name, read_queue, compare_queue, None, False))
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, x_hotel_name, read_queue, compare_queue, None, False))
             threads.append(t)
             t.start()
 
@@ -82,20 +82,13 @@ def main(x_hotel_name):
         # Modem data retrieved, time to send it to Odoo 
         
         print("Logging in Odoo for send..")
+        
         odoo_login()
-        result = read_queue.get() # result is obj_dict
-        send_datato_odoo(result)
-        
-        print("Sending data to Odoo..")
-        
-        #while not read_queue.empty():
-        
-        
-        sleep(5)
-        
-        #odoo_login()
-        result = read_queue.get() 
-        send_datato_odoo(result)    
+        print("Sending data to Odoo..")  
+        while not read_queue.empty():
+            result = read_queue.get()
+            send_datato_odoo(result)
+    
         print("Data sent!..")
         
         ############################
@@ -109,6 +102,8 @@ def main(x_hotel_name):
         print("Fetching data from Odoo..")
         fetched_modem_list: list = fetch_datafrom_odoo()
         
+        sorted_fetched_modem_list = sorted(fetched_modem_list, key=lambda x: x['x_ip'])
+        
         ############################
         
         ##########################
@@ -118,13 +113,31 @@ def main(x_hotel_name):
         
         threads.clear()
 
-        # Order problem XXX NEEDS TO BE FIXED
+        
+        fields_to_compare_list = []
 
-        for ip in ip_list: # call multiple versions of the function simultaneously
-            fields_to_compare = compare_queue.get()
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, fetched_modem_list, "", None, None, fields_to_compare, False))
+        while not compare_queue.empty():
+            fields_to_compare_list.append(compare_queue.get()) 
+            
+        
+        sorted_fields_to_compare_list = sorted(fields_to_compare_list, key=lambda x: x['x_ip'])
+        
+        #print(sorted_fetched_modem_list)
+        #print(sorted_fields_to_compare_list)
+        #input()
+        
+        fields_to_change_list = []
+        
+        for fields_to_change in interface_operation_modify_compare(sorted_fetched_modem_list, sorted_fields_to_compare_list):
+            fields_to_change_list.append(fields_to_change)
+        
+        
+        for modem, fields_to_change in zip(sorted_fetched_modem_list, fields_to_change_list):
+            ip = modem['x_ip']
+            t = threading.Thread(target=modem_login_init, args=(ip, mode, "", None, None, fields_to_change, False))
             threads.append(t)
             t.start()
+          
             
         for t in threads:# wait for all threads to finish
             t.join()
