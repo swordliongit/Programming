@@ -5,16 +5,19 @@ from datetime import datetime
 
 from selenium import webdriver
 
+modems = [{'x_ip':"192.168.5.1", 'x_mac':"blabla"},
+          {'x_ip':"192.168.5.2", 'x_mac':"blasds"}]
 
+
+hosts = [{'x_ip':"192.168.5.5", 'x_mac':"blabla"},
+          {'x_ip':"192.168.5.3", 'x_mac':"blasds"}]
 
 
 _list = [1, 2]
 
-
-_list.append({'key':3})
+_list.append((1, 2))
 
 print(_list)
-
 
 
 

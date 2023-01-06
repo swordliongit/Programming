@@ -10,6 +10,14 @@ How to turn your .py into .exe
 
 # Python major.minor.patch => Python 3.11.2
 
+"""
+You are correct that if not mlist: will not always work as expected. This is because in Python, an empty list is considered a "falsy" value, but there are other "falsy" values such as None, False, and the integer 0.
+
+Therefore, if not mlist: will evaluate to True only if mlist is an empty list. If mlist is None, False, or 0, the condition will evaluate to False.
+
+To properly check if a list is empty, you should use if len(mlist) == 0: or if not mlist:, but be aware that the latter will not work if the variable is None, False, or 0.
+"""
+
 dir(list)
 dir(str)
 

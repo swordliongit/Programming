@@ -44,11 +44,16 @@ def main(x_hotel_name):
 
         needed_hosts = network_scan(target_ip, fhfile, mhfile, mac_filter)
         
-        #driver = modem_login_init() #initialize the chrome driver
+        # mac is needed in case reading from modem's web interface has mac : 00:00:00:00:00:00
+        # so it won't read it and instead, it'll get the real mac from the network scan, to send to Odoo
 
         ip_list = []
-        for ip in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
+        
+        mac_list = []
+        
+        for ip, mac in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
             ip_list.append(ip)
+            mac_list.append(mac)
 
 
         ########################
@@ -67,8 +72,8 @@ def main(x_hotel_name):
         read_queue = Queue()
         compare_queue = Queue()
 
-        for ip in ip_list: # call multiple versions of the function simultaneously
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, x_hotel_name, read_queue, compare_queue, None, False))
+        for ip, mac in zip(ip_list, mac_list): # call multiple versions of the function simultaneously
+            t = threading.Thread(target=modem_login_init, args=(ip, mac, mode, x_hotel_name, read_queue, compare_queue, ""))
             threads.append(t)
             t.start()
 
@@ -104,6 +109,15 @@ def main(x_hotel_name):
         
         sorted_fetched_modem_list = sorted(fetched_modem_list, key=lambda x: x['x_ip'])
         
+        ips_of_modified_modems = []
+        
+        modem_mapping = {modem['x_mac']: modem['x_ip'] for modem in sorted_fetched_modem_list}
+        
+        ips_of_modified_modems = [host['ip'] for host in needed_hosts if host['mac'] in modem_mapping]
+            
+        
+        
+        
         ############################
         
         ##########################
@@ -112,14 +126,12 @@ def main(x_hotel_name):
         mode = "modify"
         
         threads.clear()
-
         
         fields_to_compare_list = []
 
         while not compare_queue.empty():
             fields_to_compare_list.append(compare_queue.get()) 
             
-        
         sorted_fields_to_compare_list = sorted(fields_to_compare_list, key=lambda x: x['x_ip'])
         
         #print(sorted_fetched_modem_list)
@@ -132,9 +144,8 @@ def main(x_hotel_name):
             fields_to_change_list.append(fields_to_change)
         
         
-        for modem, fields_to_change in zip(sorted_fetched_modem_list, fields_to_change_list):
-            ip = modem['x_ip']
-            t = threading.Thread(target=modem_login_init, args=(ip, mode, "", None, None, fields_to_change, False))
+        for ip, fields_to_change in zip(ips_of_modified_modems, fields_to_change_list):
+            t = threading.Thread(target=modem_login_init, args=(ip, "", mode, "", None, None, fields_to_change))
             threads.append(t)
             t.start()
           

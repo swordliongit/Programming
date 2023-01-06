@@ -105,4 +105,5 @@ def ip_retriever(filtered_hosts: dict):
         str: ip values
     """
     for host in filtered_hosts:
-        yield host['ip']
+        yield host['ip'], host['mac'] # mac is for faulty mac that sometimes shows in modem's web interface.
+                                      # this will make it possible to change it later when it's doing a read operation.
