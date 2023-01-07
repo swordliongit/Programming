@@ -58,6 +58,9 @@ def modem_logout(driver):
 def modem_login(driver, ip):
     url = "http://" + ip + "/cgi-bin/luci"
     
+    username = ""
+    password = ""
+    
     import os
     if os.stat("modem_settings.txt").st_size != 0:
         with open("modem_settings.txt") as file:

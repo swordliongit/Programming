@@ -5,28 +5,18 @@ from datetime import datetime
 
 from selenium import webdriver
 
-modems = [{'x_ip':"192.168.5.1", 'x_mac':"blabla"},
-          {'x_ip':"192.168.5.2", 'x_mac':"blasds"}]
+
+def outer_function(item):
+    
+    mlist = []
+    
+    mlist.append(item)
+    print(mlist)
 
 
-hosts = [{'x_ip':"192.168.5.5", 'x_mac':"blabla"},
-          {'x_ip':"192.168.5.3", 'x_mac':"blasds"}]
-
-
-_list = [1, 2]
-
-_list.append((1, 2))
-
-print(_list)
-
-
-
-
-
-
-
-
-
+#closure = outer_function()
+outer_function(1)
+outer_function(2)
 
 
 """# List of URLs to scrape

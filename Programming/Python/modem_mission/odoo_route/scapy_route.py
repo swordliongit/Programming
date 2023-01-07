@@ -6,7 +6,7 @@ print(.decode("ascii"))"""
 
 import json
 
-def host_finder(target_ip: str) -> list:
+def host_finder(target_ip: str) -> list[dict[str, str]]:
     """
     This function sends packages to each host in the network and fetches their ip and mac addresses
 
@@ -102,7 +102,7 @@ def ip_retriever(filtered_hosts: dict):
         filtered_hosts (dict): _description_
 
     Yields:
-        str: ip values
+        str: ip and mac values
     """
     for host in filtered_hosts:
         yield host['ip'], host['mac'] # mac is for faulty mac that sometimes shows in modem's web interface.

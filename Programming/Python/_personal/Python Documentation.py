@@ -57,7 +57,7 @@ list2[3][0] = 6 #Doesn't change list1's sublist now
 
 """
 ######################################
-Built in arsenal
+Important things to know
 ######################################
 """
 # whitespace counts as a character inside strings
@@ -72,8 +72,50 @@ None # null
 ...  # -> means we don't know what to come
 pass # empty code
 
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX MODULES XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+#module:            #main                       #alternative
+def func():         from module import func     import module       #executes functions definitions and function calls
+    print("")       func()                      module.func()
+
+
+#module
+
+if __name__ == "__main__":    # if module is ran, its __name__ is __main__, if the module is imported and executed from,
+    print("ran from here")  # somewhere else, then __name__ is name of the module itself.
+
 """
-STRINGS
+Directory access
+"""
+
+#testD/test.py        #main
+
+def func():         from testD.test import func
+    print("")       func()
+
+
+"""
+Constants
+"""
+
+CONST = 100 #all capital letters to define a constant
+
+dir(module_name) # -> CONST will show up here
+
+
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX DATA TYPES XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+"""
+String
 """
 
 """
@@ -112,37 +154,7 @@ str.lower()
 str.isdigit() # if all chars are digit, True
 
 """
-MODULES
-"""
-
-#module:            #main                       #alternative
-def func():         from module import func     import module       #executes functions definitions and function calls
-    print("")       func()                      module.func()
-
-
-#module
-
-if __name__ == "__main__":    # if module is ran, its __name__ is __main__, if the module is imported and executed from,
-    print("ran from here")  # somewhere else, then __name__ is name of the module itself.
-
-#directory access
-
-#testD/test.py        #main
-
-def func():         from testD.test import func
-    print("")       func()
-
-
-#constants
-
-CONST = 100 #all capital letters to define a constant
-
-dir(module_name) # -> CONST will show up here
-
-
-
-"""
-LIST
+List
 """
 nlist = [1, 2, [3, 4]]
 
@@ -166,22 +178,29 @@ list.append(obj)
 
 
 """
-TUPLE
+Tuple
 """
 # immutable list
 
 ntuple = (1, 2, 3)
 
 """
-DICTIONARY
+Dictionary
 """
-# "in" operator checks for keys in a dictionary, not values
 
 ndict = {'key1' : 1, 'key2': 2, 'key3': [3, 4, 5]}
 
-# XXX XXXXXXXXXXXXXXXXXXXXXXX
+for key in ndict: # retrieves keys from ndict
+    ...
+
+for val in ndict.items(): # retrieves values from ndict
+    ...
+
+
+"""
 Dictionary Comprehension
-# XXX XXXXXXXXXXXXXXXXXXXXXXX
+"""
+
 
 dict = {key_expr:val_expr for item in iterable}
 # XXX #
@@ -199,9 +218,42 @@ new_dict = {item: item**2 for item in numbers} # creates a dictionary that has v
                                                # as those numbers in the list
 
 
+"""
+Dictionary Mapping
+"""
+
+# How to map a key in dicts with the same key from other dicts and create a list of them.
+# e.g. I want ip addresses from the hosts but I want only the devices corresponding to those ips from the modems.
+# So I have to map ips from hosts with the macs from modems. That way I only have the devices and their ips from the hosts list.
+modems =    [
+                {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.1", 'x_var3':var3, ...}, 
+                {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.4", 'x_var4':var4, ...},
+                ...
+            ]
+
+hosts =     [
+                {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.2"},
+                {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.3"},
+                {'x_mac':"1c:4a:18:30:4b", 'x_ip':"192.168.5.4"},
+                ... 
+            ]
+
+# mapping values we want in dicts
+
+mapping_dict = {modem['x_mac']: modem['x_ip'] for modem in modems}
+
+# mapping = {'1c:4a:18:23:45':'192.168.5.2', '1c:4a:18:30:45':'192.168.5.3', ...}
+# now we got only the necessary key:value pairs from the dict list into a dictionary
+        
+        
+# now we want to put only the keys we want from the second dict list if they are in our mapping dict.        
+mapped_list = [host['x_ip'] for host in hosts if host['x_mac'] in mapping_dict]
+
+# mapped_list = ['192.168.5.2', '192.168.5.3', '192.168.5.4', ...]
+
 
 """
-DICTIONARY METHODS
+Dictionary methods
 """
 dict.pop(__key)
 dict.keys()
@@ -216,13 +268,27 @@ for x in our_dict.items():
     print(x[0]) # x[0] == 'key1'  x[1] == val1
 
 
-"""
-TERNARY
-"""
-x = 1 if ... else
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX CONTROL FLOW XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
 
 """
-MATCH - CASE
+While
+"""
+while True:
+    ...
+
+"""
+For
+"""
+for item in range(10):
+    ...
+    
+"""
+Match - Case
 """
 while True:
     inp = input()
@@ -234,27 +300,58 @@ while True:
             ...
         case default:
             break
+"""
+Loop Operations - Enumerate(), Zip()
+"""
+for index, item in enumerate(['a', 'b', 'c']):
+    #1 a  -> index = 1    item = a
+    #2 b
+    #3 c
+
+for list1_items, list2_items in zip(list1, list2)
+    #list1_items = list1[0]
+    #list2_items = list2[0]
 
 """
-TRY - EXCEPT - FINALLY
+Ternary
+"""
+x = 1 if ... else
+
+
+"""
+Exception Handling
 """
 try:
     ...
-except ...: # Catch all exceptions if empty
+except ValueError: # Catch all exceptions if empty e.g. except:
     ...
-finally:
+else: # if not caught anything
     ...
+finally: # run this no matter what
+    ...
+"""
+How to get caught exception's name
+"""
+
+try:
+
+except Exception as exc:
+    print(type(exc)) # prints type of the exception
+    print(exc.value) # prints the exception message
 
 """
-WITH CONTEXT MANAGER
+With Context Manager
 """
 # built in exception handling, no need to close files
 with open(..., "w") as file:
     file.read()
 
-"""
-FUNCTIONS
-"""
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX FUNCTIONS XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
 
 """
 Function type hint
@@ -271,15 +368,17 @@ def func(var1, var2)
 
 
 """
-LAMBDA
+Anonymous functions - Lambda
 """
-# lambdas can't contain statements
+
+# XXX lambdas can't contain statements XXX
 
 func_name = lambda arg: arg*arg  #  func_name is now a function returning arg and can be called like func_name(3)
 multiparam = lambda x, y: x*y
-###########################
-# lambda list comprehension
-###########################
+
+"""
+Lambda list comprehension
+"""
 
 is_even_list = [lambda arg = x: arg * 10 for x in range(1, 5)]
 
@@ -289,8 +388,9 @@ for item in is_even_list:
     print(item())
 
 """
-DECORATORS
+Decorator
 """
+
 # In short, decorators are useful when you have behavior which you want to apply to one or more functions,
 # without having to modify the function directly. It allows for cleaner and more compact code.
 # good for function testing
@@ -310,9 +410,9 @@ def printer(): # ->   same  as    @caller
 printer = caller(printer)       #   print("hello")
 printer()
 
-###########################
+"""
 How to use parameters with decorator
-###########################
+"""
 
 def caller(func):
     def wrapper(*args, **kwargs):
@@ -330,15 +430,16 @@ def adder(x, y):
 adder(2, 3)
 
 """
-GENERATORS
+Generator
 """
+
 # Used when we want to fetch elements from a large list, useful for performance,
 #           * Don't use for small files/data,
 #           * Called only once, will provide 0 if called again
 
 def generator():
     for i in range(10):
-        yield i ** 2    # Returns 1 item at a time when it's called
+        yield i ** 2    # Returns 1 item at a time when it's called, can also yield a tuple with yield item1, item2
 
 
 for i in generator(): # Can be used in loops like an iterable
@@ -347,72 +448,85 @@ for i in generator(): # Can be used in loops like an iterable
 
 gen = (i for i in range(10)) # same thing, () creates generator expressions
 
+
 """
-MULTI-THREADING
+Closure
 """
-import threading
+# maintains the value of the variables. 
 
-def func():
-    thread = threading.Thread(target=another_func args=(arg1,)) # calls another function while running this function
-    thread.start()
-
-# multi-threads
-
-threads = []
-
-for ip in ip_list: # call multiple versions of the function simultaneously
-    t = threading.Thread(target=modem_login, args=(driver, ip, output))
-    threads.append(t)
-    t.start()
+def outer_function():
     
-for t in threads: # wait for all threads to finish
-    t.join()
+    mlist = []
+    
+    def inner_function(item):
+        mlist.append(item)
+        print(mlist)
+    return inner_function
 
+closure = outer_function()
+closure(1) # mlist = [1]
+closure(2) # mlist = [1, 2]
+
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX FILE CONTROL XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+file.readlines() # -> list
+file.read() # -> string --- Places the cursor at the end after executing
+file = open("storage.txt", 'w') # -> open() has default "r" already
+file = open(r"C\Users\Downloads\st.txt", "w") # -> r to bypass special characters
+file = open("../files/doc.txt", "w") # -> .. goes up 1 directory
+file.writelines(str(list)) # -> list
+file.write("txt") # -> string
+
+"""
+How to check if a file is empty
+"""
+
+import os
+
+if os.stat("total amount.txt").st_size == 0: # if empty
 
 
 """
-WHILE
+Directories
 """
-while True:
-    ...
-
-"""
-FOR
-"""
-for item in range(10):
-    ...
-
-"""
-Loop Operations - Enumerate(), Zip()
-"""
-for index, item in enumerate(['a', 'b', 'c']):
-    #1 a  -> index = 1    item = a
-    #2 b
-    #3 c
-
-for list1_items, list2_items in zip(list1, list2)
-    #list1_items = list1[0]
-    #list2_items = list2[0]
+def create_directory(filename): # create directory based on filename e.g. = "./hosts/"
+    # Extract the directory name from the file path
+    dirname = os.path.dirname(filename)
+    
+    # Create the directory if it does not exist
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
 
 
-"""
-#///////////////////////////////
-#///////////////////////////////
-#///////////////////////////////
-"""
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX FUNCTIONS, MODULES, METHODS XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+input() # --> str
+len()
+isinstance(item, type)
+type(item)
+round(float, digit)
+Counter(iterable) # from collections import Counter
+sum(iterable)
+print()
+exit("msg") # shows red text
+help(func_name)
+all(iterable) # --> True if all elements are True or the list is empty
 
 """
-######################################
-METHODS & FUNCTIONS
-######################################
+Map
 """
 
-#############################
-MAP
-#############################
 map(func, *iterables)  # -> map object
 # calls the function on each element of the iterable
-
 
 def addition(n):
     return n + n
@@ -423,10 +537,9 @@ result = map(addition, numbers)
 print(list(result))
 
 
-
-#############################
-FILTER
-#############################
+"""
+Filter
+"""
 
 filter(function or None, iterable) # --> filter object
 #  Return an iterator yielding those items of iterable for which function(item)
@@ -453,57 +566,36 @@ filtered_dict = dict(filter(lambda x: x[1] % 2 == 0, d.items()))
 
 
 """
-File Operations
+Sorted 
 """
+sorted(iterable, /, *, key=None, reverse=False) -> iterable
+sorted_list_of_dicts = sorted(list_of_dicts, key=lambda x: x['x_ip']) # how to sort a list of dicts
 
-file.readlines() # -> list
-file.read() # -> string --- Places the cursor at the end after executing
-file = open("storage.txt", 'w') # -> open() has default "r" already
-file = open(r"C\Users\Downloads\st.txt", "w") # -> r to bypass special characters
-file = open("../files/doc.txt", "w") # -> .. goes up 1 directory
-file.writelines(str(list)) # -> list
-file.write("txt") # -> string
+sorted_dict = sorted(mydict) # sort by keys
 
-#############################
-How to check if a file is empty
-#############################
-
-import os
-
-if os.stat("total amount.txt").st_size == 0: # if empty
+sorted_dict = sorted(mydict, key=mydict.get) # sort by values
 
 
 """
-Useful Functions and Modules
+Time & Date
 """
 
-input() # --> str
-len()
-isinstance(item, type)
-type(item)
-round(float, digit)
-Counter(iterable) # from collections import Counter
-sum(iterable)
-print()
-exit("msg") # shows red text
-help(func_name)
-all(iterable) # --> True if all elements are True or the list is empty
-
-#############################
-TIME
-#############################
 import time
 print(time.strftime("%Y")) #year format %A : current day - Thursday, a% - Thu 
 
-#############################
-GLOB
-#############################
+import datetime
+print(datetime.datetime.now())
+
+"""
+Glob 
+"""
 import glob
 filepaths = glob.glob("*.txt") # --> a list containing all file names ending with .txt
 
-#############################
-JSON
-#############################
+"""
+Json
+"""
+
 import json                                                       #.json file, must enclose in [] or {}
 with open("questions.json") as file:                                     [
                                                                              ...
@@ -511,46 +603,47 @@ with open("questions.json") as file:                                     [
     
     json.dump(data_list, file, indent=5) # --> write a list into a json file
 
-#############################
+"""
 CSV
-#############################
+"""
+
 import csv                                                              #.csv file
 with open("weather.csv") as file:                                       "Antalya", "40"
                                                                         "Mersin", "38"
     data = list(csv.reader(file))     # --> list of lines as lists      "İstanbul", "30"   
 
-#############################
-BROWSER
-#############################
+"""
+Webbrowser
+"""
+
 import webbrowser
 webbrowser.open("https://www.google.com/search?q=" + "steam") #searches "steam" on google
 
-#############################
-ZIP/ARCHIVE
-#############################
+"""
+Shutil - Zip/Archive
+"""
 import shutil
 shutil.make_archive("output", "zip", "folder") #creates zip named "output" from the folder named "folder"
 
 
-#############################
-MATH
-#############################
+"""
+Math
+"""
 import math
 rads = math.radians(degree)
 
-#############################
-RANDOM NUMBERS
-#############################
+"""
+Random numbers
+"""
 
 import random
 print(random.randint(a, b)) # --> random int
 
+"""
+Queue
+"""
 
-#############################
-QUEUE
-#############################
-
-# Thread safe, dynamic
+# XXX Thread safe, dynamic XXX
 
 from queue import Queue
 
@@ -561,11 +654,16 @@ queue.put(obj)
 print(queue.get())
 
 
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX Networking XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
 """
-NETWORKING
+Local device scan 
 """
-# Local
-#ip addresses
 import netifaces
 
 netifaces.interfaces() # -> Obtain a list of the interfaces available on this machine. (cryptic names)
@@ -584,7 +682,9 @@ netifaces.gateways()["default"][netifaces.AF_INET]
 
 
 
-#general network scan ( scapy )
+"""
+Local network scan - Scapy
+"""
 
 from scapy.all import ARP, Ether, srp
 #target_ip = "192.168.5.0/24"
@@ -604,9 +704,147 @@ for sent, received in result:
     clients.append({'ip': received.psrc, 'mac': received.hwsrc})
 
 
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX WEB SCRAPING - SELENIUM XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
 """
-BASIC GUI
+Web driver init
 """
+from selenium import webdriver
+
+driver = webdriver.Chrome("chromedriverpath/chromedriver")
+
+"""
+Silent web browser
+"""
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_argument("--headless") 
+    
+driver = webdriver.Chrome("chromedriver", options=chrome_options)
+
+"""
+Open a url
+"""
+
+driver.get(url)
+
+"""
+How to find an element
+"""
+from selenium.webdriver.common.by import By
+
+driver.find_element(By.ID, "username") # -> element
+
+"""
+Defensive search for an element
+"""
+from selenium.webdriver.support.ui import WebDriverWait
+
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "username")))
+
+"""
+How to clear and change a field element
+"""
+from selenium.webdriver.common.keys import Keys
+
+element = driver.find_element(By.ID, "username") #By.ID, By.NAME, By.CSS_SELECTOR
+element.clear()
+element.send_keys(username)
+
+"""
+How to click on the element
+"""
+element.click()
+
+"""
+Defensive clicking, will throw exception if the element is not clickable after 10 seconds
+"""
+from selenium.webdriver.support.ui import WebDriverWait
+
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
+
+"""
+How to get the text field of an element
+"""
+field_text = driver.find_element(By.ID, "username").text
+
+"""
+How to get an attribute of an element
+"""
+value = element.get_attribute('value')
+
+"""
+How to know if a checkbox element is checked
+"""
+is_fieldselected = True if field.is_selected() else False
+
+"""
+How to accept alert pop-ups
+"""
+from selenium.webdriver.common.alert import Alert
+
+WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
+
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX MULTITHREADING XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+import threading
+
+"""
+Simple threading
+"""
+
+def func():
+    thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
+    thread.start()
+
+"""
+Multi threading
+"""
+
+threads = []
+
+for ip in ip_list: # call multiple versions of the function simultaneously
+    t = threading.Thread(target=modem_login, args=(driver, ip, output))
+    threads.append(t)
+    t.start()
+    
+for t in threads: # wait for all threads to finish
+    t.join()
+
+"""
+Returning values from Multithreaded functions
+"""
+
+# XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
+# Queue object can be shared between different threads.
+
+-- main.py --                                                       -- _module.py --
+
+from _module import func                                            def func(queue):
+from queue import Queue                                                 item = int(input())
+                                                                        queue.put(item)
+queue = Queue()
+
+thread = threading.Thread(target=func, args=(queue,))
+
+print(queue.get())
+
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+# XXX GUI XXX
+""""""""""""""""""""""""
+""""""""""""""""""""""""
 import PySimpleGUI
 
 label = PySimpleGUI.Text("Press Start")
@@ -616,16 +854,7 @@ window.read()
 window.close()
 
 
-"""
-DIRECTORY
-"""
-def create_directory(filename): # create directory based on filename e.g. = "./hosts/"
-    # Extract the directory name from the file path
-    dirname = os.path.dirname(filename)
-    
-    # Create the directory if it does not exist
-    if not os.path.exists(dirname):
-        os.makedirs(dirname)
+
 
 
 """
