@@ -7,6 +7,9 @@ import threading
 from time import sleep
 
 def network_scan(target_ip, fhfile, mhfile, mac_filter):
+    
+    target_ip = target_ip + "/24"
+    
     hosts: list[dict[str, str]] = host_finder(target_ip) # network scan
 
     host_writer(fhfile, hosts ) # write found hosts into fhfile
@@ -20,24 +23,23 @@ def network_scan(target_ip, fhfile, mhfile, mac_filter):
     return needed_hosts
 
     
-def main(x_hotel_name):
+def main(x_hotel_name, target_ip):
     
     fhfile: str = "hosts/found_hosts.json" # found hosts file
     mhfile: str = "hosts/modem_hosts.json" # modem hosts file   
     
-    target_ip = ""
     mac_filter = ""
     
     # information retrieval - pre operation phase
     import os
     if os.stat("info.txt").st_size != 0:
         with open("info.txt") as file:
-            target_ip = file.readline().split('=')[1].strip('\n')   # ip range to scan
+            #target_ip = file.readline().split('=')[1].strip('\n')   # ip range to scan
             mac_filter = file.readline().split('=')[1].strip('\n')  # mac filter to fetch
     else:
         with open("info.txt", 'w') as file:
-            file.writelines("target=192.168.5.0/24")
-            file.writelines("mac_filter=1c:18:4a")
+            #file.writelines("target=192.168.5.0/24")
+            file.writeline("mac_filter=1c:18:4a")
 
     create_directory("./hosts/") # create our directory for our host files
     

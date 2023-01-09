@@ -3,12 +3,11 @@ import PySimpleGUI as sg
 from main import main
 import threading
 
-def button_function(output, x_hotel_name):  #Call main function while still being able to log into screen
+def button_function(output, x_hotel_name, target_ip):  #Call main function while still being able to log into screen
     
     #thread = threading.Thread(target=main, args=(x_hotel_name,))
     #thread.start()
-    
-    main(x_hotel_name)
+    main(x_hotel_name, target_ip)
     
     output.print(x_hotel_name)
     print("Program is running...")
@@ -17,6 +16,8 @@ def button_function(output, x_hotel_name):  #Call main function while still bein
 
 layout = [
     [sg.Text("Otel adı girin"), sg.Button("Başlat", key="button", button_color=('white', 'green'), size=(6, 2))],
+    [sg.InputText()],
+    [sg.Text("ip menzilini girin")],
     [sg.InputText()],
     [sg.Multiline(size=(160, 80), key="output")]
 ]
@@ -32,7 +33,7 @@ output = window.Element("output") #sg.Multiline
 while True:
     event, values = window.read()
     if event == "button":
-        button_function(output, values[0])
+        button_function(output, values[0], values[1])
     elif event == sg.WIN_CLOSED:
         break
 
