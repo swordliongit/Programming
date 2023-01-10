@@ -118,63 +118,63 @@ dir(module_name) # -> CONST will show up here
 String
 """
 
-"""
-Multiline Strings
-"""
-_str = """
-sdasds
-asdsasa
-asdasdsadsadsa
-asdsadsa
-"""
+        """
+        Multiline Strings
+        """
+        _str = """
+        sdasds
+        asdsasa
+        asdasdsadsadsa
+        asdsadsa
+        """
 
-"""
-Formatted Strings
-"""
-varfetch = 5
-print(f"bla bla bla {varfetch}")
+        """
+        Formatted Strings
+        """
+        varfetch = 5
+        print(f"bla bla bla {varfetch}")
 
-"""
-String Methods
-"""
+        """
+        String Methods
+        """
 
-str.split("@") # -> list
-str.index("kcl_")
-str.find("abc)
-str.strip("ch to strip from")
-str.title()
-str.capitalize()
-str.replace(".", "-" ,...)
-str.join(["item1", "item2"])
-str.replace("str to be replaced", "str to replace")
-str.startswith("str to find") # -> returns True/False
-str.endswith("str to find") # -> returns True/False
-str.upper()
-str.lower()
-str.isdigit() # if all chars are digit, True
+        str.split("@") # -> list
+        str.index("kcl_")
+        str.find("abc)
+        str.strip("ch to strip from")
+        str.title()
+        str.capitalize()
+        str.replace(".", "-" ,...)
+        str.join(["item1", "item2"])
+        str.replace("str to be replaced", "str to replace")
+        str.startswith("str to find") # -> returns True/False
+        str.endswith("str to find") # -> returns True/False
+        str.upper()
+        str.lower()
+        str.isdigit() # if all chars are digit, True
 
 """
 List
 """
 nlist = [1, 2, [3, 4]]
 
-"""
-List Comprehensions
-"""
-x = [i for i in range(5) if i > 1] # assigns [2, 3, 4] to x variable
+        """
+        List Comprehensions
+        """
+        x = [i for i in range(5) if i > 1] # assigns [2, 3, 4] to x variable
 
-"""
-List Methods
-"""
+        """
+        List Methods
+        """
 
-list.sort()
-list.clear()
-list.pop()
-list.remove()
-list.__setitem(1, "house")__
-list.__getitem(1)__
-list.count(obj)  # -> returns number of occurrences of obj
-list.append(obj)
+        list.sort()
+        list.clear()
+        list.pop()
+        list.remove()
+        list.__setitem(1, "house")__
+        list.__getitem(1)__
+        list.count(obj)  # -> returns number of occurrences of obj
+        list.append(obj)
 
 
 """
@@ -197,75 +197,75 @@ for val in ndict.items(): # retrieves values from ndict
     ...
 
 
-"""
-Dictionary Comprehension
-"""
+        """
+        Dictionary Comprehension
+        """
 
 
-dict = {key_expr:val_expr for item in iterable}
-# XXX #
+        dict = {key_expr:val_expr for item in iterable}
+        # XXX #
 
-dict = {'key1' : 1, 'key2': 2, 'key3': 3}
+        dict = {'key1' : 1, 'key2': 2, 'key3': 3}
 
-key_list = ['key1', 'key2']
+        key_list = ['key1', 'key2']
 
-filtered_dict = {key: dict[key] for key in key_list} # creates a dictionary that's filtered by the key_list's items as keys
-                                                     # and values as the dictionary's values which we want to filter
+        filtered_dict = {key: dict[key] for key in key_list} # creates a dictionary that's filtered by the key_list's items as keys
+                                                            # and values as the dictionary's values which we want to filter
 
-numbers = [1, 2, 3]
+        numbers = [1, 2, 3]
 
-new_dict = {item: item**2 for item in numbers} # creates a dictionary that has value as square of items in the numbers list and keys
-                                               # as those numbers in the list
-
-
-"""
-Dictionary Mapping
-"""
-
-# How to map a key in dicts with the same key from other dicts and create a list of them.
-# e.g. I want ip addresses from the hosts but I want only the devices corresponding to those ips from the modems.
-# So I have to map ips from hosts with the macs from modems. That way I only have the devices and their ips from the hosts list.
-modems =    [
-                {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.1", 'x_var3':var3, ...}, 
-                {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.4", 'x_var4':var4, ...},
-                ...
-            ]
-
-hosts =     [
-                {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.2"},
-                {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.3"},
-                {'x_mac':"1c:4a:18:30:4b", 'x_ip':"192.168.5.4"},
-                ... 
-            ]
-
-# mapping values we want in dicts
-
-mapping_dict = {modem['x_mac']: modem['x_ip'] for modem in modems}
-
-# mapping = {'1c:4a:18:23:45':'192.168.5.2', '1c:4a:18:30:45':'192.168.5.3', ...}
-# now we got only the necessary key:value pairs from the dict list into a dictionary
-        
-        
-# now we want to put only the keys we want from the second dict list if they are in our mapping dict.        
-mapped_list = [host['x_ip'] for host in hosts if host['x_mac'] in mapping_dict]
-
-# mapped_list = ['192.168.5.2', '192.168.5.3', '192.168.5.4', ...]
+        new_dict = {item: item**2 for item in numbers} # creates a dictionary that has value as square of items in the numbers list and keys
+                                                    # as those numbers in the list
 
 
-"""
-Dictionary methods
-"""
-dict.pop(__key)
-dict.keys()
-dict.values()
-dict.clear()
-dict.get(key)
-dict.__reversed__()
-dict.update(dict) # e.g. dict.update({k:v})
+        """
+        Dictionary Mapping
+        """
 
-dict.items() -> dict_items([('key1', val1), ('key2', val2), ('key3', val3)])
-for x in our_dict.items():
-    print(x[0]) # x[0] == 'key1'  x[1] == val1
+        # How to map a key in dicts with the same key from other dicts and create a list of them.
+        # e.g. I want ip addresses from the hosts but I want only the devices corresponding to those ips from the modems.
+        # So I have to map ips from hosts with the macs from modems. That way I only have the devices and their ips from the hosts list.
+        modems =    [
+                        {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.1", 'x_var3':var3, ...}, 
+                        {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.4", 'x_var4':var4, ...},
+                        ...
+                    ]
+
+        hosts =     [
+                        {'x_mac':"1c:4a:18:23:45", 'x_ip':"192.168.5.2"},
+                        {'x_mac':"1c:4a:18:30:45", 'x_ip':"192.168.5.3"},
+                        {'x_mac':"1c:4a:18:30:4b", 'x_ip':"192.168.5.4"},
+                        ... 
+                    ]
+
+        # mapping values we want in dicts
+
+        mapping_dict = {modem['x_mac']: modem['x_ip'] for modem in modems}
+
+        # mapping = {'1c:4a:18:23:45':'192.168.5.2', '1c:4a:18:30:45':'192.168.5.3', ...}
+        # now we got only the necessary key:value pairs from the dict list into a dictionary
+                
+                
+        # now we want to put only the keys we want from the second dict list if they are in our mapping dict.        
+        mapped_list = [host['x_ip'] for host in hosts if host['x_mac'] in mapping_dict]
+
+        # mapped_list = ['192.168.5.2', '192.168.5.3', '192.168.5.4', ...]
+
+
+        """
+        Dictionary methods
+        """
+        dict.pop(__key)
+        dict.keys()
+        dict.values()
+        dict.clear()
+        dict.get(key)
+        dict.__reversed__()
+        dict.update(dict) # e.g. dict.update({k:v})
+
+        dict.items() -> dict_items([('key1', val1), ('key2', val2), ('key3', val3)])
+        for x in our_dict.items():
+            print(x[0]) # x[0] == 'key1'  x[1] == val1
 
 
 """"""""""""""""""""""""
@@ -329,15 +329,15 @@ else: # if not caught anything
     ...
 finally: # run this no matter what
     ...
-"""
-How to get caught exception's name
-"""
+        """
+        How to get caught exception's name
+        """
 
-try:
+        try:
 
-except Exception as exc:
-    print(type(exc)) # prints type of the exception
-    print(exc.value) # prints the exception message
+        except Exception as exc:
+            print(type(exc)) # prints type of the exception
+            print(exc.value) # prints the exception message
 
 """
 With Context Manager
@@ -352,6 +352,14 @@ with open(..., "w") as file:
 # XXX FUNCTIONS XXX
 """"""""""""""""""""""""
 """"""""""""""""""""""""
+"""
+Parameter order
+"""
+
+1-Standard arguments
+2-*args arguments
+3-**kwargs arguments
+
 
 """
 Function type hint
@@ -376,16 +384,16 @@ Anonymous functions - Lambda
 func_name = lambda arg: arg*arg  #  func_name is now a function returning arg and can be called like func_name(3)
 multiparam = lambda x, y: x*y
 
-"""
-Lambda list comprehension
-"""
+        """
+        Lambda list comprehension
+        """
 
-is_even_list = [lambda arg = x: arg * 10 for x in range(1, 5)]
+        is_even_list = [lambda arg = x: arg * 10 for x in range(1, 5)]
 
-# iterate on each lambda function
-# and invoke the function to get the calculated value
-for item in is_even_list:
-    print(item())
+        # iterate on each lambda function
+        # and invoke the function to get the calculated value
+        for item in is_even_list:
+            print(item())
 
 """
 Decorator
@@ -410,21 +418,21 @@ def printer(): # ->   same  as    @caller
 printer = caller(printer)       #   print("hello")
 printer()
 
-"""
-How to use parameters with decorator
-"""
+        """
+        How to use parameters with decorator
+        """
 
-def caller(func):
-    def wrapper(*args, **kwargs):
-        print("========")
-        func(*args, **kwargs)
-        print("========")
-    return wrapper
+        def caller(func):
+            def wrapper(*args, **kwargs):
+                print("========")
+                func(*args, **kwargs)
+                print("========")
+            return wrapper
 
 
-@caller
-def adder(x, y):
-    print(x+y)
+        @caller
+        def adder(x, y):
+            print(x+y)
 
 
 adder(2, 3)
@@ -452,7 +460,7 @@ gen = (i for i in range(10)) # same thing, () creates generator expressions
 """
 Closure
 """
-# maintains the value of the variables. 
+# maintains the value of the variables between function calls. Counter of global variable usage.
 
 def outer_function():
     
@@ -466,6 +474,101 @@ def outer_function():
 closure = outer_function()
 closure(1) # mlist = [1]
 closure(2) # mlist = [1, 2]
+
+"""
+Unpacking values - Variable arguments
+"""
+
+        """
+        Variable arguments
+        """
+        
+                """
+                *args
+                """
+                
+                def func(*args): # arguments are packed into a tuple
+                    for item in args:
+                        sum += item
+                    print(sum)
+                        
+                func(1, 2) # variable number of arguments
+                func(1, 2, 3)
+                
+                
+                """
+                **kwargs
+                """
+                
+                def func(**kwargs): # arguments are packed into a dictionary
+                    for k, v in kwargs.items():
+                        print(k, v)
+
+                func(key1=value1, key2=value2) # variable number of keyword arguments
+                func(key1=value1, key2=value2, key3=value3)
+        #4EC9B0
+        """
+        Unpacking 
+        """
+        def func(a, b, c): # a=1, b=2, c=3
+            print(a+b+c)
+        
+        mlist = [1,2,3]
+        func(*mlist) # unpacked as 1 2 3
+        
+        # XXX XXX XXX
+        
+        def func(*args):
+            res = 0
+            for item in args:
+                res+=item
+            return res
+        
+        mlist1 = [1,2,3]
+        mlist2 = [4,5,6,7]
+        mlist3 = [8,9]
+        
+        print(func(*mlist1, *mlist2, *mlist3)) # evaluates to : func(1,2,3,4,5,6,7,8,9)
+        
+        # sums up all of the elements of all the lists
+        
+                """
+                Split
+                """
+                
+                my_list = [1, 2, 3, 4, 5, 6]
+
+                a, *b, c = my_list # first value goes into a, last value goes into c, all inbetween goes to b
+
+                print(a) # 1
+                print(b) # [2, 3, 4, 5]
+                print(c) # 6
+                
+                """
+                Merge
+                """
+                
+                my_first_list = [1, 2, 3]
+                my_second_list = [4, 5, 6]
+                my_merged_list = [*my_first_list, *my_second_list]
+
+                print(my_merged_list) # [1, 2, 3, 4, 5, 6]
+                
+                # XXX XXX XXX
+                
+                my_first_dict = {"A": 1, "B": 2}
+                my_second_dict = {"C": 3, "D": 4}
+                my_merged_dict = {**my_first_dict, **my_second_dict}
+
+                print(my_merged_dict) # {"A": 1, "B": 2, "C": 3, "D": 4}
+                
+                """
+                Unpacking strings
+                """
+                
+                a = [*"Python"] # a = ['P', 'y', 't', 'h', 'o', 'n']
+
+                *a, = "Python"  # a = ['P', 'y', 't', 'h', 'o', 'n']
 
 
 """"""""""""""""""""""""
@@ -821,23 +924,23 @@ for ip in ip_list: # call multiple versions of the function simultaneously
 for t in threads: # wait for all threads to finish
     t.join()
 
-"""
-Returning values from Multithreaded functions
-"""
+        """
+        Returning values from Multithreaded functions
+        """
 
-# XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
-# Queue object can be shared between different threads.
+        # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
+        # Queue object can be shared between different threads.
 
--- main.py --                                                       -- _module.py --
+        -- main.py --                                                       -- _module.py --
 
-from _module import func                                            def func(queue):
-from queue import Queue                                                 item = int(input())
-                                                                        queue.put(item)
-queue = Queue()
+        from _module import func                                            def func(queue):
+        from queue import Queue                                                 item = int(input())
+                                                                                queue.put(item)
+        queue = Queue()
 
-thread = threading.Thread(target=func, args=(queue,))
+        thread = threading.Thread(target=func, args=(queue,))
 
-print(queue.get())
+        print(queue.get())
 
 
 """"""""""""""""""""""""
