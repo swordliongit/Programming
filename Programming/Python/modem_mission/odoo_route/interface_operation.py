@@ -29,7 +29,7 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
     driver = webdriver.Chrome("chromedriver")
     
     if mode == "read":
-        field_list_and_read_data = modem_login_control(driver, ip, mac, mode, x_hotel_name, None, ip_for_x_manual_time=ip)
+        field_list_and_read_data = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
     
         default_fields_dict = field_list_and_read_data[0]
     
@@ -39,7 +39,7 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
     
         compare_queue.put(default_fields_dict)
     elif mode == "modify":
-        modem_login_control(driver, ip, mac, mode, None, fields_to_change, ip_for_x_manual_time=ip)
+        modem_login_control(driver, ip, mac, mode, None, fields_to_change)
     
 def is_logged_out(driver):
     try:
@@ -87,20 +87,20 @@ def modem_login(driver, ip):
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
      
-def modem_login_control(driver, ip, mac, mode, x_hotel_name, fields_to_change, ip_for_x_manual_time):
+def modem_login_control(driver, ip, mac, mode, x_hotel_name, fields_to_change):
     """function to read username and password and open the login screen to log into the site
     
     """  
     modem_login(driver, ip)
 
-    return operation_controller(driver, mode, x_hotel_name, fields_to_change, mac, ip_for_x_manual_time=ip_for_x_manual_time) 
+    return operation_controller(driver, mode, x_hotel_name, fields_to_change, mac, ip) 
     
     
     #current_url = driver.current_url
 
 
 
-def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, mac, ip_for_x_manual_time):
+def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, mac, ip_for_modify):
      
     # XXX global default_fields_dict XXX try this
      
@@ -110,7 +110,7 @@ def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change,
         default_fields_dict = read_data[0]
         return default_fields_dict, read_data[1]
     elif mode == "modify":
-        interface_operation_modify(driver, fields_to_change, ip_for_x_manual_time=ip_for_x_manual_time)
+        interface_operation_modify(driver, fields_to_change, ip_for_modify)
     return None
         
 def interface_operation_read(driver, x_hotel_name, mac):
@@ -264,6 +264,8 @@ def interface_operation_read(driver, x_hotel_name, mac):
 def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
     
     # fetched_modem_list = [{'x_ip': "192.168.5.1", ...}, {'x_ip: "192.168.5.2", ...}, ...]
+    
+    x_reboot_present = False
 
     print("Comparing values..")
     
@@ -281,21 +283,23 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
         print(fields_to_change, "\n")
         
         if 'x_reboot' in modem and 'x_reboot' == True: #This is a button so I can't check the state of it in the read operation
+            x_reboot_present = True
             fields_to_change['x_reboot'] = modem['x_reboot']
             
         yield fields_to_change # modify for each modem
         
-    if 'x_reboot' in fields_to_change and 'x_reboot' == True:
+    if x_reboot_present:
         fields_to_change.move_to_end('x_reboot', last=True)
         
     print("Values compared..")   
     
-def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_x_manual_time):
+def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_modify):
     print("Modify Operation launched..")
     
     WLAN_task_list = []
-    
     LAN_Settings_task_list = []
+    
+    x_manual_time = "" # if dhcp is modified, it will reset the manual time, so I have to handle this separately.
     
     for k, v in fields_to_change.items():
         
@@ -318,22 +322,26 @@ def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_x
             case 'x_enable_ssid4':
                 WLAN_task_list.append(k)
             case 'x_manual_time':
-                modify_x_manual_time(driver, v, ip_for_x_manual_time=ip_for_x_manual_time)
+                x_manual_time = v
             case 'x_new_password':
                 modify_x_new_password(driver, v)
             case 'x_reboot':
                 pass
-                
-    
+            
+    if 'x_reboot' in fields_to_change:
+        LAN_Settings_task_list.append('x_reboot_present')            
     
     if len(WLAN_task_list) != 0:
         if 'x_enable_wireless' in WLAN_task_list:
             WLAN_task_list.remove('x_enable_wireless')
             WLAN_task_list.insert(0, 'x_enable_wireless')      
-        modify_x_enable_wireless(driver, WLAN_task_list)
+        modify_WLAN_task_control(driver, WLAN_task_list)
     
     if len(LAN_Settings_task_list) != 0:
-        modify_WLAN_task_control(driver, LAN_Settings_task_list)
+        modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_manual_time)
+        
+    if 'x_manual_time' in fields_to_change:
+        modify_x_manual_time(driver, x_manual_time, ip_for_modify)    
         
     if 'x_reboot' in fields_to_change:
         modify_x_reboot(driver)
@@ -355,7 +363,7 @@ def modify_x_reboot(driver):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(60)
 
-def modify_WLAN_task_control(driver, LAN_Settings_task_list):
+def modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_manual_time):
     
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
@@ -376,7 +384,9 @@ def modify_WLAN_task_control(driver, LAN_Settings_task_list):
     
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
 
-    sleep(5)
+    sleep(50)
+    if 'x_reboot_present' in LAN_Settings_task_list or x_manual_time != 0:
+        modem_login(driver, ip_for_modify)
     
 def modify_x_ip(driver, v):
     
@@ -395,7 +405,7 @@ def modify_x_dhcp(driver):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.dhcp_en')))
     field.click()
     
-def modify_x_enable_wireless(driver, WLAN_task_list):
+def modify_WLAN_task_control(driver, WLAN_task_list):
     
     WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
@@ -423,7 +433,8 @@ def modify_x_enable_wireless(driver, WLAN_task_list):
                     modify_x_enable_ssid4(driver)
     # Apply button
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
-    sleep(50)
+    
+    sleep(5)
     
 def modify_x_enable_ssid1(driver):
 
@@ -445,7 +456,7 @@ def modify_x_enable_ssid4(driver):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra3\.enabled")))
     field.click()
     
-def modify_x_manual_time(driver, v, ip_for_x_manual_time):
+def modify_x_manual_time(driver, v, ip_for_modify):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Time Synchronisation"))).click()
@@ -459,7 +470,7 @@ def modify_x_manual_time(driver, v, ip_for_x_manual_time):
     sleep(5)
     
     if is_logged_out(driver):
-        modem_login(driver, ip_for_x_manual_time)
+        modem_login(driver, ip_for_modify)
     
 def modify_x_new_password(driver, v):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "System"))).click()

@@ -2,15 +2,26 @@
 import PySimpleGUI as sg
 from main import main
 import threading
+from multiprocessing import Process
+import concurrent.futures
+
+def fetch_confirmation():
+    fetch_warning = sg.PopupNoTitlebar('Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK\'a basin.', button_type=sg.POPUP_BUTTONS_OK, grab_anywhere=True)
+    if fetch_warning == "OK":
+        # check if user wants to continue
+        continue_execution = sg.popup_yes_no('Degistirilen ayarlari uygulamak icin devam etmek istiyor musunuz?', no_titlebar=True, grab_anywhere=True)
+        if continue_execution == 'No':
+            exit()
+
 
 def button_function(output, x_hotel_name, target_ip):  #Call main function while still being able to log into screen
     
-    #thread = threading.Thread(target=main, args=(x_hotel_name,))
-    #thread.start()
-    main(x_hotel_name, target_ip)
+    # thread = threading.Thread(target=main, args=(output, x_hotel_name, target_ip))
+    # thread.start()
+    main(output, x_hotel_name, target_ip)
     
-    output.print(x_hotel_name)
-    print("Program is running...")
+    #with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+    #    executor.submit(main(output, x_hotel_name, target_ip))
     
     #thread.join()
 

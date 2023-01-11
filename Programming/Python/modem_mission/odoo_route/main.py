@@ -23,7 +23,7 @@ def network_scan(target_ip, fhfile, mhfile, mac_filter):
     return needed_hosts
 
     
-def main(x_hotel_name, target_ip):
+def main(output, x_hotel_name, target_ip):
     
     fhfile: str = "hosts/found_hosts.json" # found hosts file
     mhfile: str = "hosts/modem_hosts.json" # modem hosts file   
@@ -62,12 +62,9 @@ def main(x_hotel_name, target_ip):
 
 
         ########################
-        # Read operation start
-
-        
-        
-        #lock = threading.Lock()
-        
+        """
+        READ OPERATION START
+        """
         mode = "read"
         
         threads = []
@@ -84,12 +81,18 @@ def main(x_hotel_name, target_ip):
 
         for t in threads:
             t.join()
+            
+        output.print("Operation done")
 
-        # Read operation end
+        """
+        READ OPERATION END
+        """
         #########################
 
         ############################
-        # Modem data retrieved, time to send it to Odoo 
+        """
+        ODOO SEND START
+        """ 
         
         print("Logging in Odoo for send..")
         
@@ -101,11 +104,26 @@ def main(x_hotel_name, target_ip):
     
         print("Data sent!..")
         
+        """
+        ODOO SEND END
+        """
         ############################
+        """
+        FETCH CONFIRMATION START
+        """
         
-        input("Press enter to start fetching if you have done modifying..")
+        import GUI
         
+        GUI.fetch_confirmation()
+
+        
+        """
+        FETCH CONFIRMATION END
+        """
         ############################
+        """
+        FETCH START
+        """
         # Time to get all the changed modems' data from Odoo
         print("Logging in Odoo for fetch..")
         odoo_login()
@@ -119,14 +137,19 @@ def main(x_hotel_name, target_ip):
         modem_mapping = {modem['x_mac']: modem['x_ip'] for modem in sorted_fetched_modem_list}
         
         ips_of_modified_modems = [host['ip'] for host in needed_hosts if host['mac'] in modem_mapping]
-            
+        
+        """
+        FETCH END
+        """    
         
         
         
         ############################
         
         ##########################
-        # Modify operation start
+        """
+        MODIFY OPERATION START
+        """
         
         mode = "modify"
         
@@ -136,6 +159,10 @@ def main(x_hotel_name, target_ip):
 
         while not compare_queue.empty():
             fields_to_compare_list.append(compare_queue.get()) 
+            
+        for modem in fields_to_compare_list:
+            if not modem['x_ip'] in ips_of_modified_modems:
+                fields_to_compare_list.remove(modem)
             
         sorted_fields_to_compare_list = sorted(fields_to_compare_list, key=lambda x: x['x_ip'])
         
@@ -158,10 +185,14 @@ def main(x_hotel_name, target_ip):
         for t in threads:# wait for all threads to finish
             t.join()
 
-        input("Press enter to loop again")
+        #input("Press enter to loop again")
         
-        # Modify operation end
+        """
+        MODIFY OPERATION END
+        """
         #######################
+        
+        sleep(2)
         
 
 if __name__ == "__main__":
