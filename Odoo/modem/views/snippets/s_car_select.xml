@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="transfer_car_select" name="Transfer Car Select">
+        <section class="transfer_car_select">
+                <div class="container">
+
+                    <span class="d-none" t-esc="rate"/>
+                    <span class="d-none" t-esc="product.name"/>
+
+                    <t t-foreach="product.car_lines" t-as="car">
+                        <div class="row">
+                            <form role="form" action="/create/form-2" method="POST">
+                                <t t-set="from_id" t-value="env['transfer.city'].search([['id','=',form_1_details['from_id']]])"/>
+                                <t t-set="to_id" t-value="env['transfer.city'].search([['id','=',form_1_details['to_id']]])"/>
+                                <t t-set="currency_id" t-value="env['res.currency'].search([['id','=',form_1_details['currency_id']]])"/>
+                                <t t-set="rate" t-value="currency_id.rate"/>
+                                <div class="col my-3">
+                                    <div class="card bg-dark text-white mx-3">
+                                        <div class="card-header">
+                                            <h2 t-esc="car.car_id.name"/>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                            <ol class="carousel-indicators">
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                            </ol>
+                                                            <div class="carousel-inner">
+                                                                <div class="carousel-item active">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_1/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_2/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_3/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_4/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_5/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img t-attf-src="/website/image/transfer.car/#{car.car_id.id}/image_6/500x200" class="d-block w-100" alt="..."/>
+                                                                </div>
+                                                            </div>
+                                                            <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="sr-only">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="sr-only">Next</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-8 col-md-12 py-3">
+                                                        <div class="d-flex justify-content-start flex-warp">
+                                                            <div class="d-flex flex-column align-items-center text-center">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="42" class="img-thumbnail"/>
+                                                                <span class="small text-uppercase mx-3 my-3">
+                                                                    <span t-esc="car.car_id.passenger_cap"></span> Kişilik</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column align-items-center text-center">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="42" class="img-thumbnail"/>
+                                                                <span class="small text-uppercase mx-3 my-3">
+                                                                    <span t-esc="car.car_id.luggage_cap"> 4</span> Bagaj Kapasitesi</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column align-items-center text-center">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="42" class="img-thumbnail"/>
+                                                                <span class="small text-uppercase mx-3 my-3">
+                                                            Tipi <span t-esc="car.car_id.type"></span>
+                                                                </span>
+                                                            </div>
+                                                            <!-- <t t-foreach="car.car_id.extras.filtered(lambda x: x.extra_status == True)" t-as="extra">
+                                                                <div class="d-flex flex-column align-items-center text-center">
+                                                                    <img src="/website/image/transfer.extra/#{extra.id}/image/42x42" alt="" width="42" class="img-thumbnail"/>
+                                                                    <span class="small text-uppercase mx-3 my-3">
+                                                                        <span t-esc="extra.name"/>
+                                                                    </span>
+                                                                </div>
+                                                            </t> -->
+                                                            <!-- <t t-foreach="car.car_id.extras.filtered(lambda x: x.extra_status == False)" t-as="extra">
+                                                                <div class="d-flex flex-column align-items-center text-center">
+                                                                    <img src="/website/image/transfer.extra/#{extra.id}/image/42x42" alt="" width="42" class="img-thumbnail"/>
+                                                                    <span class="small text-uppercase mx-3 my-3">
+                                                                        <span t-esc="extra.name"/>
+                                                                    </span>
+                                                                </div>
+                                                            </t> -->
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col align-self-center col-lg-4 text-right order-last order-lg-2 order-md-last order-sm-last py-3">
+                                                        <div>From
+                                                            <span t-esc="from_id.name"/>
+                                                        </div>
+                                                        <div>To
+                                                            <span t-esc="to_id.name"/>
+                                                        </div>
+                                                        <h3>
+                                                            <span class="d-none" t-esc="car.car_price"/>
+                                                            <t t-set="last_price" t-value="car.car_price*rate"/>
+                                                            <span t-esc="'%.2f'% last_price"/>
+                                                            <span t-esc="currency_id.name"/>
+                                                        </h3>
+                                                        <div class="btn-group-lg">
+                                                            <button class="btn btn-primary btn-group-lg" type="submit">ARAÇ SEÇ</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-lg-8 col-md-8 col-sm-12 align-self-start text-left order-3">
+                                                        <p t-esc="car.car_id.description"/>
+                                                    </div>
+                                                    <div class="form-group d-none">
+                                                        <input type="text" name="product_id" t-att-value="product.id" id="product_id" class="form-control" required="required"/>
+                                                        <input type="text" name="car_id" t-att-value="car.car_id.id" id="car_id" class="form-control" required="required"/>
+                                                        <input type="text" name="price" t-att-value="car.car_price*rate" id="price" class="form-control" required="required"/>
+                                                        <input type="text" name="currency_id" t-att-value="currency_id.name" id="currency_id" class="form-control" required="required"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </t>
+                </div>
+        </section>
+    </template>
+    <template id="transfer_car_select_widgets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='transfer_area']" position="after">
+            <div id="transfer_area" class="o_panel">
+                <div class="o_panel_body">
+                    <t t-snippet="transfer.transfer_car_select" t-thumbnail="/muk_website_grid/static/src/img/section.svg">
+                        <keywords>transfer</keywords>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <!-- <record id="website.s_countdown_000_js" model="ir.asset">
+        <field name="name">Countdown 000 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">website/static/src/snippets/s_countdown/000.js</field>
+    </record> -->
+
+</odoo>

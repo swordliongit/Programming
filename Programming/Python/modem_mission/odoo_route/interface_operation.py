@@ -29,15 +29,11 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
     driver = webdriver.Chrome("chromedriver")
     
     if mode == "read":
-        field_list_and_read_data = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
+        modem_read_result_dict = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
     
-        default_fields_dict = field_list_and_read_data[0]
-    
-        read_data = field_list_and_read_data[1]
-    
-        read_queue.put(read_data)
-    
-        compare_queue.put(default_fields_dict)
+        read_queue.put(modem_read_result_dict)
+        compare_queue.put(modem_read_result_dict)
+        
     elif mode == "modify":
         modem_login_control(driver, ip, mac, mode, None, fields_to_change)
     
@@ -102,13 +98,11 @@ def modem_login_control(driver, ip, mac, mode, x_hotel_name, fields_to_change):
 
 def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, mac, ip_for_modify):
      
-    # XXX global default_fields_dict XXX try this
+    # XXX global modem_read_result_dict XXX try this
      
     if mode == "read":
-        #default_fields_dict = {}
-        read_data = interface_operation_read(driver, x_hotel_name, mac)
-        default_fields_dict = read_data[0]
-        return default_fields_dict, read_data[1]
+        #modem_read_result_dict = {}
+        return interface_operation_read(driver, x_hotel_name, mac)
     elif mode == "modify":
         interface_operation_modify(driver, fields_to_change, ip_for_modify)
     return None
@@ -129,8 +123,11 @@ def interface_operation_read(driver, x_hotel_name, mac):
     print("Read Operation launched..")
     ############################# XXX
     
-    obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{"modem_image":False,"__last_update":False,"name":"protometa","x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_device_info":False,"x_ip":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"modem_id":False,"city":False,"live_status":"offline","last_action_user":3,"modem_status":False,"modem_home_mode":False,"customer_id":[[6,False,[]]],"modem_update":False,"modem_version":False}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
+    #{"modem_image":False,"__last_update":False,"name":"protometa","x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_device_info":False,"x_ip":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"modem_id":False,"city":False,"live_status":"offline","last_action_user":3,"modem_status":False,"modem_home_mode":False,"customer_id":[[6,False,[]]],"modem_update":False,"modem_version":False}
     
+    # "args" key of the dictionary has a list of dictionary. This dictionary will contain the fields of a record in Odoo.
+    obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
+                                                                 #---------^
     # XXX START OF THE AUTOMATION XXX
     
     # Network -> Uptime
@@ -138,10 +135,10 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     sleep(0.5)
     
-    default_fields_dict = {}
+    modem_read_result_dict = {}
     
     x_uptime = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "uptime"))).text
-    default_fields_dict['x_uptime'] = x_uptime
+    modem_read_result_dict['x_uptime'] = x_uptime
     
     # LAN Information -> Wireless Status & Channel & MAC & IP, device info
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "LAN Information"))).click()
@@ -149,23 +146,23 @@ def interface_operation_read(driver, x_hotel_name, mac):
     sleep(0.5)
     
     x_wireless_status = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "wlan-ifc-status"))).text
-    default_fields_dict['x_wireless_status'] = x_wireless_status
+    modem_read_result_dict['x_wireless_status'] = x_wireless_status
     
     # channel may or may not be present, depending on wireless status(on/off)
     if x_wireless_status == "enable":
         x_channel = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "wlan-ifc-channel")))
-        default_fields_dict['x_channel'] = x_channel.text
+        modem_read_result_dict['x_channel'] = x_channel.text
     else:
-        default_fields_dict['x_channel'] = ""
+        modem_read_result_dict['x_channel'] = ""
 
     #x_mac = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "ra0-ifc-mac"))).text
     
     #if x_mac == "00:00:00:00:00:00": # Fix the error on interface reading
     #    x_mac = mac
-    default_fields_dict['x_mac'] = mac
+    modem_read_result_dict['x_mac'] = mac
     
     x_device_info = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#maincontent > div > div:nth-child(4) > div > div:nth-child(3) > table"))).text
-    default_fields_dict['x_device_info'] = x_device_info
+    modem_read_result_dict['x_device_info'] = x_device_info
     
     # Network: LAN Settings -> IP, Subnet, dhcp
     
@@ -176,15 +173,15 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.ipaddr')))
     x_ip = field.get_attribute('value')
-    default_fields_dict['x_ip'] = x_ip
+    modem_read_result_dict['x_ip'] = x_ip
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.netmask')))
     x_subnet = field.get_attribute('value')
-    default_fields_dict['x_subnet'] = x_subnet
+    modem_read_result_dict['x_subnet'] = x_subnet
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.dhcp\.dnsmasq_0\.dhcp_en")))
     x_dhcp = True if field.is_selected() else False
-    default_fields_dict['x_dhcp'] = x_dhcp
+    modem_read_result_dict['x_dhcp'] = x_dhcp
     
     # Network: WLAN -> Enable Wireless
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "WLAN"))).click()
@@ -193,29 +190,29 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.wifi_ctrl_0\.enabled")))
     x_enable_wireless = True if field.is_selected() else False
-    default_fields_dict['x_enable_wireless'] = x_enable_wireless
+    modem_read_result_dict['x_enable_wireless'] = x_enable_wireless
     
     if x_enable_wireless:
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra0\.enabled")))
         x_enable_ssid1 = True if field.is_selected() else False
-        default_fields_dict['x_enable_ssid1'] = x_enable_ssid1
+        modem_read_result_dict['x_enable_ssid1'] = x_enable_ssid1
         
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra1\.enabled")))
         x_enable_ssid2 = True if field.is_selected() else False
-        default_fields_dict['x_enable_ssid2'] = x_enable_ssid2
+        modem_read_result_dict['x_enable_ssid2'] = x_enable_ssid2
         
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra2\.enabled")))
         x_enable_ssid3 = True if field.is_selected() else False
-        default_fields_dict['x_enable_ssid3'] = x_enable_ssid3
+        modem_read_result_dict['x_enable_ssid3'] = x_enable_ssid3
         
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra3\.enabled")))
         x_enable_ssid4 = True if field.is_selected() else False
-        default_fields_dict['x_enable_ssid4'] = x_enable_ssid4
+        modem_read_result_dict['x_enable_ssid4'] = x_enable_ssid4
     else:
-        default_fields_dict['x_enable_ssid1'] = False
-        default_fields_dict['x_enable_ssid2'] = False
-        default_fields_dict['x_enable_ssid3'] = False
-        default_fields_dict['x_enable_ssid4'] = False
+        modem_read_result_dict['x_enable_ssid1'] = False
+        modem_read_result_dict['x_enable_ssid2'] = False
+        modem_read_result_dict['x_enable_ssid3'] = False
+        modem_read_result_dict['x_enable_ssid4'] = False
         
     # Network: Time Synchronisation -> Manual Time
     
@@ -225,7 +222,7 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.ntpclient\.cfg04887d\.manual_time')))
     x_manual_time = field.get_attribute('value')
-    default_fields_dict['x_manual_time'] = x_manual_time
+    modem_read_result_dict['x_manual_time'] = x_manual_time
     
     # System: Administration -> New Password
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "System"))).click()
@@ -234,14 +231,14 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#pw1')))
     x_new_password = field.get_attribute('value')
-    default_fields_dict['x_new_password'] = x_new_password
+    modem_read_result_dict['x_new_password'] = x_new_password
     
     
-    default_fields_dict['x_hotel_name'] = x_hotel_name
+    modem_read_result_dict['x_hotel_name'] = x_hotel_name
     
     import datetime
     
-    default_fields_dict['x_update_date'] = str(datetime.datetime.now())
+    modem_read_result_dict['x_update_date'] = str(datetime.datetime.now())
     
     ############################# XXX
     print("Read Operation Completed..")
@@ -250,16 +247,19 @@ def interface_operation_read(driver, x_hotel_name, mac):
     modem_logout(driver)
     
     # XXX END OF THE AUTOMATION XXX
+    
+    # modem_read_result = {}
         
-    for k, v in default_fields_dict.items():
-        obj_dict['params']['args'][0].update({k:v}) # add newly fetched fields into the main dict
+    # for k, v in modem_read_result_dict.items():
+    #     #obj_dict['params']['args'][0].update({k:v}) # add newly fetched fields into the main dict
+    #     modem_read_result[k] = v
     
     print("\n")
     #queue.put(obj_dict) 
     
     #sleep(1)
     
-    return default_fields_dict, obj_dict
+    return modem_read_result_dict
        
 def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
     
@@ -278,7 +278,7 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
         fields_to_change = OrderedDict()
         
         for k, v in filtered_modem.items(): # e.g. k = 'x_ip' v = "192.168.5.1"
-            if v != fields_to_compare[k]: # if "192.168.5.1" != default_fields_dict['x_ip']
+            if v != fields_to_compare[k]: # if "192.168.5.1" != modem_read_result_dict['x_ip']
                 fields_to_change[k] = v # if a field is modified, add it into our dict
         print(fields_to_change, "\n")
         

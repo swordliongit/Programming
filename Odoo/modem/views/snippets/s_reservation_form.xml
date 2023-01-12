@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="transfer_reservation" name="Transfer Booking Widget">
+        <div class="container-fluid">
+            <t t-call="transfer.form_response_2"/>
+        </div>
+    </template>
+    <template id="transfer_reservation_widgets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='transfer_area']" position="after">
+                <div class="o_panel_body">
+                    <t t-snippet="transfer.transfer_reservation" t-thumbnail="/muk_website_grid/static/src/img/section.svg">
+                        <keywords>transfer</keywords>
+                    </t>
+                </div>
+        </xpath>
+    </template>
+        <!-- <record id="website.s_countdown_000_js" model="ir.asset">
+        <field name="name">Countdown 000 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">website/static/src/snippets/s_countdown/000.js</field>
+    </record> -->
+</odoo>

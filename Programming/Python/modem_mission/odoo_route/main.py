@@ -23,7 +23,7 @@ def network_scan(target_ip, fhfile, mhfile, mac_filter):
     return needed_hosts
 
     
-def main(output, x_hotel_name, target_ip):
+def main(output_queue, x_hotel_name, target_ip):
     
     fhfile: str = "hosts/found_hosts.json" # found hosts file
     mhfile: str = "hosts/modem_hosts.json" # modem hosts file   
@@ -82,7 +82,8 @@ def main(output, x_hotel_name, target_ip):
         for t in threads:
             t.join()
             
-        output.print("Operation done")
+        #output.print("Operation done")
+        #output_queue.put("Operation done")
 
         """
         READ OPERATION END
@@ -98,9 +99,13 @@ def main(output, x_hotel_name, target_ip):
         
         odoo_login()
         print("Sending data to Odoo..")  
+        
+        modem_read_result_list = {"modems":[]}
+        
         while not read_queue.empty():
-            result = read_queue.get()
-            send_datato_odoo(result)
+            modem_read_result_list["modems"].append(read_queue.get())
+            
+        send_datato_odoo(modem_read_result_list)
     
         print("Data sent!..")
         
@@ -114,8 +119,14 @@ def main(output, x_hotel_name, target_ip):
         
         import GUI
         
-        GUI.fetch_confirmation()
-
+        # event = threading.Event()
+        # event.clear()
+        # #output_queue.put("fetch_confirmation")
+        # thread = threading.Thread(target=GUI.fetch_confirmation, args=(event,))
+        # thread.start()
+        # event.wait()
+        
+        input("...................")
         
         """
         FETCH CONFIRMATION END

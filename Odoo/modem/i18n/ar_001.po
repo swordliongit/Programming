@@ -1,0 +1,1282 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * transfer
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-14 13:00+0000\n"
+"PO-Revision-Date: 2022-03-14 16:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic (001)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
+"&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
+"Language: ar_001\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.0; wp-5.9.2"
+
+#. module: transfer
+#: model:transfer.car,description:transfer.car1
+#: model:transfer.car,description:transfer.car2
+#: model:transfer.car,description:transfer.car3
+msgid "\"Description\""
+msgstr "\"وصف\""
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Date of return"
+msgstr "* تاريخ العودة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* E-Mail"
+msgstr "* البريد الإلكتروني"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Name"
+msgstr "* اسم"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Phone"
+msgstr "* هاتف"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Date"
+msgstr "* اختر تاريخا"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Time"
+msgstr "* اختار المعاد"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Surname"
+msgstr "* اسم العائلة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Time you want to be pick up"
+msgstr "* الوقت الذي تريد أن تلتقطه"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "07 CDS 71"
+msgstr "07 CDS 71"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "10"
+msgstr "10"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tExample :\n"
+"                                                <br/>\n"
+"                                                John Paul (add names to "
+"lines)\n"
+"                                                <br/>\n"
+"                                                Anna Paul\n"
+"                                            </small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">مثال :<br/> جون بول "
+"(إضافة أسماء إلى السطور)<br/> آنا بول</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Enter your request and "
+"suggestion.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">أدخل طلبك واقتراحك."
+"</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">أدخل وقت وصولك بتنسيق 24 ساعة."
+"</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your flight code.</small>"
+msgstr "<small id=\"helpId\" class=\"text-white-50\">أدخل رمز رحلتك.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival date."
+"</small>"
+msgstr "<small id=\"helpId\" class=\"text-white-50\">حدد تاريخ الوصول.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">حدد وقت الوصول بتنسيق 24 ساعة."
+"</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the destination. For "
+"example; Hotel, district or public area etc.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">حدد الوجهة. علي سبيل المثال؛ "
+"فندق أو حي أو منطقة عامة إلخ.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Your order information will be "
+"sent to your e-mail address.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">سيتم إرسال معلومات طلبك إلى "
+"عنوان بريدك الإلكتروني.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span "
+"class=\"sr-only\">Next</span>"
+msgstr ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/><span "
+"class=\"sr-only\">التالي</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span "
+"class=\"sr-only\">Previous</span>"
+msgstr ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/><span "
+"class=\"sr-only\">سابق</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Free Service</span>"
+msgstr "<span class=\"form-text text-muted\">خدمة مجانية</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Paid Service</span>"
+msgstr "<span class=\"form-text text-muted\">خدمة مدفوعة</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid ""
+"<span class=\"mr-auto p-2\">\n"
+"                                                <i style=\"font-size:27px\" "
+"class=\"fa fa-map-marker text-white\">​</i>\n"
+"                                            </span>"
+msgstr ""
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city2
+msgid "Adrasan"
+msgstr "أدراسان"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Adult"
+msgstr "الكبار"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city3
+msgid "Alanya"
+msgstr "الانيا"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+msgid "All Records Details"
+msgstr "كافة تفاصيل السجلات"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Alınacak Yer"
+msgstr "Alınacak يير"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__another_passengers
+msgid "Another Passengers"
+msgstr "راكب آخر"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city1
+msgid "Antalya Airport"
+msgstr "مطار انطاليا"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city4
+msgid "Antalya Center"
+msgstr "مركز انطاليا"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Arrival Flight Code"
+msgstr "رمز رحلة الوصول"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city5
+msgid "Avsallar"
+msgstr "أفسلار"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Baby"
+msgstr "طفل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_number
+msgid "Baby Number"
+msgstr "رقم الطفل"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra1
+msgid "Baby Seat"
+msgstr "مقعد الطفل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_seat_number
+msgid "Baby Seat Number"
+msgstr "رقم مقعد الطفل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_date
+msgid "Back Transfer Date"
+msgstr "رجوع تاريخ التحويل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_time
+msgid "Back Transfer Time"
+msgstr "رجوع وقت التحويل"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city6
+msgid "Beldibi"
+msgstr "بيلديبي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city7
+msgid "Belek"
+msgstr "بيليك"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city8
+msgid "Bodrum"
+msgstr "بودروم"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city9
+msgid "Bogazkent"
+msgstr "بوغازكنت"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "Booking"
+msgstr "الحجز"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra2
+msgid "Booster Seat"
+msgstr "المقعد الخارق"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__booster_seat_number
+msgid "Booster Seat Number"
+msgstr "رقم المقعد المعزز"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city10
+msgid "Camyuva"
+msgstr "جاميوفا"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_car_profile
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_id
+msgid "Car"
+msgstr "سيارة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Id"
+msgstr "رقم السيارة"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car_lines
+msgid "Car Lines Record"
+msgstr "سجل خطوط السيارات"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_car_menu
+msgid "Car List"
+msgstr "قائمة سيارة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_name
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Name"
+msgstr "اسم السيارة"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car
+msgid "Car Record"
+msgstr "سجل السيارة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_type
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Type"
+msgstr "نوع السيارة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__car_lines
+#: model:ir.model.fields,field_description:transfer.field_product_template__car_lines
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__car_lines
+#: model_terms:ir.ui.view,arch_db:transfer.car_form
+msgid "Cars"
+msgstr "سيارات"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city11
+msgid "Cenger"
+msgstr "سنجر"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__child_number
+msgid "Child Number"
+msgstr "رقم الطفل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Cinque Terre"
+msgstr "سينك تير"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city12
+msgid "Cirali"
+msgstr "سيرالي"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_city_menu
+msgid "Cities"
+msgstr "مدن"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_city_profile
+msgid "City"
+msgstr "مدينة"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_city
+msgid "City Record"
+msgstr "سجل المدينة"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city13
+msgid "Colakli"
+msgstr "كولاكلي"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_res_partner
+msgid "Contact"
+msgstr "اتصل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__currency
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__currency_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Currency"
+msgstr "عملة"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_currency
+msgid "Currency Config"
+msgstr "تكوين العملة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_email
+msgid "Customer Email"
+msgstr "البريد الإلكتروني للعميل"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_livechat
+msgid "Customer Live Chat"
+msgstr "الدردشة الحية للعملاء"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_name
+msgid "Customer Name"
+msgstr "اسم الزبون"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_phone
+msgid "Customer Phone"
+msgstr "هاتف العميل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_surname
+msgid "Customer Surname"
+msgstr "لقب العميل"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city14
+msgid "Dalaman"
+msgstr "دالامان"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city15
+msgid "Demre"
+msgstr "ديمره"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city16
+msgid "Denizli Center"
+msgstr "مركز دنيزلي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city17
+msgid "Denizyaka"
+msgstr "دينيزياكا"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Departure Details"
+msgstr "تفاصيل المغادرة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__description
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Description"
+msgstr "وصف"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__special_note
+msgid "Destination"
+msgstr "المكان المقصود"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name)"
+msgstr "الوجهة (الفندق ، اسم المنشأة)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name, Place)"
+msgstr "الوجهة (الفندق ، اسم المرفق ، المكان)"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__user_id
+msgid "Driver"
+msgstr "سائق"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Dönüş Saati"
+msgstr "دونوش ساتي"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "E-mail"
+msgstr "بريد الالكتروني"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city18
+msgid "Evrenseki"
+msgstr "إيفرينسيكي"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_extra_profile
+msgid "Extra"
+msgstr "إضافي"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_extra
+msgid "Extra Record"
+msgstr "سجل إضافي"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__extra_status
+msgid "Extra Service"
+msgstr "خدمة إضافية"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__extras
+#: model:ir.ui.menu,name:transfer.transfer_extra_menu
+msgid "Extras"
+msgstr "إضافات"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city19
+msgid "Fethiye"
+msgstr "فتحية"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city20
+msgid "Finike"
+msgstr "فينيك"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_flight_no
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_flight_no
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Flight No"
+msgstr "رقم الرحلة"
+
+#. module: transfer
+#: model:website.menu,name:transfer.menu_transfer_form_1
+msgid "Form 1"
+msgstr "النموذج 1"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Free Service"
+msgstr "خدمة مجانية"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__from_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__from_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__from_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__from_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "From"
+msgstr "من"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_city_select
+msgid "From To"
+msgstr "من الى"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_general_settings
+msgid "General Settings"
+msgstr "الاعدادات العامة"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_google
+msgid "Google Analytics"
+msgstr "تحليلات كوكل"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city21
+msgid "Goynuk"
+msgstr "جوينوك"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city22
+msgid "Gundogdu"
+msgstr "جوندوجو"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__id
+msgid "ID"
+msgstr "هوية شخصية"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__id_of_product
+msgid "Id Of Product"
+msgstr "معرف المنتج"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__image
+msgid "Image"
+msgstr "صورة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_1
+msgid "Image 1"
+msgstr "الصورة 1"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_2
+msgid "Image 2"
+msgstr "الصورة 2"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_3
+msgid "Image 3"
+msgstr "صورة 3"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_4
+msgid "Image 4"
+msgstr "صورة 4"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_5
+msgid "Image 5"
+msgstr "صورة 5"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_6
+msgid "Image 6"
+msgstr "صورة 6"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Images"
+msgstr "الصور"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city23
+msgid "Incekum"
+msgstr "Incekum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Include and Extra"
+msgstr "تضمين وإضافات"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city24
+msgid "Kaleici"
+msgstr "كاليسي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city25
+msgid "Kalkan"
+msgstr "كالكان"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city26
+msgid "Kargicak"
+msgstr "كارجيجاك"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city27
+msgid "Kas"
+msgstr "كاس"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city28
+msgid "Kemer"
+msgstr "كيمير"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Kid"
+msgstr "طفل"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city29
+msgid "Kiris"
+msgstr "كيريس"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city30
+msgid "Kizilagac"
+msgstr "كيزيلاجاك"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city31
+msgid "Kizilot"
+msgstr "كيزيلوت"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city32
+msgid "Konakli"
+msgstr "كوناكلي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city33
+msgid "Konyaalti"
+msgstr "كونيالتي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city34
+msgid "Kumkoy"
+msgstr "كومكوي"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city35
+msgid "Kumluca"
+msgstr "كوملوكا"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city36
+msgid "Kundu"
+msgstr "كوندو"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city37
+msgid "Lara"
+msgstr "لارا"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_city____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile____last_update
+msgid "Last Modified on"
+msgstr "تاريخ آخر تعديل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Luggage"
+msgstr "أمتعة"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city38
+msgid "Mahmutlar"
+msgstr "محمودلار"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city39
+msgid "Manavgat"
+msgstr "مانافجات"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_marketing
+msgid "Marketing"
+msgstr "تسويق"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city40
+msgid "Marmaris"
+msgstr "مرماريس"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__luggage_cap
+msgid "Max Luggage"
+msgstr "ماكس الأمتعة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__passenger_cap
+msgid "Max Person"
+msgstr "ماكس شخص"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car3
+msgid "Mercedes E Class Luxury"
+msgstr "مرسيدس E كلاس فاخر"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Mercedes E-300d"
+msgstr "مرسيدس E-300d"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car2
+msgid "Mercedes Vip Sprinter"
+msgstr "مرسيدس فيب سبرينتر"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car1
+msgid "Mercedes Vip Vito"
+msgstr "مرسيدس فيب فيتو"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__name
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name"
+msgstr "اسم"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name Surname"
+msgstr "اسم اللقب"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city41
+msgid "Okurcalar"
+msgstr "Okurcalar"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city42
+msgid "Olympos"
+msgstr "اوليمبوس"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Other passenger information"
+msgstr "معلومات الركاب الأخرى"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Our services"
+msgstr "خدماتنا"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_pages
+msgid "Page List"
+msgstr "قائمة الصفحات"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_page_view_act
+#: model:ir.ui.menu,name:transfer.transfer_page_views
+msgid "Page Views"
+msgstr "مشاهدات الصفحة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Paid Service"
+msgstr "خدمة مدفوعة"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city43
+msgid "Pamukkale"
+msgstr "باموكالي"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__passenger_number
+msgid "Passeger Number"
+msgstr "رقم Passeger"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Passenger"
+msgstr "راكب"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Passenger Information"
+msgstr "معلومات الركاب"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Payment information"
+msgstr "معلومات الدفع"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Personel Information"
+msgstr "المعلومات الشخصية"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Phone"
+msgstr "هاتف"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__plate
+msgid "Plate"
+msgstr "لوحة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Please do not leave the (*) starred fields blank."
+msgstr "من فضلك لا تترك الحقول المميزة بنجمة (*) فارغة."
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_crm
+msgid "Potential Customers"
+msgstr "الزبائن المحتملين"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__price
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Price"
+msgstr "السعر"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_price_list
+#: model:ir.ui.menu,name:transfer.transfer_zones
+msgid "Price List"
+msgstr "قائمة الاسعار"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_price
+msgid "Price(€)"
+msgstr "السعر (€)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Product Id"
+msgstr "معرف المنتج"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_product_template
+msgid "Product Template"
+msgstr "نموذج المنتج"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.s_cart_products
+msgid "Products in Cart"
+msgstr "المنتجات في سلة التسوق"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promo Code"
+msgstr "رمز ترويجي"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promotion Code"
+msgstr "شفرة الترقية"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Flight Code"
+msgstr "العودة رمز الرحلة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Transfer"
+msgstr "عودة التحويل"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_sale_order
+msgid "Sales Order"
+msgstr "طلب المبيعات"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car3
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Sedan"
+msgstr "سيدان"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Select Car"
+msgstr "حدد السيارة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__sequence
+msgid "Sequence"
+msgstr "تسلسل"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city44
+msgid "Side"
+msgstr "الجانب"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city45
+msgid "Sorgun"
+msgstr "سورجون"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car2
+msgid "Sprinter"
+msgstr "العداء"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra3
+msgid "Stroller Seat"
+msgstr "مقعد عربة"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__stroller_seat_number
+msgid "Stroller Seat Number"
+msgstr "رقم مقعد عربة الأطفال"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Summary"
+msgstr "ملخص"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Surname"
+msgstr "اسم العائلة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "TK0707"
+msgstr "TK0707"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city46
+msgid "Tekirova"
+msgstr "تيكيروفا"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Text for screen reader"
+msgstr "نص لقارئ الشاشة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_3
+msgid "Thanks Transfer Successfull.."
+msgstr "شكرا تم النقل بنجاح .."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Thanks!"
+msgstr "شكرا!"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "The Patient has been Created successfully."
+msgstr "تم إنشاء المريض بنجاح."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_4
+msgid "There is no any transfer found.."
+msgstr "لم يتم العثور على أي نقل .."
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city47
+msgid "Titreyengol"
+msgstr "تيترينغول"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__to_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__to_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__to_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__to_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "To"
+msgstr "ل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Total"
+msgstr "المجموع"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_root_menu
+msgid "Transfer"
+msgstr "تحويل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_general_information_close
+msgid "Transfer Adı"
+msgstr "نقل Adı"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_date
+msgid "Transfer Date"
+msgstr "تاريخ التحويل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Details"
+msgstr "تفاصيل التحويل"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_queries
+msgid "Transfer Queries"
+msgstr "استعلامات التحويل"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_quotations
+msgid "Transfer Request"
+msgstr "طلب التحويل"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_request
+msgid "Transfer Requests"
+msgstr "طلبات التحويل"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__return_status
+msgid "Transfer Return"
+msgstr "عودة التحويل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Saati"
+msgstr "نقل الساعاتي"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Tarihi"
+msgstr "نقل الطريحي"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_time
+msgid "Transfer Time"
+msgstr "وقت النقل"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.snippets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+msgid "Transfer Widgets"
+msgstr "أدوات النقل"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_transfer_profile
+msgid "Transfers"
+msgstr "التحويلات"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city48
+msgid "Turkler"
+msgstr "توركلر"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__type
+msgid "Type"
+msgstr "اكتب"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle model"
+msgstr "طراز السيارة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle type"
+msgstr "نوع السيارة"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Visit Hospital At ANy Time"
+msgstr "قم بزيارة المستشفى في أي وقت"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_visitors
+msgid "Visitors"
+msgstr "الزائرين"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car1
+msgid "Vito"
+msgstr "فيتو"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_statistics
+msgid "Web Statistics"
+msgstr "إحصائيات الويب"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_config
+msgid "Website Configration"
+msgstr "هجرة الموقع"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_list
+msgid "Websites"
+msgstr "مواقع الويب"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__welcome_status
+msgid "Welcome Status"
+msgstr "حالة الترحيب"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Your request and suggestion"
+msgstr "طلبك واقتراحك"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+#: model_terms:ir.ui.view,arch_db:transfer.car_tree
+msgid "cars"
+msgstr "سيارات"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.city_form
+#: model_terms:ir.ui.view,arch_db:transfer.city_tree
+msgid "citys"
+msgstr "المدن"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.extra_form
+#: model_terms:ir.ui.view,arch_db:transfer.extra_tree
+msgid "extras"
+msgstr "إضافات"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__promotion_code
+msgid "promotion Code"
+msgstr "شفرة الترقية"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_tree
+msgid "transfer"
+msgstr "نقل"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_profile
+msgid "transfer.profile"
+msgstr "الملف الشخصي"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Örn: Dedeman Hotel"
+msgstr "Örn: فندق ديديمان"

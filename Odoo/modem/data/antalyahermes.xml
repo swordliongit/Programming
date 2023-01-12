@@ -1,0 +1,484 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+    
+        <record id="city1" model="transfer.city">
+            <field name="name">Antalya Airport</field>
+        </record>
+        <record id="city2" model="transfer.city">
+            <field name="name">Adrasan</field>
+        </record>
+        <record id="city3" model="transfer.city">
+            <field name="name">Alanya</field>
+        </record>
+        <record id="city4" model="transfer.city">
+            <field name="name">Antalya Center</field>
+        </record>
+        <record id="city5" model="transfer.city">
+            <field name="name">Avsallar</field>
+        </record>
+        <record id="city6" model="transfer.city">
+            <field name="name">Beldibi</field>
+        </record>
+        <record id="city7" model="transfer.city">
+            <field name="name">Belek</field>
+        </record>
+        <record id="city8" model="transfer.city">
+            <field name="name">Bodrum</field>
+        </record>
+        <record id="city9" model="transfer.city">
+            <field name="name">Bogazkent</field>
+        </record>
+        <record id="city10" model="transfer.city">
+            <field name="name">Camyuva</field>
+        </record>
+        <record id="city11" model="transfer.city">
+            <field name="name">Cenger</field>
+        </record>
+        <record id="city12" model="transfer.city">
+            <field name="name">Cirali</field>
+        </record>
+        <record id="city13" model="transfer.city">
+            <field name="name">Colakli</field>
+        </record>
+        <record id="city14" model="transfer.city">
+            <field name="name">Dalaman</field>
+        </record>
+        <record id="city15" model="transfer.city">
+            <field name="name">Demre</field>
+        </record>
+        <record id="city16" model="transfer.city">
+            <field name="name">Denizli Center</field>
+        </record>
+        <record id="city17" model="transfer.city">
+            <field name="name">Denizyaka</field>
+        </record>
+        <record id="city18" model="transfer.city">
+            <field name="name">Evrenseki</field>
+        </record>
+        <record id="city19" model="transfer.city">
+            <field name="name">Fethiye</field>
+        </record>
+        <record id="city20" model="transfer.city">
+            <field name="name">Finike</field>
+        </record>
+        <record id="city21" model="transfer.city">
+            <field name="name">Goynuk</field>
+        </record>
+        <record id="city22" model="transfer.city">
+            <field name="name">Gundogdu</field>
+        </record>
+        <record id="city23" model="transfer.city">
+            <field name="name">Incekum</field>
+        </record>
+        <record id="city24" model="transfer.city">
+            <field name="name">Kaleici</field>
+        </record>
+        <record id="city25" model="transfer.city">
+            <field name="name">Kalkan</field>
+        </record>
+        <record id="city26" model="transfer.city">
+            <field name="name">Kargicak</field>
+        </record>
+        <record id="city27" model="transfer.city">
+            <field name="name">Kas</field>
+        </record>
+        <record id="city28" model="transfer.city">
+            <field name="name">Kemer</field>
+        </record>
+        <record id="city29" model="transfer.city">
+            <field name="name">Kiris</field>
+        </record>
+        <record id="city30" model="transfer.city">
+            <field name="name">Kizilagac</field>
+        </record>
+        <record id="city31" model="transfer.city">
+            <field name="name">Kizilot</field>
+        </record>
+        <record id="city32" model="transfer.city">
+            <field name="name">Konakli</field>
+        </record>
+        <record id="city33" model="transfer.city">
+            <field name="name">Konyaalti</field>
+        </record>
+        <record id="city34" model="transfer.city">
+            <field name="name">Kumkoy</field>
+        </record>
+        <record id="city35" model="transfer.city">
+            <field name="name">Kumluca</field>
+        </record>
+        <record id="city36" model="transfer.city">
+            <field name="name">Kundu</field>
+        </record>
+        <record id="city37" model="transfer.city">
+            <field name="name">Lara</field>
+        </record>
+        <record id="city38" model="transfer.city">
+            <field name="name">Mahmutlar</field>
+        </record>
+        <record id="city39" model="transfer.city">
+            <field name="name">Manavgat</field>
+        </record>
+        <record id="city40" model="transfer.city">
+            <field name="name">Marmaris</field>
+        </record>
+        <record id="city41" model="transfer.city">
+            <field name="name">Okurcalar</field>
+        </record>
+        <record id="city42" model="transfer.city">
+            <field name="name">Olympos</field>
+        </record>
+        <record id="city43" model="transfer.city">
+            <field name="name">Pamukkale</field>
+        </record>
+        <record id="city44" model="transfer.city">
+            <field name="name">Side</field>
+        </record>
+        <record id="city45" model="transfer.city">
+            <field name="name">Sorgun</field>
+        </record>
+        <record id="city46" model="transfer.city">
+            <field name="name">Tekirova</field>
+        </record>
+        <record id="city47" model="transfer.city">
+            <field name="name">Titreyengol</field>
+        </record>
+        <record id="city48" model="transfer.city">
+            <field name="name">Turkler</field>
+        </record>
+        <record id="car1" model="transfer.car">
+            <field name="name">Mercedes Vip Vito</field>
+            <field name="type">Vito</field>
+            <field name="plate">07 ARU 599</field>
+            <field name="passenger_cap">7</field>
+            <field name="luggage_cap">4</field>
+            <field name="description">"Description"</field>
+        </record>
+        <record id="car2" model="transfer.car">
+            <field name="name">Mercedes Vip Sprinter</field>
+            <field name="type">Sprinter</field>
+            <field name="plate">07 ARU 600</field>
+            <field name="passenger_cap">15</field>
+            <field name="luggage_cap">15</field>
+            <field name="description">"Description"</field>
+        </record>
+        <record id="car3" model="transfer.car">
+            <field name="name">Mercedes E Class Luxury</field>
+            <field name="type">Sedan</field>
+            <field name="plate">07 ARU 601</field>
+            <field name="passenger_cap">4</field>
+            <field name="luggage_cap">6</field>
+            <field name="description">"Description"</field>
+        </record>
+        <record id="ekstra1" model="transfer.extra">
+            <field name="name">Baby Seat</field>
+        </record>
+        <record id="ekstra2" model="transfer.extra">
+            <field name="name">Booster Seat</field>
+        </record>
+        <record id="ekstra3" model="transfer.extra">
+            <field name="name">Stroller Seat</field>
+        </record>
+        <!-- <record id="transfer_category" model="product.public.category">
+          <field name="name">Vip Transfer</field>
+          <field name="sequence">1</field>
+        </record>
+        <record id="product_product_4_product_template" model="product.template">
+            <field name="name">Antalya Havalimanı-Adrasan</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">500.0</field>
+            <field name="list_price">750.0</field>
+            <field name="detailed_type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">160x80cm, with large legs.</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Adrasan</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Adrasan</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Alanya</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Alanya</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Alanya</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Alanya</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Antalya Merkez</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Antalya Merkez</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Avsallar</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Avsallar</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Beldibi</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Beldibi</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Belek</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Belek</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Bodrum</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Bodrum</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Çamyuva</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Çamyuva</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Çenger</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Çenger</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Çıralı</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Çıralı</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Çolaklı</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Çolaklı</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Dalaman</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Dalaman</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Demre</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Demre</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Denizli Merkez</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Denizli Merkez</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Denizkaya</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Denizkaya</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Evrenseki</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Evrenseki</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Fethiye</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Fethiye</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Finike</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Finike</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Göynük</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Göynük</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Gündoğdu</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Gündoğdu</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-İncekum</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">İncekum</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kaleiçi</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kaleiçi</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kalkan</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kalkan</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kargıcak</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kargıcak</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kaş</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kaş</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kemer</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kemer</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kiriş</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kiriş</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kızılağaç</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kızılağaç</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kızılot</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kızılot</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Konaklı</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Konaklı</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Konyaaltı</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Konyaaltı</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kumköy</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kumköy</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kumluca</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kumluca</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Kundu</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Kundu</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Lara</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Lara</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Mahmutlar</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Mahmutlar</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Manavgat</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Manavgat</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Marmaris</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Marmaris</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Okurcalar</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Okurcalar</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Olympos</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Olympos</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Pamukkale</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Pamukkale</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Side</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Side</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Sorgun</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Sorgun</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Tekirova</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Tekirova</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Titreyengöl</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Titreyengöl</field>
+        </record>
+        <record id="transferfrom1" model="product.product">
+            <field name="name">Antalya Havalimanı-Titreyengöl</field>
+            <field name="categ_id" ref="transfer_category"/>
+            <field name="from_id">Antalya Havalimanı</field>
+            <field name="to_id">Türkler</field>
+        </record>  -->
+        
+    </data>
+    
+</odoo>

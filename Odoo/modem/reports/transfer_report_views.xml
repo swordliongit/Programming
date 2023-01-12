@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="transfer_list"
+        string="Sertifika Yazdır"
+        model="transfer.profile"
+        report_type="qweb-pdf"
+        name="transfer.transfer_list_view"
+        file="transfer.transfer_list_view"
+        print_report_name="'Print Badge - %s' % (object.name).replace('/', '')"
+    />
+
+    <template id="transfer_list_view">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="transfer">
+                    <div class="col-md-6">
+                        <p style="text-align: center; "></p>
+<h1 style="text-align: center; ">
+    <t t-esc="transfer.name"/>NATURAL DIAMOND GRADING REPORT
+</h1>
+<h2 style="text-align: center; "> N˚ 180000180602</h2>
+<h3 style="text-align: left;">Date : 25.02.2021</h3>
+<p style="text-align: left;"></p>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>Shape</td>
+            <td>brilliant</td>
+        </tr>
+        <tr>
+            <td>Carat (weight)</td>
+            <td>1.10 ct</td>
+        </tr>
+        <tr>
+            <td>Fluorescence</td>
+            <td>nil</td>
+        </tr>
+        <tr>
+            <td>Colour Grade</td>
+            <td>rare white (G)</td>
+        </tr>
+        <tr>
+            <td><b>Cut</b></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Proportions</td>
+            <td>excellent</td>
+        </tr>
+        <tr>
+            <td>Polish˚</td>
+            <td>excellent</td>
+        </tr>
+        <tr>
+            <td>Symmetry</td>
+            <td>excellent</td>
+        </tr>
+    </tbody>
+</table>
+                        <!-- <table style="width:243pt; height:153pt; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+                            <td style="width:33%;" valign="center">
+                                <table style="width:77pt; height:150pt">
+                                    <tr style="height:30%">
+                                        <td align="center" valign="center">
+                                            <img t-if="transfer.company_id.logo" t-att-src="image_data_uri(transfer.company_id.logo)" style="max-height:45pt;max-width:90%" alt="Company Logo"/>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:70%;">
+                                        <td align="center" valign="center">
+                                            <img t-if="transfer.image_1920" t-att-src="image_data_uri(transfer.image_1920)" style="max-height:85pt;max-width:90%" alt="transfer Image"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:67%" valign="center">
+                                <table style="width:155pt; height:85pt">
+                                    <tr><th><div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center"><t t-esc="transfer.name"/></div></th></tr>
+                                    <tr><td><div align="center" style="font-size:10pt;margin-bottom:5pt;"><t t-esc="transfer.job_id.name"/></div></td></tr>
+                                    <tr><td><img alt="barcode" t-if="transfer.barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', transfer.barcode, 600, 120)" style="max-height:50pt;max-width:100%;" align="center"/></td></tr>
+                                </table>
+                            </td>
+                        </table> -->
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

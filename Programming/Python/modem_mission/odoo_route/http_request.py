@@ -30,7 +30,7 @@ def odoo_login():
 
 ########################
 
-def send_datato_odoo(modem_data: dict):
+def send_datato_odoo_one_by_one(modem_data: dict):
     url = 'http://localhost:8069/web/dataset/call_kw/modem.profile/create'
     headers = {
         "Connection": "keep-alive",
@@ -58,6 +58,17 @@ def send_datato_odoo(modem_data: dict):
     #aşağıdaki işlemle önce json parse edildi sonra 0-52 ye kadar substring yapıldı
     last_result = json.loads((x.content))
     print(str(last_result))
+
+def send_datato_odoo(modem_data: dict):
+    url = 'http://localhost:8069/create/modems_from_data' # need to check this for multiple databases position
+    headers = {
+        "Connection": "keep-alive",
+        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
+        "Content-Type": "application/json",
+        "Cookie": cookie
+        }
+    
+    requests.post(url, json = modem_data, headers=headers)
 
 
 def fetch_datafrom_odoo():

@@ -1,0 +1,1286 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * transfer
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-14 12:59+0000\n"
+"PO-Revision-Date: 2022-03-15 13:29+0300\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && n"
+"%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Loco-Version: 2.6.0; wp-5.9.2\n"
+
+#. module: transfer
+#: model:transfer.car,description:transfer.car1
+#: model:transfer.car,description:transfer.car2
+#: model:transfer.car,description:transfer.car3
+msgid "\"Description\""
+msgstr "\"Определение\""
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Date of return"
+msgstr "* Дата возвращения"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* E-Mail"
+msgstr "* E-Mail"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Name"
+msgstr "* Имя"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Phone"
+msgstr "* Телефон"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Date"
+msgstr "* Дату Вылета"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Time"
+msgstr "* Время вылета"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Surname"
+msgstr "* Фамилия"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Time you want to be pick up"
+msgstr "* Время, когда вы хотите, чтобы вас забрали"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "07 CDS 71"
+msgstr "07 КДС 71"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "10"
+msgstr "10"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tExample :\n"
+"                                                <br/>\n"
+"                                                John Paul (add names to "
+"lines)\n"
+"                                                <br/>\n"
+"                                                Anna Paul\n"
+"                                            </small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Пример :<br/> Джон Пол "
+"(добавьте имена к строкам)<br/> Анна Пол</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Enter your request and "
+"suggestion.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Введите ваш запрос и "
+"предложение.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Введите время прибытия в 24-"
+"часовом формате.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your flight code.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Введите код рейса.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival date.</"
+"small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Уточните дату прибытия.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Укажите время прибытия в 24-"
+"часовом формате.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the destination. For "
+"example; Hotel, district or public area etc.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Укажите пункт назначения. "
+"Например; Отель, район или общественное место и т. д.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Your order information will be "
+"sent to your e-mail address.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Информация о вашем заказе будет "
+"отправлена на ваш адрес электронной почты.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span class="
+"\"sr-only\">Next</span>"
+msgstr ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/><span class="
+"\"sr-only\">Следующий</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span class="
+"\"sr-only\">Previous</span>"
+msgstr ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/><span class="
+"\"sr-only\">Предыдущий</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Free Service</span>"
+msgstr "<span class=\"form-text text-muted\">Бесплатный сервис</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Paid Service</span>"
+msgstr "<span class=\"form-text text-muted\">Платная услуга</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid ""
+"<span class=\"mr-auto p-2\">\n"
+"                                                <i style=\"font-size:27px\" "
+"class=\"fa fa-map-marker text-white\">​</i>\n"
+"                                            </span>"
+msgstr ""
+"<span class=\"mr-auto p-2\"><i style=\"font-size:27px\" class=\"fa fa-map-"
+"marker text-white\">​</i></span>"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city2
+msgid "Adrasan"
+msgstr "Адрасан"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Adult"
+msgstr "Взрослый"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city3
+msgid "Alanya"
+msgstr "Аланья"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+msgid "All Records Details"
+msgstr "Все подробные записи"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Alınacak Yer"
+msgstr "Место встречи"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__another_passengers
+msgid "Another Passengers"
+msgstr "Другие гости"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city1
+msgid "Antalya Airport"
+msgstr "Аэропорт Антальи"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city4
+msgid "Antalya Center"
+msgstr "Antalya Center"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Arrival Flight Code"
+msgstr "Код полета самолета"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city5
+msgid "Avsallar"
+msgstr "Авсаллар"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Baby"
+msgstr "Mладенец"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_number
+msgid "Baby Number"
+msgstr "Количество младенцев"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra1
+msgid "Baby Seat"
+msgstr "Детское кресло"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_seat_number
+msgid "Baby Seat Number"
+msgstr "Количество детских кресел"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_date
+msgid "Back Transfer Date"
+msgstr "Дата возврата передачи"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_time
+msgid "Back Transfer Time"
+msgstr "Время обратной передачи"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city6
+msgid "Beldibi"
+msgstr "Бельдиби"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city7
+msgid "Belek"
+msgstr "Белек"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city8
+msgid "Bodrum"
+msgstr "Бодрум"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city9
+msgid "Bogazkent"
+msgstr "Богазкент"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "Booking"
+msgstr "Бронирование"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra2
+msgid "Booster Seat"
+msgstr "Сиденье стояка"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__booster_seat_number
+msgid "Booster Seat Number"
+msgstr "Количество мест стояка"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city10
+msgid "Camyuva"
+msgstr "Чамюва"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_car_profile
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_id
+msgid "Car"
+msgstr "Автомобиль"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Id"
+msgstr "Название автомобиля"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car_lines
+msgid "Car Lines Record"
+msgstr "Рекорд автомобильных линий"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_car_menu
+msgid "Car List"
+msgstr "Список автомобилей"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_name
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Name"
+msgstr "Название автомобиля"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car
+msgid "Car Record"
+msgstr "Рекорд автомобиля"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_type
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Type"
+msgstr "Тип вашего автомобиля"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__car_lines
+#: model:ir.model.fields,field_description:transfer.field_product_template__car_lines
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__car_lines
+#: model_terms:ir.ui.view,arch_db:transfer.car_form
+msgid "Cars"
+msgstr "Автомобили"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city11
+msgid "Cenger"
+msgstr "Ченгер"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__child_number
+msgid "Child Number"
+msgstr "Количество детей"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Cinque Terre"
+msgstr "Чинкве-Терре"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city12
+msgid "Cirali"
+msgstr "Чыралы"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_city_menu
+msgid "Cities"
+msgstr "Города"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_city_profile
+msgid "City"
+msgstr "Город"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_city
+msgid "City Record"
+msgstr "Городская запись"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city13
+msgid "Colakli"
+msgstr "Чолаклы"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_uid
+msgid "Created by"
+msgstr "Создан"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_date
+msgid "Created on"
+msgstr "Создано через"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__currency
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__currency_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_currency
+msgid "Currency Config"
+msgstr "Конфигурация валюты"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_email
+msgid "Customer Email"
+msgstr "Электронная почта клиента"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_livechat
+msgid "Customer Live Chat"
+msgstr "Онлайн-чат с клиентами"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_name
+msgid "Customer Name"
+msgstr "Имя гостя"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_phone
+msgid "Customer Phone"
+msgstr "Телефон клиента"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_surname
+msgid "Customer Surname"
+msgstr "Фамилия клиента"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city14
+msgid "Dalaman"
+msgstr "Даламан"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city15
+msgid "Demre"
+msgstr "Дэмрэ"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city16
+msgid "Denizli Center"
+msgstr "Дэнизли Center"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city17
+msgid "Denizyaka"
+msgstr "Дэнизьяка"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Departure Details"
+msgstr "Детали вылета"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__description
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Description"
+msgstr "Определение"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__special_note
+msgid "Destination"
+msgstr "Место назначения"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name)"
+msgstr "Пункт назначения (отель, название объекта)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name, Place)"
+msgstr "Пункт назначения (отель, название объекта, место)"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__user_id
+msgid "Driver"
+msgstr "Драйвер"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Dönüş Saati"
+msgstr "Возвращение Времени"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "E-mail"
+msgstr "E-Mail"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city18
+msgid "Evrenseki"
+msgstr "Эвренсеки"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_extra_profile
+msgid "Extra"
+msgstr "Экстра"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_extra
+msgid "Extra Record"
+msgstr "Дополнительная регистрация"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__extra_status
+msgid "Extra Service"
+msgstr "Дополнительное обслуживание"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__extras
+#: model:ir.ui.menu,name:transfer.transfer_extra_menu
+msgid "Extras"
+msgstr "Дополнительные услуги"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city19
+msgid "Fethiye"
+msgstr "Фетхие"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city20
+msgid "Finike"
+msgstr "Финике"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_flight_no
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_flight_no
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Flight No"
+msgstr "Номер рейса"
+
+#. module: transfer
+#: model:website.menu,name:transfer.menu_transfer_form_1
+msgid "Form 1"
+msgstr "Форма 1"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Free Service"
+msgstr "Бесплатный сервис"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__from_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__from_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__from_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__from_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "From"
+msgstr "От"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_city_select
+msgid "From To"
+msgstr "От до"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_general_settings
+msgid "General Settings"
+msgstr "Общие настройки"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_google
+msgid "Google Analytics"
+msgstr "Гугл Аналитика"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city21
+msgid "Goynuk"
+msgstr "Гёйнюк"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city22
+msgid "Gundogdu"
+msgstr "Гюндоугду"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__id
+msgid "ID"
+msgstr "Имя пользователя"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__id_of_product
+msgid "Id Of Product"
+msgstr "Имя пользователя продукта"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__image
+msgid "Image"
+msgstr "Изображение"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_1
+msgid "Image 1"
+msgstr "Изображение 1"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_2
+msgid "Image 2"
+msgstr "Изображение 2"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_3
+msgid "Image 3"
+msgstr "Изображение 3"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_4
+msgid "Image 4"
+msgstr "Изображение 4"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_5
+msgid "Image 5"
+msgstr "Изображение 5"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_6
+msgid "Image 6"
+msgstr "Изображение 6"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Images"
+msgstr "Картинки"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city23
+msgid "Incekum"
+msgstr "Инжекум"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Include and Extra"
+msgstr "В том числе и дополнительно"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city24
+msgid "Kaleici"
+msgstr "Калеичи"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city25
+msgid "Kalkan"
+msgstr "Калкан"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city26
+msgid "Kargicak"
+msgstr "Каргыджак"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city27
+msgid "Kas"
+msgstr "Каш"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city28
+msgid "Kemer"
+msgstr "Кемер"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Kid"
+msgstr "Ребенок"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city29
+msgid "Kiris"
+msgstr "Кириш"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city30
+msgid "Kizilagac"
+msgstr "Кызылагач"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city31
+msgid "Kizilot"
+msgstr "Кызылот"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city32
+msgid "Konakli"
+msgstr "Конаклы"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city33
+msgid "Konyaalti"
+msgstr "Коньяалты"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city34
+msgid "Kumkoy"
+msgstr "Кумкёй"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city35
+msgid "Kumluca"
+msgstr "Кумлуджа"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city36
+msgid "Kundu"
+msgstr "Кунду"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city37
+msgid "Lara"
+msgstr "Lara"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_city____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile____last_update
+msgid "Last Modified on"
+msgstr "Дата последнего изменения"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_uid
+msgid "Last Updated by"
+msgstr "Недавно обновил"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего обновления"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Luggage"
+msgstr "Багаж"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city38
+msgid "Mahmutlar"
+msgstr "Махмутлар"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city39
+msgid "Manavgat"
+msgstr "Манавгат"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_marketing
+msgid "Marketing"
+msgstr "Маркетинг"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city40
+msgid "Marmaris"
+msgstr "Мармарис"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__luggage_cap
+msgid "Max Luggage"
+msgstr "Максимальный багаж"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__passenger_cap
+msgid "Max Person"
+msgstr "Максимум человек"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car3
+msgid "Mercedes E Class Luxury"
+msgstr "Мерседес Е Класс Люкс"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Mercedes E-300d"
+msgstr "Мерседес Е-300д"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car2
+msgid "Mercedes Vip Sprinter"
+msgstr "Мерседес Вип Спринтер"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car1
+msgid "Mercedes Vip Vito"
+msgstr "Мерседес Вип Вито"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__name
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name"
+msgstr "Имя"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name Surname"
+msgstr "Имя Фамилия"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city41
+msgid "Okurcalar"
+msgstr "Окурджалар"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city42
+msgid "Olympos"
+msgstr "Олимпос"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Other passenger information"
+msgstr "Другая информация о гостях"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Our services"
+msgstr "Наши услуги"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_pages
+msgid "Page List"
+msgstr "Список страниц"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_page_view_act
+#: model:ir.ui.menu,name:transfer.transfer_page_views
+msgid "Page Views"
+msgstr "Просмотры страниц"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Paid Service"
+msgstr "Платная услуга"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city43
+msgid "Pamukkale"
+msgstr "Памуккале"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__passenger_number
+msgid "Passeger Number"
+msgstr "Номер пассажира"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Passenger"
+msgstr "Пассажир"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Passenger Information"
+msgstr "Информация для пассажиров"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Payment information"
+msgstr "Платежная информация"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Personel Information"
+msgstr "Информация о персонале"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Phone"
+msgstr "Телефон"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__plate
+msgid "Plate"
+msgstr "Пластина"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Please do not leave the (*) starred fields blank."
+msgstr "Пожалуйста, не оставляйте поля со звездочкой (*) пустыми."
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_crm
+msgid "Potential Customers"
+msgstr "Потенциальные покупатели"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__price
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Price"
+msgstr "Цена"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_price_list
+#: model:ir.ui.menu,name:transfer.transfer_zones
+msgid "Price List"
+msgstr "Прайс-лист"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_price
+msgid "Price(€)"
+msgstr "Цена(€)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Product Id"
+msgstr "Идантификационный номер продукта"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукта"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.s_cart_products
+msgid "Products in Cart"
+msgstr "Товары в корзине"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promo Code"
+msgstr "Промо-код"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promotion Code"
+msgstr "Промо-Код"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Flight Code"
+msgstr "Код обратного рейса"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Transfer"
+msgstr "Обратный трансфер"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_sale_order
+msgid "Sales Order"
+msgstr "Заказ клиента"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car3
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Sedan"
+msgstr "Седан"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Select Car"
+msgstr "Выберите автомобиль"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__sequence
+msgid "Sequence"
+msgstr "Последовательность"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city44
+msgid "Side"
+msgstr "Сиде"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city45
+msgid "Sorgun"
+msgstr "Соргун"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car2
+msgid "Sprinter"
+msgstr "Спринтер"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra3
+msgid "Stroller Seat"
+msgstr "Сиденье для коляски"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__stroller_seat_number
+msgid "Stroller Seat Number"
+msgstr "Номер места для коляски"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Summary"
+msgstr "Резюме"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Surname"
+msgstr "Фамилия"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "TK0707"
+msgstr "ТК0707"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city46
+msgid "Tekirova"
+msgstr "Текирова"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Text for screen reader"
+msgstr "Текст для чтения с экрана"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_3
+msgid "Thanks Transfer Successfull.."
+msgstr "Спасибо, передача прошла успешно.."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Thanks!"
+msgstr "Спасибо!"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "The Patient has been Created successfully."
+msgstr "Пациент успешно создан."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_4
+msgid "There is no any transfer found.."
+msgstr "Трансфер не найден.."
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city47
+msgid "Titreyengol"
+msgstr "Титреенгёль"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__to_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__to_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__to_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__to_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "To"
+msgstr "К"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Total"
+msgstr "Общий"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_root_menu
+msgid "Transfer"
+msgstr "Трансфер"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_general_information_close
+msgid "Transfer Adı"
+msgstr "Трансфер Ады"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_date
+msgid "Transfer Date"
+msgstr "Дата передачи"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Details"
+msgstr "Детали трансфера"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_queries
+msgid "Transfer Queries"
+msgstr "Запросы на перенос"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_quotations
+msgid "Transfer Request"
+msgstr "Запрос на передачу"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_request
+msgid "Transfer Requests"
+msgstr "Запросы на передачу"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__return_status
+msgid "Transfer Return"
+msgstr "Трансфер Возврат"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Saati"
+msgstr "Трансфер Саати"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Tarihi"
+msgstr "Трансфер Тарихи"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_time
+msgid "Transfer Time"
+msgstr "Время встречи с трансфером"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.snippets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+msgid "Transfer Widgets"
+msgstr "Виджеты передачи"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_transfer_profile
+msgid "Transfers"
+msgstr "Трансферы"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city48
+msgid "Turkler"
+msgstr "Турклер"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__type
+msgid "Type"
+msgstr "Тип автомобиля"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle model"
+msgstr "Модель автомобиля"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle type"
+msgstr "Тип машины"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Visit Hospital At ANy Time"
+msgstr "Посетите больницу в любое время"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_visitors
+msgid "Visitors"
+msgstr "Посетители"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car1
+msgid "Vito"
+msgstr "Вито"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_statistics
+msgid "Web Statistics"
+msgstr "Статистика сайта"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_config
+msgid "Website Configration"
+msgstr "Конфигурация сайта"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_list
+msgid "Websites"
+msgstr "Сайты"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__welcome_status
+msgid "Welcome Status"
+msgstr "Приветственный статус"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Your request and suggestion"
+msgstr "Ваши пожелания и предложения"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+#: model_terms:ir.ui.view,arch_db:transfer.car_tree
+msgid "cars"
+msgstr "автомобили"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.city_form
+#: model_terms:ir.ui.view,arch_db:transfer.city_tree
+msgid "citys"
+msgstr "города"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.extra_form
+#: model_terms:ir.ui.view,arch_db:transfer.extra_tree
+msgid "extras"
+msgstr "дополнительные услуги"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__promotion_code
+msgid "promotion Code"
+msgstr "промо-код"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_tree
+msgid "transfer"
+msgstr "трансфер"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_profile
+msgid "transfer.profile"
+msgstr "профиль передачи"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Örn: Dedeman Hotel"
+msgstr "Пример: Отель Дедеман"

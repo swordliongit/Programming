@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--bu bölüm üstteki filtreler gruplar ve custom filtreler ayarları-->
+	<!--
+    <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="transfer_name" string="transfer Name"/>
+                <filter string="transfer Record" name="transfer_record" domain="[('is_transfer','=', True)]"/>
+                <filter name="transfer_groupby" string="transfer" domain="[]" context="{'group_by':'is_transfer'}"/>
+            </xpath>
+        </field>
+    </record>
+	-->
+
+    <!--field ekleme-->
+    <record id="sale_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+				<field name="customer_name"/>
+				<field name="customer_surname"/>
+				<field name="customer_email"/>
+				<field name="customer_phone"/>
+				
+				<field name="another_passengers"/>
+				
+				<field name="id_of_product"/>
+				<field name="from_id"/>
+				<field name="to_id"/>
+				<field name="currency"/>
+				
+				<field name="going_transfer_date"/>
+				<field name="going_transfer_time"/>
+				<field name="going_flight_no"/>
+				<field name="going_destination"/>
+				
+				<field name="return_status"/>
+				<field name="coming_transfer_date"/>
+				<field name="coming_transfer_time"/>
+				<field name="coming_flight_no"/>
+				<field name="coming_destination"/>
+				
+				<field name="special_note"/>
+				<field name="passenger_number"/>
+				<field name="child_number"/>
+				<field name="baby_number"/>
+				<field name="welcome_status"/>
+				<field name="baby_seat_number"/>
+				<field name="booster_seat_number"/>
+				<field name="stroller_seat_number"/>
+				<field name="promotion_code"/>
+				
+				<field name="price"/>
+				<field name="car_name"/>
+				<field name="car_type"/>
+				<field name="car_id"/>
+            </field>
+            <!--sale order form görünümünün içine buton koyma-->
+            <!--
+            <button name="preview_sale_order" position="after">
+                <button name="test" string="Test" type="object"/>
+            </button>
+            -->
+        </field>
+    </record>
+
+    <!--Bu bölüm record içinde fieldlerin zorunlu olması asadece okunabilir olması ayarı res partner için demosu-->
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="mobile" position="after">
+                <field name="customer_rank" invisible="1"/>
+            </field>
+            <field name="mobile" position="attributes">
+                <attribute name="required">0</attribute>
+            </field>
+            <field name="email" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+			<!--
+            <field name="website" position="attributes">
+                <attribute name="attrs">{'required': [('customer_rank', '>', 0)]}</attribute>
+            </field>
+			-->
+        </field>
+    </record>
+    
+    <!--Ana modül adını görünüm içinde değiştir-->
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="name">Transfer Order</field>
+    </record>
+
+    <!--First method suggested Yeni bir menü öğesi ekleme-->
+    <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+        <field name="name">New Quotation</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!--second method-->
+    <menuitem id="sale.menu_sale_order"
+            name="New Orders"
+            action="sale.action_orders"
+            parent="sale.sale_order_menu"
+            sequence="2" groups="sales_team.group_sale_salesman"/>
+</odoo>

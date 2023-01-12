@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--tree view of the car model-->
+    <record id="car_tree" model="ir.ui.view">
+        <field name="name">transfer.car.tree</field>
+        <field name="model">transfer.car</field>
+        <field name="arch" type="xml">
+            <tree string="cars">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="plate"/>
+                <field name="passenger_cap"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--form view of the car model-->
+    <record id="car_form_view" model="ir.ui.view">
+        <field name="name">transfer.car.form</field>
+        <field name="model">transfer.car</field>
+        <field name="arch" type="xml">
+            <form string="cars">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Mercedes E-300d"/>
+                            <field name="type" placeholder="Sedan"/>
+                            <field name="plate" placeholder="07 CDS 71"/>
+                        </group>
+                        <group>
+                            <field name="passenger_cap" placeholder="6"/>
+                            <field name="luggage_cap" placeholder="10"/>
+                            <field name="user_id"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Images">
+                            <group>
+                                <group>
+                                    <field name="image_1" widget="image" class="oe_avatar"/>
+                                    <field name="image_2" widget="image" class="oe_avatar"/>
+                                    <field name="image_3" widget="image" class="oe_avatar"/>
+                                </group>
+                                <group>
+                                    <field name="image_4" widget="image" class="oe_avatar"/>
+                                    <field name="image_5" widget="image" class="oe_avatar"/>
+                                    <field name="image_6" widget="image" class="oe_avatar"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="extra" string="Include and Extra">
+                            <group>
+                                <field name="extras"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="car_form" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="priority">5</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page name="cars" string="Cars" widget="one2many" context="{'show_attribute': True}">
+                    <field name="car_lines" widget="one2many" context="{'show_attribute': True}">
+                        <tree string="Cars" editable="bottom">
+                            <field name="car_id" attrs="{'readonly': [('id', '!=', False)]}"/>
+                            <field name="car_price"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!--menu for the car-->
+
+    <!-- <menuitem id="transferler_menu_id" name="Transferler" parent="transfer_root_menu" action="action_transferler" sequence="10"/> -->
+    <!--action of the car menu-->
+    <record id="action_car_profile" model="ir.actions.act_window">
+        <field name="name">Car</field>
+        <field name="res_model">transfer.car</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
