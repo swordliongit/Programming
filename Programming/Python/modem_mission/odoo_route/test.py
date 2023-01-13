@@ -1,8 +1,12 @@
-from selenium import webdriver
+import tkinter as tk
+import time
 
-modem_read_result_list = {"modems":[]}
+from tkinter import messagebox
 
-modem_read_result_list["modems"].append({'key1':5})
-modem_read_result_list["modems"].append({'key2':10})
-
-print(modem_read_result_list)
+fetch_warning = messagebox.askokcancel("Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK'a basin.")
+if fetch_warning:
+    continue_execution = messagebox.askyesno("Degistirilen ayarlari uygulamak icin devam etmek istiyor musunuz?")
+    if not continue_execution:
+        exit()
+        
+messagebox.askokcancel()

@@ -21,12 +21,12 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
     
     from selenium.webdriver.chrome.options import Options
 
-    #chrome_options = Options()
-    #chrome_options.add_argument("--headless") # silent browser
+    chrome_options = Options()
+    chrome_options.add_argument("--headless") # silent browser
     
-    #driver = webdriver.Chrome("chromedriver", options=chrome_options)
+    driver = webdriver.Chrome("chromedriver", options=chrome_options)
     
-    driver = webdriver.Chrome("chromedriver")
+    # driver = webdriver.Chrome("chromedriver")
     
     if mode == "read":
         modem_read_result_dict = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
@@ -68,7 +68,7 @@ def modem_login(driver, ip):
             file.writelines("password="+password)
     
     try:
-        print("Trying to log in...")
+        # print("Trying to log in...")
 
         driver.get(url) # open the url
         driver.find_element(By.ID, "username").send_keys(username)

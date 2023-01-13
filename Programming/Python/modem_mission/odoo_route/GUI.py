@@ -1,31 +1,23 @@
 
 import PySimpleGUI as sg
-from main import main
-import threading
+from main import operator_main
+# import threading
 from multiprocessing import Process
 import concurrent.futures
 
 from queue import Queue
 
+from tkthread import threading
 
 
-def fetch_confirmation(event):
-    fetch_warning = sg.PopupNoTitlebar('Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK\'a basin.', button_type=sg.POPUP_BUTTONS_OK, grab_anywhere=True)
-    if fetch_warning == "OK":
-        # check if user wants to continue
-        continue_execution = sg.popup_yes_no('Degistirilen ayarlari uygulamak icin devam etmek istiyor musunuz?', no_titlebar=True, grab_anywhere=True)
-        if continue_execution == 'No':
-            exit()
-    event.set()
+#def fetch_confirmation(event):
+
 
 def button_function(output, x_hotel_name, target_ip): 
     
-    #output_queue = Queue()
-    
-    # thread = threading.Thread(target=main, args=(output, x_hotel_name, target_ip))
-    # thread.start()
-    # thread.join()
-    main(output, x_hotel_name, target_ip)
+    thread = threading.Thread(target=operator_main, args=(output, x_hotel_name, target_ip))
+    thread.start()
+    window.refresh()
     
 
 layout = [
@@ -50,6 +42,8 @@ while True:
         button_function(output, values[0], values[1])
     elif event == sg.WIN_CLOSED:
         break
+    
+
 
 window.close()
 
