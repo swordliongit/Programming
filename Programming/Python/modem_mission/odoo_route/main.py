@@ -4,7 +4,7 @@ from interface_operation import modem_login_init, interface_operation_modify_com
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 import threading
 
-import PySimpleGUI as sg
+#import PySimpleGUI as sg
 
 from time import sleep
 

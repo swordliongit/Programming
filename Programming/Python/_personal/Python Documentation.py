@@ -107,6 +107,43 @@ CONST = 100 #all capital letters to define a constant
 dir(module_name) # -> CONST will show up here
 
 
+"""
+Underscore operator _
+"""
+
+        """
+        Python automatically stores the value of the last expression in
+        the interpreter to a particular variable called "_."
+        You can also assign these value to another variable if you want.
+        """
+        >>> 5 + 4
+        9
+        >>> _     # stores the result of the above expression
+        9
+        >>> _ + 6
+        15
+        
+        """
+        Used in loop as anonymous filler
+        """
+        for _ in range(0, 5):
+            ...
+    
+        """
+        Ignoring values
+        """
+        a, _, b = (1, 2, 3) # a = 1, b = 3
+        
+        
+        """
+        Separating digits of numbers
+        """
+        million = 1_000_000 # prints 1000000
+        binary = 0b_0010
+        octa = 0o_64
+        hexa = 0x_23_ab
+        
+
 
 """"""""""""""""""""""""
 """"""""""""""""""""""""
@@ -896,51 +933,80 @@ WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
 
 """"""""""""""""""""""""
 """"""""""""""""""""""""
-# XXX MULTITHREADING XXX
+# XXX PARALLEL COMPUTING XXX
 """"""""""""""""""""""""
 """"""""""""""""""""""""
+"""
+THREADS
+"""
 
 import threading
 
-"""
-Simple threading
-"""
+    """
+    Simple threading
+    """
 
-def func():
-    thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
-    thread.start()
+    def func():
+        thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
+        thread.start()
+
+    """
+    Multi threading
+    """
+
+    threads = []
+
+    for ip in ip_list: # call multiple versions of the function simultaneously
+        t = threading.Thread(target=modem_login, args=(driver, ip, output))
+        threads.append(t)
+        t.start()
+        
+    for t in threads: # wait for all threads to finish
+        t.join()
+
+            """
+            Returning values from Multithreaded functions
+            """
+
+            # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
+            # Queue object can be shared between different threads.
+
+            -- main.py --                                                       -- _module.py --
+
+            from _module import func                                            def func(queue):
+            from queue import Queue                                                 item = int(input())
+                                                                                    queue.put(item)
+            queue = Queue()
+
+            thread = threading.Thread(target=func, args=(queue,))
+
+            print(queue.get())
 
 """
-Multi threading
+PROCESSES
 """
+# XXX XXX 
+Each process executes the code outside of the target function as well so,
+make sure that only the first runner executes the code. 
+# XXX XXX
 
-threads = []
+import multiprocessing
+from multiprocessing import Process
 
-for ip in ip_list: # call multiple versions of the function simultaneously
-    t = threading.Thread(target=modem_login, args=(driver, ip, output))
-    threads.append(t)
-    t.start()
+def do_work():
+    print("Starting work")
+    i = 0
+    for _ in range(20000000):
+        i += 1
+    print("Finished work")
     
-for t in threads: # wait for all threads to finish
-    t.join()
+if __name__ == "__main__":
+    multiprocessing.set_start_method("spawn")
+    for _ in range(0, 5):
+        p = Process(target=do_work) # call do_work 5 times simultaneously
+        p.start()
 
-        """
-        Returning values from Multithreaded functions
-        """
 
-        # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
-        # Queue object can be shared between different threads.
-
-        -- main.py --                                                       -- _module.py --
-
-        from _module import func                                            def func(queue):
-        from queue import Queue                                                 item = int(input())
-                                                                                queue.put(item)
-        queue = Queue()
-
-        thread = threading.Thread(target=func, args=(queue,))
-
-        print(queue.get())
 
 
 """"""""""""""""""""""""

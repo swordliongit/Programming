@@ -3,7 +3,6 @@ from _module import func
 import threading
 from datetime import datetime
 
-from selenium import webdriver
 
 
 

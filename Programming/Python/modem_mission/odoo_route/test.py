@@ -10,3 +10,8 @@ if fetch_warning:
         exit()
         
 messagebox.askokcancel()
+
+
+requests
+selenium
+scapy
