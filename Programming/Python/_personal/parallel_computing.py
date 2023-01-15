@@ -1,37 +1,31 @@
 # pip install graphics.py -> used in the course
 
-import multiprocessing
+from threading import Thread, Lock
+import urllib.request
+import json
+import time
 
-from multiprocessing import Process
 
-
-def do_work():
-    print("Starting work")
-    i = 0
-    for _ in range(20000000):
-        i += 1
-    print("Finished work")
+class StingySpendy:
+    money = 100
+    mutex = Lock()
     
-    
-if __name__ == "__main__":
-    multiprocessing.set_start_method("spawn")
-    for _ in range(0, 5):
-        p = Process(target=do_work)
-        p.start()
-
-# import time
-# from threading import Thread
-
-
-# def do_work():
-#     print("Starting work")
-#     time.sleep(1)
-#     print("Finished work")
-
-
-# for _ in range(5):
-#     t = Thread(target=do_work, args=())
-#     t.start()
-
-
-
+    def Stingy(self):
+        for _ in range(10000000):
+            self.mutex.acquire()
+            self.money += 10
+            self.mutex.release()
+        print("Stingy done")
+        
+    def Spendy(self):
+        for _ in range(10000000):
+            self.mutex.acquire()
+            self.money -= 10
+            self.mutex.release()
+        print("Spendy done")     
+        
+ss = StingySpendy()
+Thread(target=ss.Stingy, args=()).start()
+Thread(target=ss.Spendy, args=()).start()
+time.sleep(10)
+print(ss.money)
