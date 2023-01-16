@@ -1,16 +1,20 @@
+from time import sleep, perf_counter
 from concurrent.futures import ThreadPoolExecutor
-from time import sleep
-def task(message):
-   sleep(2)
-   return message
 
-def main():
-   executor = ThreadPoolExecutor(5)
-   future = executor.submit(task, ("Completed"))
-   print(future.done())
-   sleep(2)
-   print(future.done())
-   print(future.result())
-if __name__ == '__main__':
-    main()
+def task(id):
+    print(f'Starting the task {id}...')
+    sleep(1)
+    return f'Done with task {id}'
 
+start = perf_counter()
+
+with ThreadPoolExecutor() as executor:
+    f1 = executor.submit(task, 1)
+    f2 = executor.submit(task, 2)
+
+    print(f1.result())
+    print(f2.result())    
+
+finish = perf_counter()
+
+print(f"It took {finish-start} second(s) to finish.")
