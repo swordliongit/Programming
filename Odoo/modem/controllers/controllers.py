@@ -20,6 +20,7 @@ class CustomSnippets(http.Controller):
             data.append(fields)
         return request.env['ir.ui.view']._render_template('transfer.s_cart_products_card', {'products': data})
 
+
 class modemProfileReq(http.Controller):
     @http.route(['/create/modems_from_data'], type="json", auth="public", methods=["POST"], cors='*', csrf=False)
     def modem_data_send(self):

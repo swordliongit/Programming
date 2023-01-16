@@ -3,29 +3,22 @@
 from threading import Thread, Lock
 import urllib.request
 import json
-import time
+from time import sleep
 
 
-class StingySpendy:
-    money = 100
-    mutex = Lock()
+def child():
+    print("Child thread is doing work...")
+    sleep(5)
+    print("Child thread done...")
+
+
+def parent():
+    t = Thread(target=child)
+    t.start()
+    print("Parent thread is waiting...")
+    t.join()
+    print("Parent thread is unblocked...")
     
-    def Stingy(self):
-        for _ in range(10000000):
-            self.mutex.acquire()
-            self.money += 10
-            self.mutex.release()
-        print("Stingy done")
-        
-    def Spendy(self):
-        for _ in range(10000000):
-            self.mutex.acquire()
-            self.money -= 10
-            self.mutex.release()
-        print("Spendy done")     
-        
-ss = StingySpendy()
-Thread(target=ss.Stingy, args=()).start()
-Thread(target=ss.Spendy, args=()).start()
-time.sleep(10)
-print(ss.money)
+    
+    
+parent()
