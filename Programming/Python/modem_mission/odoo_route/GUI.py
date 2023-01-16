@@ -10,6 +10,14 @@ from queue import Queue
 from tkthread import threading
 
 
+# fetch_warning = sg.PopupNoTitlebar('Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK\'a basin.', button_type=sg.POPUP_BUTTONS_OK, grab_anywhere=True)
+# if fetch_warning == "OK":
+#     # check if user wants to continue
+#     continue_execution = sg.popup_yes_no('Degistirilen ayarlari uygulamak icin devam etmek istiyor musunuz?', no_titlebar=True, grab_anywhere=True)
+#     if continue_execution == 'No':
+#         exit()
+
+
 #def fetch_confirmation(event):
 
 

@@ -8,9 +8,7 @@ from time import sleep
 #from modem_login import modem_login, modem_logout
 
 from collections import OrderedDict
-
-
-
+import utility
 
 def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fields_to_change):
     """function to set browser to run in background, initialize driver object
@@ -18,15 +16,13 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
     Returns:
         Chrome driver: driver to return
     """
-    
-    from selenium.webdriver.chrome.options import Options
 
     chrome_options = Options()
     chrome_options.add_argument("--headless") # silent browser
     
-    driver = webdriver.Chrome("chromedriver", options=chrome_options)
+    driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
     
-    # driver = webdriver.Chrome("chromedriver")
+    # driver = webdriver.Chrome("./support/chromedriver")
     
     if mode == "read":
         modem_read_result_dict = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
@@ -44,7 +40,6 @@ def is_logged_out(driver):
         return False
     else:
         return True
-
  
 def modem_logout(driver):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
@@ -54,18 +49,8 @@ def modem_logout(driver):
 def modem_login(driver, ip):
     url = "http://" + ip + "/cgi-bin/luci"
     
-    username = ""
-    password = ""
-    
-    import os
-    if os.stat("modem_settings.txt").st_size != 0:
-        with open("modem_settings.txt") as file:
-            username = file.readline().split('=')[1].strip('\n')
-            password = file.readline().split('=')[1]
-    else:
-        with open("modem_settings.txt", 'w') as file:
-            file.writelines("username="+username)
-            file.writelines("password="+password)
+    username = utility.username
+    password = utility.password
     
     try:
         # print("Trying to log in...")
@@ -90,11 +75,7 @@ def modem_login_control(driver, ip, mac, mode, x_hotel_name, fields_to_change):
     modem_login(driver, ip)
 
     return operation_controller(driver, mode, x_hotel_name, fields_to_change, mac, ip) 
-    
-    
     #current_url = driver.current_url
-
-
 
 def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, mac, ip_for_modify):
      
@@ -208,6 +189,19 @@ def interface_operation_read(driver, x_hotel_name, mac):
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra3\.enabled")))
         x_enable_ssid4 = True if field.is_selected() else False
         modem_read_result_dict['x_enable_ssid4'] = x_enable_ssid4
+        
+        # Disable hidden ssid's
+        hidden_ssid_disabled = False
+        for i in range(4):
+            field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, f"#cbid\.wireless\.ra{i}\.hidden")))
+            if field.is_selected():
+                field.click()
+                hidden_ssid_disabled = True
+        if hidden_ssid_disabled:
+            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
+            sleep(5)    
+            
+        
     else:
         modem_read_result_dict['x_enable_ssid1'] = False
         modem_read_result_dict['x_enable_ssid2'] = False
@@ -384,7 +378,7 @@ def modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_man
     
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
 
-    sleep(50)
+    sleep(60)
     if 'x_reboot_present' in LAN_Settings_task_list or x_manual_time != 0:
         modem_login(driver, ip_for_modify)
     
@@ -435,7 +429,7 @@ def modify_WLAN_task_control(driver, WLAN_task_list):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
     
     sleep(5)
-    
+
 def modify_x_enable_ssid1(driver):
 
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra0\.enabled")))

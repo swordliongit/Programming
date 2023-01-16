@@ -962,7 +962,7 @@ import threading
         t.start()
         
     for t in threads: # wait for all threads to finish
-        t.join()
+        t.join() # parent thread is waiting
 
             """
             Returning values from Multithreaded functions
@@ -1015,6 +1015,24 @@ import threading
     time.sleep(10)
     print(ss.money)
     
+    """
+    Thread Synchronisation with join
+    """
+    
+    def child():
+        print("Child thread is doing work...")
+        sleep(5)
+        print("Child thread done...")
+
+    def parent():
+        t = Thread(target=child)
+        t.start()
+        print("Parent thread is waiting...")
+        t.join()
+        print("Parent thread is unblocked...")
+        
+    parent()
+    
 
 """
 PROCESSES
@@ -1040,7 +1058,23 @@ if __name__ == "__main__":
         p = Process(target=do_work) # call do_work 5 times simultaneously
         p.start()
 
+"""
+Events
+"""
 
+# XXX XXX
+We can stop a program until an event is True
+# XXX XXX
+
+main.py                                 other.py
+def main(event):
+    while not event.is_set():           from threading import Event
+        pass                            event = Event()
+# program will stop until func() is called and it sets the event                            
+                                        def func():
+                                            event.set()
+
+                                        main(event)
 
 
 """"""""""""""""""""""""

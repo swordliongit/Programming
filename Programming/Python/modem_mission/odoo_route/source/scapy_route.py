@@ -19,7 +19,7 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
     ############################# XXX
     # print("\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
     output.config(state='normal')
-    output.insert(tk.END, "\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
+    output.insert(tk.END, "\n" + "#"*15 + "\nAg taraniyor...\n" + "#"*15 + "\n")
     output.config(state='disabled')
     ############################# XXX
 
@@ -45,7 +45,7 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
     ############################# XXX
     # print("Found hosts!")    
     output.config(state='normal')
-    output.insert(tk.END, "Found hosts!\n")
+    output.insert(tk.END, "Aygitlar bulundu!\n")
     output.config(state='disabled')
     ############################# XXX
     
@@ -66,7 +66,7 @@ def host_writer(fhfile: str, clients: list, output):
     # print("Available devices in the network:")
     # print("IP" + " "*20+"MAC")
     output.config(state='normal')
-    output.insert(tk.END, "Available devices in the network:\n")
+    output.insert(tk.END, "Agdaki mevcut aygitlar:\n")
     output.insert(tk.END, "IP" + " "*20+"MAC\n")
     output.config(state='disabled')
     
@@ -83,7 +83,11 @@ def host_writer(fhfile: str, clients: list, output):
         output.insert(tk.END, "{:16}      {}\n".format(client['ip'], client['mac']))
         output.config(state='disabled')
         ############################# XXX
- 
+        
+    output.config(state='normal')
+    output.insert(tk.END, "Ag taramasi bitti.\n" + "-"*15 + "\n")
+    output.config(state='disabled')
+    
 def host_analyzer(fhfile: str, mhfile: str, mac_filter: str) -> dict:
     """
     This function takes a found hosts file and fetches only necessary mac addresses, then dumps them
