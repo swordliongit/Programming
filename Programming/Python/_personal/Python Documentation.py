@@ -940,98 +940,167 @@ WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
 THREADS
 """
 
-import threading
+        import threading
 
-    """
-    Simple threading
-    """
+        """
+        Simple threading
+        """
 
-    def func():
-        thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
-        thread.start()
+        def func():
+            thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
+            thread.start()
 
-    """
-    Multi threading
-    """
+        """
+        Multi threading
+        """
 
-    threads = []
+        threads = []
 
-    for ip in ip_list: # call multiple versions of the function simultaneously
-        t = threading.Thread(target=modem_login, args=(driver, ip, output))
-        threads.append(t)
-        t.start()
-        
-    for t in threads: # wait for all threads to finish
-        t.join() # parent thread is waiting
-
-            """
-            Returning values from Multithreaded functions
-            """
-
-            # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
-            # Queue object can be shared between different threads.
-
-            -- main.py --                                                       -- _module.py --
-
-            from _module import func                                            def func(queue):
-            from queue import Queue                                                 item = int(input())
-                                                                                    queue.put(item)
-            queue = Queue()
-
-            thread = threading.Thread(target=func, args=(queue,))
-
-            print(queue.get())
-
-    """
-    Thread Synchronisation with Mutex lock (Mutual exclusion object)
-    """
-    # XXX XXX 
-    Prevents threads accessing to the same resource at the same time, eliminating race conditions
-    # XXX XXX
-    
-    from threading import Thread, Lock
-    
-    class Worker:                   
-        money = 100
-        mutex = Lock() # mutex lock
-        
-        def WorkerAdder(self):
-            for _ in range(10000000):
-                self.mutex.acquire() # if lock can't be acquired, sleep. If not, acquire it and lock it for other threads.
-                self.money += 10
-                self.mutex.release() # release the lock so other threads can acquire it.
-            print("Stingy done")
+        for ip in ip_list: # call multiple versions of the function simultaneously
+            t = threading.Thread(target=modem_login, args=(driver, ip, output))
+            threads.append(t)
+            t.start()
             
-        def WorkerSubtractor(self):
-            for _ in range(10000000):
-                self.mutex.acquire()
-                self.money -= 10
-                self.mutex.release()
-            print("Spendy done")     
-        
-    ss = Worker()
-    Thread(target=ss.WorkerAdder, args=()).start()
-    Thread(target=ss.WorkerSubtractor, args=()).start()
-    time.sleep(10)
-    print(ss.money)
-    
-    """
-    Thread Synchronisation with join
-    """
-    
-    def child():
-        print("Child thread is doing work...")
-        sleep(5)
-        print("Child thread done...")
+        for t in threads: # wait for all threads to finish
+            t.join() # parent thread is waiting
 
-    def parent():
-        t = Thread(target=child)
-        t.start()
-        print("Parent thread is waiting...")
-        t.join()
-        print("Parent thread is unblocked...")
+                """
+                Returning values from Multithreaded functions
+                """
+
+                # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
+                # Queue object can be shared between different threads.
+
+                -- main.py --                                                       -- _module.py --
+
+                from _module import func                                            def func(queue):
+                from queue import Queue                                                 item = int(input())
+                                                                                        queue.put(item)
+                queue = Queue()
+
+                thread = threading.Thread(target=func, args=(queue,))
+
+                print(queue.get())
         
-    parent()
+        """
+        Multithreading with ThreadPoolExecutor
+        """
+                """
+                ThreadPoolExecutor Submit
+                """
+                # XXX XXX
+                It is to submit one function at a time.
+                # XXX XXX
+                
+                from concurrent.futures import ThreadPoolExecutor
+                
+                # XXX XXX Calls func1 and func2 simultaneously
+                executor = ThreadPoolExecutor(max_workers=2)
+                future1 = executor.submit(func1, arg1, arg2) 
+                future2 = executor.submit(func2, arg1, arg2) 
+                executor.shutdown() # Release the resources held by executor
+
+                """
+                ThreadPoolExecutor Context Manager
+                """
+                # XXX XXX 
+                Automatically handles shutdown()
+                # XXX XXX
+                
+                def func1(arg1):
+                    return arg1
+                
+                with ThreadPoolExecutor() as executor:
+                    future1 = executor.submit(func1, arg1) 
+                    future2 = executor.submit(func2, arg1) 
+                    
+                    print(future1.result()) # result() gets the return value from the future object
+                                            # that is the return value
+                # XXX XXX 
+                as_completed()
+                An iterator over the given futures that yields each as it completes.
+                # XXX XXX
+                
+                with ThreadPoolExecutor() as executor:
+                    for arg in range(50): # 50 threads
+                        future = executor.submit(func, arg)
+                        futures.append(future)
+                
+                    for future in as_completed(futures):
+                        print(future.result())                           
+                
+                
+                """
+                ThreadPoolExecutor multithreading with MAP
+                """
+                # XXX XXX 
+                Mainly used for calling the same function
+                Calls the function as many times as the length of the iterable by passing each item from the iterable as argument 
+                # XXX XXX
+                
+                with ThreadPoolExecutor() as executor:
+                    results = executor.map(func1, [1, 2, 3]) # results is a generator that yields return values of each function call
+                
+                # XXX XXX
+                
+                with ThreadPoolExecutor() as executor:
+                    results = executor.map(func, [i for i in range(50)]) # 50 threads
+        
+                for res in results:
+                    print(res)
+                    
+
+        
+        """
+        Thread Synchronisation with Mutex lock (Mutual exclusion object)
+        """
+        # XXX XXX 
+        Prevents threads accessing to the same resource at the same time, eliminating race conditions
+        # XXX XXX
+        
+        from threading import Thread, Lock
+        
+        class Worker:                   
+            money = 100
+            mutex = Lock() # mutex lock
+            
+            def WorkerAdder(self):
+                for _ in range(10000000):
+                    self.mutex.acquire() # if lock can't be acquired, sleep. If not, acquire it and lock it for other threads.
+                    self.money += 10
+                    self.mutex.release() # release the lock so other threads can acquire it.
+                print("Stingy done")
+                
+            def WorkerSubtractor(self):
+                for _ in range(10000000):
+                    self.mutex.acquire()
+                    self.money -= 10
+                    self.mutex.release()
+                print("Spendy done")     
+            
+        ss = Worker()
+        Thread(target=ss.WorkerAdder, args=()).start()
+        Thread(target=ss.WorkerSubtractor, args=()).start()
+        time.sleep(10)
+        print(ss.money)
+        
+        """
+        Thread Synchronisation with join
+        """
+        
+        def child():
+            print("Child thread is doing work...")
+            sleep(5)
+            print("Child thread done...")
+
+        def parent():
+            t = Thread(target=child)
+            t.start()
+            print("Parent thread is waiting...")
+            t.join()
+            print("Parent thread is unblocked...")
+            
+        parent()
     
 
 """

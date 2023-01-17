@@ -17,12 +17,12 @@ def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fie
         Chrome driver: driver to return
     """
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless") # silent browser
+    # chrome_options = Options()
+    # chrome_options.add_argument("--headless") # silent browser
     
-    driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
+    # driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
     
-    # driver = webdriver.Chrome("./support/chromedriver")
+    driver = webdriver.Chrome("./support/chromedriver")
     
     if mode == "read":
         modem_read_result_dict = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
@@ -200,8 +200,6 @@ def interface_operation_read(driver, x_hotel_name, mac):
         if hidden_ssid_disabled:
             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
             sleep(5)    
-            
-        
     else:
         modem_read_result_dict['x_enable_ssid1'] = False
         modem_read_result_dict['x_enable_ssid2'] = False

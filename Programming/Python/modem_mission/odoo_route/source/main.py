@@ -185,11 +185,16 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
         fields_to_change_list.append(fields_to_change)
     
     
+    from concurrent.futures import ThreadPoolExecutor
+    
+    # with ThreadPoolExecutor() as executor:
+        
+    #     f = executor.map(modem_login_init, ips_of_modified_modems, "", mode, None, None, fields_to_change)  
+    
     for ip, fields_to_change in zip(ips_of_modified_modems, fields_to_change_list):
         t = threading.Thread(target=modem_login_init, args=(ip, "", mode, "", None, None, fields_to_change))
         threads.append(t)
         t.start()
-        
         
     for t in threads:# wait for all threads to finish
         t.join()
