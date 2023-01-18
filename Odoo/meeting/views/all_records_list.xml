@@ -1,0 +1,35 @@
+<odoo>
+    <template name="All Records List" id="all_records_list">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br />
+                    <center>
+                        <h3>All Records Details</h3>
+                    </center>
+                    <br />
+                    <table class="table-striped table">
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Name</th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="my_details" t-as="order">
+                                <tr>
+                                    <td>
+                                        <span t-esc="order.name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

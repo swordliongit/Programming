@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_transfer_form_1" model="website.menu">
+        <field name="name">Form 1</field>
+        <field name="url">/form-1</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <record id="form_1" model="website.page">
+        <field name="name">Form 1</field>
+        <field name="type">qweb</field>
+        <field name="url">/form-1</field>
+        <field name="website_published">True</field>
+        <field name="key">transfer.form_1</field>
+        <field name="arch" type="xml">
+            <t t-call="website.layout">
+                <t name="Form 1" t-name="transfer.form_1">
+                    <section class="transfer_booking">
+                        <div class="container">
+                            <!-- <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/> -->
+                            <form role="form" action="/create/form-1" method="POST">
+                                <div class="row bg-dark text-center justify-content-center p-3 m-2 rounded rounded">
+                                    <div class="form-group col-12 col-xl-4 mb-xl-0">
+                                        <t t-set="cities" t-value="env['transfer.city'].search([])"/>
+                                        <div class="input-group-lg input-group-prepend ">
+                                            <span class="mr-auto p-2">
+                                                <i style="font-size:27px" class="fa fa-map-marker text-white">​</i>
+                                            </span>
+                                            <select name="from_id" id="from_id" type="text" class="form-control" placeholder="From">
+                                                <t t-foreach='cities' t-as="city">
+                                                    <option t-esc='city.name' t-att-value='city.id'/>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12 col-xl-4 mb-xl-0 o_colored_level">
+                                        <div class="input-group-lg input-group-prepend">
+                                            <span class="mr-auto p-2">
+                                                <i style="font-size:27px" class="fa fa-map-marker text-white">​</i>
+                                            </span>
+                                            <select name="to_id" id="to_id" type="text" class="form-control" placeholder="To">
+                                                <t t-foreach='cities' t-as="city">
+                                                    <option t-esc='city.name' t-att-value='city.id'/>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-end align-items-center text-right text-md-left col-12 col-xl-4 mb-xl-0 o_colored_level">
+                                        <t t-set="currencies" t-value="env['res.currency'].search([])"/>
+                                        <select style="font-size:27px;" name="currency_id" class="form-select btn text-white pr-0 mr-3">
+                                            <t t-foreach='currencies' t-as="currency">
+                                                <option t-esc='currency.name' t-att-value='currency.id'/>
+                                            </t>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary btn-lg">Booking</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </t>
+            </t>
+        </field>
+    </record>
+
+
+    <record id="patient_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/patient-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">transfer.patient_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="transfer.patient_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks!</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                    The Patient has been Created successfully.
+                                    </div>
+                                    <p>
+                                    Visit Hospital At ANy Time
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record id="transfer_thanks" model="website.page">
+        <field name="name">Transfer Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/transfer-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">transfer.transfer_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Transfer Thanks" t-name="transfer.transfer_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks!</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                    The Patient has been Created successfully.
+                                    </div>
+                                    <p>
+                                    Visit Hospital At ANy Time
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+</odoo>

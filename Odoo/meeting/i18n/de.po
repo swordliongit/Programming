@@ -1,0 +1,1287 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * transfer
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-14 12:58+0000\n"
+"PO-Revision-Date: 2022-03-15 13:44+0300\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Loco-Version: 2.6.0; wp-5.9.2\n"
+
+#. module: transfer
+#: model:transfer.car,description:transfer.car1
+#: model:transfer.car,description:transfer.car2
+#: model:transfer.car,description:transfer.car3
+msgid "\"Description\""
+msgstr "\"Beschreibung\""
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Date of return"
+msgstr "* Rückgabedatum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* E-Mail"
+msgstr "* Email"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Name"
+msgstr "* Name"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Phone"
+msgstr "* Telefon"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Date"
+msgstr "* Abholdatum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Pickup Time"
+msgstr "* Abholzeit"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Surname"
+msgstr "* Nachname"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "* Time you want to be pick up"
+msgstr "* Zeit, die Sie abholen möchten"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "07 CDS 71"
+msgstr "07 CDS 71"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "10"
+msgstr "10"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tExample :\n"
+"                                                <br/>\n"
+"                                                John Paul (add names to "
+"lines)\n"
+"                                                <br/>\n"
+"                                                Anna Paul\n"
+"                                            </small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Beispiel :<br/> John "
+"Paul (Namen zu Zeilen hinzufügen)<br/> AnnaPaul</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Enter your request and "
+"suggestion.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"form-text text-muted\">Geben Sie Ihre Anfrage "
+"und Ihren Vorschlag ein.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Geben Sie Ihre Ankunftszeit im "
+"24-Stunden-Format ein.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Enter your flight code.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Geben Sie Ihren Flugcode ein.</"
+"small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival date.</"
+"small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Geben Sie das Ankunftsdatum an."
+"</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the arrival time in 24-"
+"hour format.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Geben Sie die Ankunftszeit im "
+"24-Stunden-Format an.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Specify the destination. For "
+"example; Hotel, district or public area etc.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Geben Sie das Ziel an. Zum "
+"Beispiel; Hotel, Quartier oder öffentlicher Bereich etc.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid ""
+"<small id=\"helpId\" class=\"text-white-50\">Your order information will be "
+"sent to your e-mail address.</small>"
+msgstr ""
+"<small id=\"helpId\" class=\"text-white-50\">Ihre Bestelldaten werden an "
+"Ihre E-Mail-Adresse gesendet.</small>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span class="
+"\"sr-only\">Next</span>"
+msgstr ""
+"<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"/><span "
+"class=\"sr-only\">Nächste</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/>\n"
+"                                                                <span class="
+"\"sr-only\">Previous</span>"
+msgstr ""
+"<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"/><span "
+"class=\"sr-only\">Vorherige</span></span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Free Service</span>"
+msgstr "<span class=\"form-text text-muted\">Kostenloser Service</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "<span class=\"form-text text-muted\">Paid Service</span>"
+msgstr "<span class=\"form-text text-muted\">Bezahlter Dienst</span>"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid ""
+"<span class=\"mr-auto p-2\">\n"
+"                                                <i style=\"font-size:27px\" "
+"class=\"fa fa-map-marker text-white\">​</i>\n"
+"                                            </span>"
+msgstr ""
+"<span class=\"mr-auto p-2\"><i style=\"font-size:27px\" class=\"fa fa-map-"
+"marker text-white\">​</i></span>"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city2
+msgid "Adrasan"
+msgstr "Adrasan"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Adult"
+msgstr "Erwachsene"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city3
+msgid "Alanya"
+msgstr "Alanya"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+msgid "All Records Details"
+msgstr "Alle Datensatzdetails"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Alınacak Yer"
+msgstr "Ort Der Abholung"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__another_passengers
+msgid "Another Passengers"
+msgstr "Andere Gäste"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city1
+msgid "Antalya Airport"
+msgstr "Flughafen Antalya"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city4
+msgid "Antalya Center"
+msgstr "Antalya Zentrum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Arrival Flight Code"
+msgstr "Ankunftsflugcode"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city5
+msgid "Avsallar"
+msgstr "Avsallar"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Baby"
+msgstr "Baby"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_number
+msgid "Baby Number"
+msgstr "Babynummer"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra1
+msgid "Baby Seat"
+msgstr "Kindersitz"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__baby_seat_number
+msgid "Baby Seat Number"
+msgstr "Babysitznummer"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_date
+msgid "Back Transfer Date"
+msgstr "Rückübertragungsdatum"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_transfer_time
+msgid "Back Transfer Time"
+msgstr "Rückübertragungszeit"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city6
+msgid "Beldibi"
+msgstr "Beldibi"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city7
+msgid "Belek"
+msgstr "Belek"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city8
+msgid "Bodrum"
+msgstr "Bodrum"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city9
+msgid "Bogazkent"
+msgstr "Boğazkent"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "Booking"
+msgstr "Reservierung"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra2
+msgid "Booster Seat"
+msgstr "Sitzerhöhung"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__booster_seat_number
+msgid "Booster Seat Number"
+msgstr "Sitzerhöhungsnummer"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city10
+msgid "Camyuva"
+msgstr "Çamyuva"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_car_profile
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_id
+msgid "Car"
+msgstr "Auto"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Id"
+msgstr "Auto-ID"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car_lines
+msgid "Car Lines Record"
+msgstr "Aufzeichnung der Autolinien"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_car_menu
+msgid "Car List"
+msgstr "Auto Liste"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_name
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Name"
+msgstr "Autoname"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_car
+msgid "Car Record"
+msgstr "Auto Rekord"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__car_type
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Car Type"
+msgstr "Auto Typ"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__car_lines
+#: model:ir.model.fields,field_description:transfer.field_product_template__car_lines
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__car_lines
+#: model_terms:ir.ui.view,arch_db:transfer.car_form
+msgid "Cars"
+msgstr "Autos"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city11
+msgid "Cenger"
+msgstr "Çenger"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__child_number
+msgid "Child Number"
+msgstr "Kindernummer"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Cinque Terre"
+msgstr "Cinque Terre"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city12
+msgid "Cirali"
+msgstr "Çıralı"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_city_menu
+msgid "Cities"
+msgstr "Städte"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_city_profile
+msgid "City"
+msgstr "Stadt"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_city
+msgid "City Record"
+msgstr "Stadtrekord"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city13
+msgid "Colakli"
+msgstr "Çolaklı"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__create_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__currency
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__currency_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Currency"
+msgstr "Währung"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_currency
+msgid "Currency Config"
+msgstr "Währungskonfig"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_email
+msgid "Customer Email"
+msgstr "Kunden-eMail"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_livechat
+msgid "Customer Live Chat"
+msgstr "Kunden-Live-Chat"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_name
+msgid "Customer Name"
+msgstr "Kundenname"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_phone
+msgid "Customer Phone"
+msgstr "Kundentelefon"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__customer_surname
+msgid "Customer Surname"
+msgstr "Nachname des Kunden"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city14
+msgid "Dalaman"
+msgstr "Dalaman"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city15
+msgid "Demre"
+msgstr "Demre"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city16
+msgid "Denizli Center"
+msgstr "Denizli-Zentrum"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city17
+msgid "Denizyaka"
+msgstr "Denizyaka"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Departure Details"
+msgstr "Abfahrtsdetails"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__description
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_destination
+#: model:ir.model.fields,field_description:transfer.field_sale_order__special_note
+msgid "Destination"
+msgstr "Ziel"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name)"
+msgstr "Ziel (Hotel, Name der Einrichtung)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Destination (Hotel, Facility Name, Place)"
+msgstr "Ziel (Hotel, Name der Einrichtung, Ort)"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__display_name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__user_id
+msgid "Driver"
+msgstr "Treiber"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Dönüş Saati"
+msgstr "Was Ist Ihre Rückfahrtszeit"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "E-mail"
+msgstr "Email"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city18
+msgid "Evrenseki"
+msgstr "Evrenseki"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_extra_profile
+msgid "Extra"
+msgstr "Extra"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_extra
+msgid "Extra Record"
+msgstr "Zusätzliche Aufzeichnung"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__extra_status
+msgid "Extra Service"
+msgstr "Extra-Service"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__extras
+#: model:ir.ui.menu,name:transfer.transfer_extra_menu
+msgid "Extras"
+msgstr "Extras"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city19
+msgid "Fethiye"
+msgstr "Fethiye"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city20
+msgid "Finike"
+msgstr "Finike"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__coming_flight_no
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_flight_no
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Flight No"
+msgstr "Flug Nr"
+
+#. module: transfer
+#: model:website.menu,name:transfer.menu_transfer_form_1
+msgid "Form 1"
+msgstr "Form 1"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Free Service"
+msgstr "Kostenloser Service"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__from_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__from_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__from_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__from_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "From"
+msgstr "Von"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_city_select
+msgid "From To"
+msgstr "Von bis"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_general_settings
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_google
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city21
+msgid "Goynuk"
+msgstr "Göynük"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city22
+msgid "Gundogdu"
+msgstr "Gündoğdu"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__id
+msgid "ID"
+msgstr "Benutzername"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__id_of_product
+msgid "Id Of Product"
+msgstr "ID des Produkts"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__image
+msgid "Image"
+msgstr "Bild"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_1
+msgid "Image 1"
+msgstr "Bild 1"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_2
+msgid "Image 2"
+msgstr "Bild 2"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_3
+msgid "Image 3"
+msgstr "Bild 3"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_4
+msgid "Image 4"
+msgstr "Bild 4"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_5
+msgid "Image 5"
+msgstr "Bild 5"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__image_6
+msgid "Image 6"
+msgstr "Bild 6"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Images"
+msgstr "Bilder"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city23
+msgid "Incekum"
+msgstr "İncekum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Include and Extra"
+msgstr "Einschließen und Extra"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city24
+msgid "Kaleici"
+msgstr "Kaleici"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city25
+msgid "Kalkan"
+msgstr "Kalkan"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city26
+msgid "Kargicak"
+msgstr "Kargıcak"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city27
+msgid "Kas"
+msgstr "Kas"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city28
+msgid "Kemer"
+msgstr "Kemer"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Kid"
+msgstr "Kind"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city29
+msgid "Kiris"
+msgstr "Kiris"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city30
+msgid "Kizilagac"
+msgstr "Kizilagac"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city31
+msgid "Kizilot"
+msgstr "Kizilot"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city32
+msgid "Konakli"
+msgstr "Konakli"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city33
+msgid "Konyaalti"
+msgstr "Konyaalti"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city34
+msgid "Kumkoy"
+msgstr "Kumköy"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city35
+msgid "Kumluca"
+msgstr "Kumluca"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city36
+msgid "Kundu"
+msgstr "Kundu"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city37
+msgid "Lara"
+msgstr "Lara"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_city____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra____last_update
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_uid
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__write_date
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Luggage"
+msgstr "Gepäck"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city38
+msgid "Mahmutlar"
+msgstr "Mahmutlar"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city39
+msgid "Manavgat"
+msgstr "Manavgat"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_marketing
+msgid "Marketing"
+msgstr "Marketing"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city40
+msgid "Marmaris"
+msgstr "Marmaris"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__luggage_cap
+msgid "Max Luggage"
+msgstr "Maximales Gepäck"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__passenger_cap
+msgid "Max Person"
+msgstr "Maximale Person"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car3
+msgid "Mercedes E Class Luxury"
+msgstr "Mercedes E-Klasse Luxus"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Mercedes E-300d"
+msgstr "Mercedes E-300d"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car2
+msgid "Mercedes Vip Sprinter"
+msgstr "Mercedes VIP-Sprinter"
+
+#. module: transfer
+#: model:transfer.car,name:transfer.car1
+msgid "Mercedes Vip Vito"
+msgstr "Mercedes Vip Vito"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_city__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_extra__name
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__name
+#: model_terms:ir.ui.view,arch_db:transfer.all_records_list
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name"
+msgstr "Name"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Name Surname"
+msgstr "Vorname Nachname"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city41
+msgid "Okurcalar"
+msgstr "Okurcalar"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city42
+msgid "Olympos"
+msgstr "Olympos"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Other passenger information"
+msgstr "Andere Fahrgastinformationen"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Our services"
+msgstr "Unsere Dienstleistungen"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_pages
+msgid "Page List"
+msgstr "Seitenliste"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_page_view_act
+#: model:ir.ui.menu,name:transfer.transfer_page_views
+msgid "Page Views"
+msgstr "Seitenaufrufe"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Paid Service"
+msgstr "Bezahlter Dienst"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city43
+msgid "Pamukkale"
+msgstr "Pamukkale"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__passenger_number
+msgid "Passeger Number"
+msgstr "Passagiernummer"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Passenger"
+msgstr "Passagier"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Passenger Information"
+msgstr "Passagierinformationen"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Payment information"
+msgstr "Zahlungsinformationen"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Personel Information"
+msgstr "Persönliche Informationen"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__plate
+msgid "Plate"
+msgstr "Teller"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Please do not leave the (*) starred fields blank."
+msgstr "Bitte lassen Sie die mit (*) gekennzeichneten Felder nicht leer."
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_crm
+msgid "Potential Customers"
+msgstr "Mögliche Kunden"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__price
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Price"
+msgstr "Preis"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_price_list
+#: model:ir.ui.menu,name:transfer.transfer_zones
+msgid "Price List"
+msgstr "Preisliste"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__car_price
+msgid "Price(€)"
+msgstr "Preis (€)"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Product Id"
+msgstr "Produkt ID"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.s_cart_products
+msgid "Products in Cart"
+msgstr "Produkte im Warenkorb"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promo Code"
+msgstr "Promo-Code"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Promotion Code"
+msgstr "Aktionscode"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Flight Code"
+msgstr "Rückflugcode"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Return Transfer"
+msgstr "Rücktransfer"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car3
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+msgid "Sedan"
+msgstr "Limousine"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+msgid "Select Car"
+msgstr "Auto auswählen"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car_lines__sequence
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city44
+msgid "Side"
+msgstr "Side"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city45
+msgid "Sorgun"
+msgstr "Sorgun"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car2
+msgid "Sprinter"
+msgstr "Sprinter"
+
+#. module: transfer
+#: model:transfer.extra,name:transfer.ekstra3
+msgid "Stroller Seat"
+msgstr "Kinderwagensitz"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__stroller_seat_number
+msgid "Stroller Seat Number"
+msgstr "Sitznummer des Kinderwagens"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Surname"
+msgstr "Nachname"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "TK0707"
+msgstr "TK0707"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city46
+msgid "Tekirova"
+msgstr "Tekirova"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Text for screen reader"
+msgstr "Text für Screenreader"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_3
+msgid "Thanks Transfer Successfull.."
+msgstr "Danke Transfer erfolgreich.."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Thanks!"
+msgstr "Danke!"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "The Patient has been Created successfully."
+msgstr "Der Patient wurde erfolgreich erstellt."
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_4
+msgid "There is no any transfer found.."
+msgstr "Es wurde keine Übertragung gefunden.."
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city47
+msgid "Titreyengol"
+msgstr "Titreyengöl"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_product_product__to_id
+#: model:ir.model.fields,field_description:transfer.field_product_template__to_id
+#: model:ir.model.fields,field_description:transfer.field_sale_order__to_id
+#: model:ir.model.fields,field_description:transfer.field_transfer_profile__to_id
+#: model_terms:ir.ui.view,arch_db:transfer.form_1_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_1
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+#: model_terms:website.page,arch_db:transfer.form_1
+msgid "To"
+msgstr "Zu"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Total"
+msgstr "Gesamt"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_root_menu
+msgid "Transfer"
+msgstr "Überweisen"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.product_template_general_information_close
+msgid "Transfer Adı"
+msgstr "Übertragen Sie Adı"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_date
+msgid "Transfer Date"
+msgstr "Überweisungsdatum"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Details"
+msgstr "Übertragungsdetails"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_queries
+msgid "Transfer Queries"
+msgstr "Abfragen übertragen"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.transfer_quotations
+msgid "Transfer Request"
+msgstr "Transferanforderung"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_request
+msgid "Transfer Requests"
+msgstr "Übertragungsanfragen"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__return_status
+msgid "Transfer Return"
+msgstr "Rücküberweisung"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Saati"
+msgstr "Übertragen Sie Saati"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Transfer Tarihi"
+msgstr "Übertragen Sie Tarihi"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__going_transfer_time
+msgid "Transfer Time"
+msgstr "Transferzeit"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.snippets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+msgid "Transfer Widgets"
+msgstr "Widgets übertragen"
+
+#. module: transfer
+#: model:ir.actions.act_window,name:transfer.action_transfer_profile
+msgid "Transfers"
+msgstr "Überweisungen"
+
+#. module: transfer
+#: model:transfer.city,name:transfer.city48
+msgid "Turkler"
+msgstr "Türkler"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_transfer_car__type
+msgid "Type"
+msgstr "Art"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle model"
+msgstr "Fahrzeugmodell"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Vehicle type"
+msgstr "Fahrzeugtyp"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.patient_thanks_ir_ui_view
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:transfer.patient_thanks
+#: model_terms:website.page,arch_db:transfer.transfer_thanks
+msgid "Visit Hospital At ANy Time"
+msgstr "Besuchen Sie das Krankenhaus jederzeit"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_visitors
+msgid "Visitors"
+msgstr "Besucher"
+
+#. module: transfer
+#: model:transfer.car,type:transfer.car1
+msgid "Vito"
+msgstr "Vito"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_statistics
+msgid "Web Statistics"
+msgstr "Web-Statistiken"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_config
+msgid "Website Configration"
+msgstr "Website-Konfiguration"
+
+#. module: transfer
+#: model:ir.ui.menu,name:transfer.transfer_website_list
+msgid "Websites"
+msgstr "Webseiten"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__welcome_status
+msgid "Welcome Status"
+msgstr "Willkommensstatus"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Your request and suggestion"
+msgstr "Ihre Anfrage und Anregung"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.car_form_view
+#: model_terms:ir.ui.view,arch_db:transfer.car_tree
+msgid "cars"
+msgstr "Autos"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.city_form
+#: model_terms:ir.ui.view,arch_db:transfer.city_tree
+msgid "citys"
+msgstr "Städte"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.extra_form
+#: model_terms:ir.ui.view,arch_db:transfer.extra_tree
+msgid "extras"
+msgstr "Extras"
+
+#. module: transfer
+#: model:ir.model.fields,field_description:transfer.field_sale_order__promotion_code
+msgid "promotion Code"
+msgstr "Aktionscode"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_booking_widgets
+#: model_terms:ir.ui.view,arch_db:transfer.transfer_tree
+msgid "transfer"
+msgstr "Transfer"
+
+#. module: transfer
+#: model:ir.model,name:transfer.model_transfer_profile
+msgid "transfer.profile"
+msgstr "transfer.profil"
+
+#. module: transfer
+#: model_terms:ir.ui.view,arch_db:transfer.form_response_2
+msgid "Örn: Dedeman Hotel"
+msgstr "Beispiel: Dedeman Hotel"

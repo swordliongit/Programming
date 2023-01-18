@@ -20,97 +20,133 @@ class CustomSnippets(http.Controller):
             data.append(fields)
         return request.env['ir.ui.view']._render_template('transfer.s_cart_products_card', {'products': data})
 
-class modemProfileReq(http.Controller):
-    @http.route(['/create/modems_from_data'], type="json", auth="public", methods=["POST"], cors='*', csrf=False)
-    def modem_data_send(self):
-        data = json.loads(request.httprequest.data)
-        for modem in data["modems"]:
-            http.request.env['modem.profile'].sudo().create({
-                'x_uptime': modem['x_uptime'],
-                'x_wireless_status': modem['x_wireless_status'],
-                'x_channel': modem['x_channel'],
-                'x_mac': modem['x_mac'],
-                'x_device_info': modem['x_device_info'],
-                'x_ip': modem['x_ip'],
-                'x_subnet': modem['x_subnet'],
-                'x_dhcp': modem['x_dhcp'],
-                'x_enable_wireless': modem['x_enable_wireless'],
-                'x_enable_ssid1': modem['x_enable_ssid1'],
-                'x_enable_ssid2': modem['x_enable_ssid2'],
-                'x_enable_ssid3': modem['x_enable_ssid3'],
-                'x_enable_ssid4': modem['x_enable_ssid4'], 
-                'x_manual_time': modem['x_manual_time'],
-                'x_new_password': modem['x_new_password'],
-                'x_hotel_name': modem['x_hotel_name'],
-                'x_update_date': modem['x_update_date']
-            })
-        # for modem in data:
-        #     http.request.env['modem.profile'].sudo().create({
-        #         'x_uptime': modem['x_uptime'],
-        #         'x_wireless_status': modem['x_wireless_status'],
-        #         'x_channel': modem['x_channel'],
-        #         'x_mac': modem['x_mac'],
-        #         'x_device_info': modem['x_device_info'],
-        #         'x_ip': modem['x_ip'],
-        #         'x_subnet': modem['x_subnet'],
-        #         'x_dhcp': modem['x_dhcp'],
-        #         'x_enable_wireless': modem['x_enable_wireless'],
-        #         'x_enable_ssid1': modem['x_enable_ssid1'],
-        #         'x_enable_ssid2': modem['x_enable_ssid2'],
-        #         'x_enable_ssid3': modem['x_enable_ssid3'],
-        #         'x_enable_ssid4': modem['x_enable_ssid4'], 
-        #         'x_manual_time': modem['x_manual_time'],
-        #         'x_new_password': modem['x_new_password'],
-        #         'x_hotel_name': modem['x_hotel_name'],
-        #         'x_update_date': modem['x_update_date']
+class meetingProfileReq(http.Controller):
+    #widget transfer booking
+    @http.route('/create/form-1', type="http", auth="public", website=True,  csrf=False)
+    def create_form_req_1(self, **kw):
+        print("Data Received.....", kw)
+        # request.env['transfer.profile'].sudo().create(kw)
+        contact = http.request.env['res.partner'].sudo().create({
+            'name': kw.get('name'),
+            'mobile': kw.get('mobile'),
+            'email': kw.get('email')
+            
+            # 'company': kw.get('company')
+            
+        })
+        vals = {
+            'name': kw.get('name'),
+            'mobile': kw.get('mobile'),
+            'mail': kw.get('mail'),
+            'scanned_id': contact.id
+            # 'company': kw.get('company')
+         }
+        # return request.redirect('/contactus-thank-you')
+        return request.render("website.qrgenerator", {'form_data': vals})
+    
+    @http.route('/qrmeet/<scanner_id>/<scanned_id>', type='http', auth="public", methods=["GET"], cors='*', website=True)
+    def meeting_creator(self, scanner_id, scanned_id):
+        # get the information using the SUPER USER
+        result = "Thanks"
+        http.request.env['meeting.profile'].sudo().create({ 
+            'x_scanned_id': scanned_id,
+            'x_scanner_id': scanner_id
+        })   
+        return request.render("website.contactus_thanks")
+        # website=False -> comes from outside
+        # return request.redirect('/contracts')
+    
+    
+    # @http.route(['/create/meetings_from_data'], type="json", auth="public", methods=["POST"], cors='*', csrf=False)
+    # def meeting_data_send(self):
+    #     data = json.loads(request.httprequest.data)
+    #     for meeting in data["meetings"]:
+    #         http.request.env['meeting.profile'].sudo().create({
+    #             'x_uptime': meeting['x_uptime'],
+    #             'x_wireless_status': meeting['x_wireless_status'],
+    #             'x_channel': meeting['x_channel'],
+    #             'x_mac': meeting['x_mac'],
+    #             'x_device_info': meeting['x_device_info'],
+    #             'x_ip': meeting['x_ip'],
+    #             'x_subnet': meeting['x_subnet'],
+    #             'x_dhcp': meeting['x_dhcp'],
+    #             'x_enable_wireless': meeting['x_enable_wireless'],
+    #             'x_enable_ssid1': meeting['x_enable_ssid1'],
+    #             'x_enable_ssid2': meeting['x_enable_ssid2'],
+    #             'x_enable_ssid3': meeting['x_enable_ssid3'],
+    #             'x_enable_ssid4': meeting['x_enable_ssid4'], 
+    #             'x_manual_time': meeting['x_manual_time'],
+    #             'x_new_password': meeting['x_new_password'],
+    #             'x_hotel_name': meeting['x_hotel_name'],
+    #             'x_update_date': meeting['x_update_date']
+    #         })
+        # for meeting in data:
+        #     http.request.env['meeting.profile'].sudo().create({
+        #         'x_uptime': meeting['x_uptime'],
+        #         'x_wireless_status': meeting['x_wireless_status'],
+        #         'x_channel': meeting['x_channel'],
+        #         'x_mac': meeting['x_mac'],
+        #         'x_device_info': meeting['x_device_info'],
+        #         'x_ip': meeting['x_ip'],
+        #         'x_subnet': meeting['x_subnet'],
+        #         'x_dhcp': meeting['x_dhcp'],
+        #         'x_enable_wireless': meeting['x_enable_wireless'],
+        #         'x_enable_ssid1': meeting['x_enable_ssid1'],
+        #         'x_enable_ssid2': meeting['x_enable_ssid2'],
+        #         'x_enable_ssid3': meeting['x_enable_ssid3'],
+        #         'x_enable_ssid4': meeting['x_enable_ssid4'], 
+        #         'x_manual_time': meeting['x_manual_time'],
+        #         'x_new_password': meeting['x_new_password'],
+        #         'x_hotel_name': meeting['x_hotel_name'],
+        #         'x_update_date': meeting['x_update_date']
         #     })
 
-        return data
+        # return data
     
     #############################################
     #############################################
     #############################################
     
-    @http.route(['/create/report-for-modem'], type="json", auth="public", methods=["POST"], cors='*', csrf=False)
-    def create_modem_req_1(self):
+    @http.route(['/create/report-for-meeting'], type="json", auth="public", methods=["POST"], cors='*', csrf=False)
+    def create_meeting_req_1(self):
         data = json.loads(request.httprequest.data)
-        modem_id = http.request.env['modem.profile'].sudo().search([["modem_id","=",data['params']['modem_id']]],limit=1)
-        if len(modem_id) > 0:
+        meeting_id = http.request.env['meeting.profile'].sudo().search([["meeting_id","=",data['params']['meeting_id']]],limit=1)
+        if len(meeting_id) > 0:
             result = ""
-            if data['params']['modem_update'] == 2:
-                modem_id.modem_update = False
-            if data['params']['modem_update'] == 0:
-                modem_id.modem_update = True
-            if data['params']['create_report'] == False and modem_id.modem_update == False:
+            if data['params']['meeting_update'] == 2:
+                meeting_id.meeting_update = False
+            if data['params']['meeting_update'] == 0:
+                meeting_id.meeting_update = True
+            if data['params']['create_report'] == False and meeting_id.meeting_update == False:
                 result = {"code": 200, "message": "Idle Ask Successfully"}
-            if data['params']['create_report'] == False and modem_id.modem_update == True:
-                settings = http.request.env['settings.profile'].sudo().search([["modem_id.modem_id","=",data['params']['modem_id']]],limit=1)
-                result = {"code": 200, "message": "Idle Ask Successfully", "modem_update": modem_id.modem_update, "modem_status": modem_id.modem_status, "entrance_delay_time": settings.entrance_delay_time, "exit_delay_time": settings.exit_delay_time, "alarm_time": settings.alarm_time, "default_settings_1": settings.default_settings_1, "zone_status_1": settings.zone_status_1, "always_on_1": settings.always_on_1, "sudden_alarm_1": settings.sudden_alarm_1, "default_settings_2": settings.default_settings_2, "zone_status_2": settings.zone_status_2, "always_on_2": settings.always_on_2, "sudden_alarm_2": settings.sudden_alarm_2, "default_settings_3": settings.default_settings_3, "zone_status_3": settings.zone_status_3, "always_on_3": settings.always_on_3, "sudden_alarm_3": settings.sudden_alarm_3, "default_settings_4": settings.default_settings_4, "zone_status_4": settings.zone_status_4, "always_on_4": settings.always_on_4, "sudden_alarm_4": settings.sudden_alarm_4, "wifi_name": settings.wifi_name, "wifi_password": settings.wifi_password, "test_signal_time": settings.test_signal_time, "last_value": 1}
-            if data['params']['create_report'] == True and modem_id.modem_update == False:
+            if data['params']['create_report'] == False and meeting_id.meeting_update == True:
+                settings = http.request.env['settings.profile'].sudo().search([["meeting_id.meeting_id","=",data['params']['meeting_id']]],limit=1)
+                result = {"code": 200, "message": "Idle Ask Successfully", "meeting_update": meeting_id.meeting_update, "meeting_status": meeting_id.meeting_status, "entrance_delay_time": settings.entrance_delay_time, "exit_delay_time": settings.exit_delay_time, "alarm_time": settings.alarm_time, "default_settings_1": settings.default_settings_1, "zone_status_1": settings.zone_status_1, "always_on_1": settings.always_on_1, "sudden_alarm_1": settings.sudden_alarm_1, "default_settings_2": settings.default_settings_2, "zone_status_2": settings.zone_status_2, "always_on_2": settings.always_on_2, "sudden_alarm_2": settings.sudden_alarm_2, "default_settings_3": settings.default_settings_3, "zone_status_3": settings.zone_status_3, "always_on_3": settings.always_on_3, "sudden_alarm_3": settings.sudden_alarm_3, "default_settings_4": settings.default_settings_4, "zone_status_4": settings.zone_status_4, "always_on_4": settings.always_on_4, "sudden_alarm_4": settings.sudden_alarm_4, "wifi_name": settings.wifi_name, "wifi_password": settings.wifi_password, "test_signal_time": settings.test_signal_time, "last_value": 1}
+            if data['params']['create_report'] == True and meeting_id.meeting_update == False:
                 val = {
-                'modem_id': modem_id.id,
+                'meeting_id': meeting_id.id,
                 'ademco_id': data['params']['code'],
                 'zone': data['params']['zone'],
                 #'date': datetime.now()
                 }
                 create = request.env['reports.profile'].sudo().create(val)
                 result = {"code": 200, "message": "Live Report Created Successfully"}
-            if data['params']['create_report'] == True and modem_id.modem_update == True:
-                settings = http.request.env['settings.profile'].sudo().search([["modem_id.modem_id","=",data['params']['modem_id']]],limit=1)
+            if data['params']['create_report'] == True and meeting_id.meeting_update == True:
+                settings = http.request.env['settings.profile'].sudo().search([["meeting_id.meeting_id","=",data['params']['meeting_id']]],limit=1)
                 val = {
-                'modem_id': modem_id.id,
+                'meeting_id': meeting_id.id,
                 'ademco_id': data['params']['code'],
                 'zone': data['params']['zone'],
                 #'date': datetime.now()
                 }
                 create = request.env['reports.profile'].sudo().create(val)
-                result = {"code": 200, "message": "Live Report Created Successfully", "modem_update": modem_id.modem_update, "modem_status": modem_id.modem_status, "entrance_delay_time": settings.entrance_delay_time, "exit_delay_time": settings.exit_delay_time, "alarm_time": settings.alarm_time, "default_settings_1": settings.default_settings_1, "zone_status_1": settings.zone_status_1, "always_on_1": settings.always_on_1, "sudden_alarm_1": settings.sudden_alarm_1, "default_settings_2": settings.default_settings_2, "zone_status_2": settings.zone_status_2, "always_on_2": settings.always_on_2, "sudden_alarm_2": settings.sudden_alarm_2, "default_settings_3": settings.default_settings_3, "zone_status_3": settings.zone_status_3, "always_on_3": settings.always_on_3, "sudden_alarm_3": settings.sudden_alarm_3, "default_settings_4": settings.default_settings_4, "zone_status_4": settings.zone_status_4, "always_on_4": settings.always_on_4, "sudden_alarm_4": settings.sudden_alarm_4, "wifi_name": settings.wifi_name, "wifi_password": settings.wifi_password, "test_signal_time": settings.test_signal_time, "last_value": 1}
+                result = {"code": 200, "message": "Live Report Created Successfully", "meeting_update": meeting_id.meeting_update, "meeting_status": meeting_id.meeting_status, "entrance_delay_time": settings.entrance_delay_time, "exit_delay_time": settings.exit_delay_time, "alarm_time": settings.alarm_time, "default_settings_1": settings.default_settings_1, "zone_status_1": settings.zone_status_1, "always_on_1": settings.always_on_1, "sudden_alarm_1": settings.sudden_alarm_1, "default_settings_2": settings.default_settings_2, "zone_status_2": settings.zone_status_2, "always_on_2": settings.always_on_2, "sudden_alarm_2": settings.sudden_alarm_2, "default_settings_3": settings.default_settings_3, "zone_status_3": settings.zone_status_3, "always_on_3": settings.always_on_3, "sudden_alarm_3": settings.sudden_alarm_3, "default_settings_4": settings.default_settings_4, "zone_status_4": settings.zone_status_4, "always_on_4": settings.always_on_4, "sudden_alarm_4": settings.sudden_alarm_4, "wifi_name": settings.wifi_name, "wifi_password": settings.wifi_password, "test_signal_time": settings.test_signal_time, "last_value": 1}
             return result
         else:
             return "no"
 
-    @http.route(['/create/report-for-modem-gsm'], type="http", auth="public", methods=["GET"], cors='*', csrf=False)
-    def create_modem_req_gsm_2(self):
+    @http.route(['/create/report-for-meeting-gsm'], type="http", auth="public", methods=["GET"], cors='*', csrf=False)
+    def create_meeting_req_gsm_2(self):
         return "{'code': 200, 'message': 'Idle Ask Successfully'}"
 
 
@@ -126,20 +162,20 @@ class modemProfileReq(http.Controller):
     
     #widget transfer booking
     @http.route('/selectionlogin/form-1', type="http", auth="public", website=True,  csrf=False)
-    def log_in_modem(self, **kw):
+    def log_in_meeting(self, **kw):
         print("Data Received.....", kw)
         vals = {
              'user_id': kw.get('user_id'),
              'virtual_user_id': kw.get('virtual_user_id'),
              'access_code': kw.get('access_code'),
-             'modem_id': kw.get('modem_id')
+             'meeting_id': kw.get('meeting_id')
          }
         contact = http.request.env['res.partner'].sudo().search([['id','=', kw.get('user_id')]])
         virtual_contact = http.request.env['res.partner'].sudo().search([['id','=', kw.get('virtual_user_id')]])
         if len(contact) == 1:
-            if virtual_contact in contact.x_modem_users or virtual_contact in contact:
+            if virtual_contact in contact.x_meeting_users or virtual_contact in contact:
                 if virtual_contact.x_access_code == kw.get('access_code'):
-                    contact['ref'] = kw.get('modem_id')
+                    contact['ref'] = kw.get('meeting_id')
                     if virtual_contact.x_contract_manager == True:
                         return request.redirect('/shop?shop_value=vN9dOkuiQdCXMOiZMGRFtUBDUZN7RhY2')
                     if virtual_contact.x_contract_manager == False:
@@ -148,14 +184,14 @@ class modemProfileReq(http.Controller):
             contact['ref'] = False
             return request.redirect('/wrong_values')
     
-    @http.route('/selectionlogout/<user_id>/<modem_id>', type='http', auth="public", methods=["GET"], cors='*', website=False)
-    def log_out_modem(self, user_id,modem_id):
+    @http.route('/selectionlogout/<user_id>/<meeting_id>', type='http', auth="public", methods=["GET"], cors='*', website=False)
+    def log_out_meeting(self, user_id,meeting_id):
         # get the information using the SUPER USER
         result = "not found"
-        modem_order = http.request.env['sale.modem.order'].sudo().search([['id','=', modem_id]],limit=1)
+        meeting_order = http.request.env['sale.meeting.order'].sudo().search([['id','=', meeting_id]],limit=1)
         contact = http.request.env['res.partner'].sudo().search([['id','=', user_id]])
-        order = http.request.env['sale.order'].sudo().search(["&","&",['partner_id.id','=', modem_order.partner_id.id],["website_id.id","=",1],["state","=","draft"]])
-        if len(modem_order) == 0:
+        order = http.request.env['sale.order'].sudo().search(["&","&",['partner_id.id','=', meeting_order.partner_id.id],["website_id.id","=",1],["state","=","draft"]])
+        if len(meeting_order) == 0:
             contact['ref'] = False
             return request.redirect('/contracts')
         elif len(contact) == 1 and len(order) == 0:
@@ -185,7 +221,7 @@ class modemProfileReq(http.Controller):
             'price': kw.get('price'),
             'currency': kw.get('currency'),
             'website_url': kw.get('website_url'),
-            'modem_id': kw.get('modem_id')
+            'meeting_id': kw.get('meeting_id')
          }
         if kw.get('product_stock'):
             if float(kw.get('product_stock')) > 0 and kw.get('quantity') <= kw.get('product_stock'):
@@ -194,7 +230,7 @@ class modemProfileReq(http.Controller):
                     for item in order:
                         if len(item.order_line) == 0:
                             item.sudo().unlink()
-                modem_order_line = http.request.env['sale.modem.order.line'].sudo().search(["&",['order_id.id','=', kw.get('modem_id')],["product_id.id","=",kw.get('product_id')]],limit=1)
+                meeting_order_line = http.request.env['sale.meeting.order.line'].sudo().search(["&",['order_id.id','=', kw.get('meeting_id')],["product_id.id","=",kw.get('product_id')]],limit=1)
                 base_url = http.request.env['ir.config_parameter'].sudo().get_param('web.base.url')
                 if len(order) == 1 and len(order.order_line) > 0:
                     order.sudo().write({
@@ -204,7 +240,7 @@ class modemProfileReq(http.Controller):
                             "virtual_610",
                             {
                                 "product_id": int(kw.get('product_id')),
-                                "modem_order_line":modem_order_line.id,
+                                "meeting_order_line":meeting_order_line.id,
                                 "product_template_id":int(kw.get('product_id')),
                                 "product_uom_qty":int(kw.get('quantity')),
                                 "qty_delivered":0,
@@ -245,7 +281,7 @@ class modemProfileReq(http.Controller):
                         
 
                     order.order_line[len(order.order_line)-1].write({
-                        "modem_order_line":modem_order_line.id
+                        "meeting_order_line":meeting_order_line.id
                     })
                     return request.redirect(str(kw.get('website_url')).replace(base_url, ''))
 
@@ -257,7 +293,7 @@ class modemProfileReq(http.Controller):
                             "virtual_610",
                             {
                                 "product_id": int(kw.get('product_id')),
-                                "modem_order_line":modem_order_line.id,
+                                "meeting_order_line":meeting_order_line.id,
                                 "product_template_id":int(kw.get('product_id')),
                                 "product_uom_qty":int(kw.get('quantity')),
                                 "qty_delivered":0,
@@ -288,9 +324,9 @@ class modemProfileReq(http.Controller):
                 if len(order) == 0:
                     sale_order = http.request.env['sale.order'].sudo().create({
                     'date_order': datetime.now(),
-                    'partner_id': modem_order_line.partner_id.id,
-                    'partner_invoice_id': modem_order_line.partner_id.id,
-                    'partner_shipping_id': modem_order_line.partner_id.id,
+                    'partner_id': meeting_order_line.partner_id.id,
+                    'partner_invoice_id': meeting_order_line.partner_id.id,
+                    'partner_shipping_id': meeting_order_line.partner_id.id,
                     'website_id': 1,
                     "order_line":[
                         [
@@ -298,7 +334,7 @@ class modemProfileReq(http.Controller):
                             "virtual_610",
                             {
                                 "product_id": int(kw.get('product_id')),
-                                "modem_order_line":modem_order_line.id,
+                                "meeting_order_line":meeting_order_line.id,
                                 "product_template_id":int(kw.get('product_id')),
                                 "product_uom_qty":int(kw.get('quantity')),
                                 "qty_delivered":0,
@@ -327,8 +363,8 @@ class modemProfileReq(http.Controller):
         else:
             return request.redirect("/stokyok")
 
-    # @http.route(['/create/report-for-modem'], type="json", auth="public", methods=["POST"], csrf=False)
-    # def create_modem_req_1(self, **kw):
+    # @http.route(['/create/report-for-meeting'], type="json", auth="public", methods=["POST"], csrf=False)
+    # def create_meeting_req_1(self, **kw):
     #     print("Data Received.....", kw)  
     #     return "hello"
     
@@ -340,22 +376,7 @@ class modemProfileReq(http.Controller):
 
 class transferProfileReq(http.Controller):
     
-    #widget transfer booking
-    @http.route('/create/form-1', type="http", auth="public", website=True,  csrf=False)
-    def create_form_req_1(self, **kw):
-        print("Data Received.....", kw)
-        request.env['transfer.profile'].sudo().create(kw)
-        vals = {
-             'from': kw.get('from_id'),
-             'to': kw.get('to_id'),
-             'currency': kw.get('currency_id')
-         }
-         
-        result = http.request.env['product.template'].sudo().search(["|","&",["from_id.id","=",kw.get('from_id')],["to_id.id","=",kw.get('to_id')],"&",["from_id.id","=",kw.get('to_id')],["to_id.id","=",kw.get('from_id')]],limit=1)
-        if result:
-            return request.render("transfer.form_response_1", {'form_1_details': kw, 'product':result})
-        else:
-            return request.render("transfer.form_response_4", {'form_1_details': kw, 'product':result})
+    
         
     #car select
     @http.route('/create/form-2', type="http", auth="public", website=True,  csrf=False)

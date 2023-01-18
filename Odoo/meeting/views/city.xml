@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--tree view of the city model-->
+    <record id="city_tree" model="ir.ui.view">
+        <field name="name">transfer.city.tree</field>
+        <field name="model">transfer.city</field>
+        <field name="arch" type="xml">
+            <tree string="citys">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!--form view of the city model-->
+    <record id="city_form" model="ir.ui.view">
+        <field name="name">transfer.city.form</field>
+        <field name="model">transfer.city</field>
+        <field name="arch" type="xml">
+            <form string="citys">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_template_city_select" model="ir.ui.view">
+        <field name="name">product.template.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+             <div name="options" position="before">
+                <group name="city_select" string="From To">
+                    <field name="from_id"/>
+                    <field name="to_id"/>
+                </group>
+            </div>
+        </field>
+    </record>
+    <!-- <record id="product.template.common.form" model="ir.ui.view">
+        <field name="name">product.template.common.form.inherit</field>
+        <field name="model">product.template.common.form</field>
+        <field name="inherit_id" ref="product.product.template.common.form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@string='Product Name']" position="after">
+                <group name="city_select" string="string">
+                    <field name="from_id"/>
+                    <field name="to_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record> -->
+    <!-- <record id="view_city_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.common.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']/group" position="before">
+                <group col="2" colspan="2">
+                    <field name="from_id"/>
+                    <field name="to_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record> -->
+    <!--field ekleme-->
+    <!--
+    <record id="product_template_inherit" model="ir.ui.view">
+        <field name="name">product.template.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="image_1920" position="after">
+			<group>
+                <field name="from_id"/>
+                <field name="to_id"/>
+			</group>
+            </field>
+        </field>
+    </record>
+	-->
+    <!--action of the city menu-->
+    <record id="action_city_profile" model="ir.actions.act_window">
+        <field name="name">City</field>
+        <field name="res_model">transfer.city</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

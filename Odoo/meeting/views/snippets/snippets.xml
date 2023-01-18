@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Snippets menu -->
+    <!-- <template id="transfer_snippet" name="transfer_snippet">
+        <xpath expr="//t[@t-set='section']" position="after">
+            <t t-set="product" t-value="env['product.template'].search([['id','=',form_2_details['product']]])"/>
+            <t t-set="car" t-value="env['transfer.car'].search([['id','=',form_2_details['car']]])"/>
+            <t t-set="price" t-value="form_2_details['price']"/>
+            <t t-set="currency" t-value="env['res.currency'].search([['name','=',form_2_details['currency']]])"/>
+        </xpath>
+    </template> -->
+    
+</odoo>

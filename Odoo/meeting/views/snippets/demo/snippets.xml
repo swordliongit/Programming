@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="snippets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="after">
+            <div id="transfer_area" class="o_panel">
+                <div class="o_panel_header">
+					Transfer Widgets
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="transfer.s_cart_products" t-thumbnail="/muk_website_grid/static/src/img/section.svg">
+
+                    </t>
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+
+    <record id="transfer.s_cart_products_js_000" model="ir.asset">
+        <field name="name">Snippet Cart Products</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/transfer/views/snippets/demo/s_cart_product/000.js</field>
+    </record>
+</odoo>
