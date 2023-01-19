@@ -1,17 +1,25 @@
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
-from interface_operation import modem_login_init, interface_operation_modify_compare
+from interface_operation import operation_controller, interface_operation_modify_compare
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 import threading
 from queue import Queue
-#import PySimpleGUI as sg
-import tkinter
+#import PySimpleGUI as sg # left this gui method due to its incapability in multithreaded environment
+import tkinter # capable of multithreaded work
 
-needed_hosts = {}
-compare_queue = Queue()
+needed_hosts = {} # global because network scan writes into this and modem read reads from this separately.
+modify_queue = Queue()  # global because modem read fills it and modem configure consumes it separately.
 
 def network_scan(output, target_ip, fhfile="./hosts/found_hosts.json", mhfile="./hosts/modem_hosts.json"):
-    
+    """Controls scapy_route network scanning functions.
+
+    Args:
+        output (_type_): tkinter.Text console to pass into scapy_route functions for printing into GUI console.
+        target_ip (str): ip interval to scan that's passed from the button function.
+        fhfile (str, optional): found_hosts file that contains all the devices in the network. Defaults to "./hosts/found_hosts.json".
+        mhfile (str, optional): modem_hosts file that contains all the devices that has a specific mac address. Defaults to "./hosts/modem_hosts.json".
+
+    """
     mac_filter = ""
     
     # information retrieval - pre operation phase
@@ -41,9 +49,12 @@ def network_scan(output, target_ip, fhfile="./hosts/found_hosts.json", mhfile=".
         print("No modems found!")
         return
     
-    return needed_hosts
+    # return needed_hosts
 
 def confirmation():
+    """This function is not used. It was to prompt warning message before attempting to modify modems.
+    Later replaced via buttons that need to be pressed to continue.
+    """
     from tkinter import messagebox
 
     fetch_warning = messagebox.askokcancel("Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK'a basin.")
@@ -53,6 +64,18 @@ def confirmation():
             exit()
             
 def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, modem_configure_caller_button):
+    """Function route:
+    1 - Retrieve ip addresses of the devices that we need.
+    2 - Read all of the modem interfaces multithreaded by calling the operation_controller sub routine for each ip address.
+    3 - Post the resulting data to Odoo backend. Handled by the controller 'modem_data_send' in Odoo's backend.
+
+    Args:
+        output (_type_): tkinter.Text console to pass into scapy_route functions for printing into GUI console.
+        x_hotel_name (str): hotel name that's passed from the tkinter GUI and then passed into Odoo by passing it into the json data dictionary.
+        network_scan_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
+        modem_configure_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
+
+    """
     
     global needed_hosts
     
@@ -77,10 +100,9 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     threads = []
     
     read_queue = Queue()
-    global compare_queue
-
+                                
     for ip, mac in zip(ip_list, mac_list): # call multiple versions of the function simultaneously
-        t = threading.Thread(target=modem_login_init, args=(ip, mac, mode, x_hotel_name, read_queue, compare_queue, ""))
+        t = threading.Thread(target=operation_controller, args=(ip, mac, mode, x_hotel_name, read_queue, ""))
         threads.append(t)
         t.start()
 
@@ -101,8 +123,14 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     
     modem_read_result_list = {"modems":[]}
     
+    global modify_queue
+
     while not read_queue.empty():
         modem_read_result_list["modems"].append(read_queue.get())
+    
+    # populate modify_queue with the results from the read_queue
+    for read_modem in modem_read_result_list["modems"]:
+        modify_queue.put(read_modem)
         
     send_datato_odoo(modem_read_result_list)
 
@@ -129,6 +157,19 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
 
     
 def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post_caller_button, modem_configure_caller_button):   
+    """Function route:
+    1 - Fetch all of the modems from Odoo.
+    2 - Map each fetched modem's ip to the ips of needed devices so we know which ip to enter if the ip was modified from Odoo's interface.
+    3 - Pass the fetched data to the sub routine interface_operation_modify_compare that compares the read data with the data from Odoo fetch and yields which fields to change.
+    4 - Modify all of the modems based on the compare results by starting operation_controller sub routine for each modem that's to be modified.
+
+    Args:
+        output (_type_): tkinter.Text console to pass into scapy_route functions for printing into GUI console.
+        x_hotel_name (str): hotel name that's passed from the tkinter GUI and then passed into Odoo by passing it into the json data dictionary.
+        network_scan_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
+        modem_configure_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
+
+    """
     
     """
     FETCH START
@@ -138,6 +179,12 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
     output.config(state='disabled')
     odoo_login()
     fetched_modem_list: list = fetch_datafrom_odoo()
+    
+    
+    # if the ips are changed from Odoo interface, we can't go to those changed ip addresses to change the ip address.
+    # we have to first go to the original ip address of the devices and THEN change it.
+    # If we match the fetched modems using their mac addresses with the mac addresses from the network scan result, we can
+    # then create a list of ips from the network scan result. This new list will contain previous ips of these modified devices.
     
     ips_of_modified_modems = []
     sorted_fetched_modem_list = []
@@ -166,33 +213,36 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
     
     threads = []
     
-    fields_to_compare_list = []
+    read_modems_list = []
     
-    global compare_queue
+    global modify_queue
 
-    while not compare_queue.empty():
-        fields_to_compare_list.append(compare_queue.get()) 
+    while not modify_queue.empty():
+        read_modems_list.append(modify_queue.get()) 
         
-    for modem in fields_to_compare_list:
+    # get rid of modems in read modem list that don't have their ips in the ips of modified modems list, so
+    # we don't compare modems that's in the read result but not in the fetched modem list coming from Odoo.
+    
+    for modem in read_modems_list:
         if not modem['x_ip'] in ips_of_modified_modems:
-            fields_to_compare_list.remove(modem)
+            read_modems_list.remove(modem)
         
-    sorted_fields_to_compare_list = sorted(fields_to_compare_list, key=lambda x: x['x_ip'])
+    sorted_read_modems_list = sorted(read_modems_list, key=lambda x: x['x_ip'])
     
     fields_to_change_list = []
     
-    for fields_to_change in interface_operation_modify_compare(sorted_fetched_modem_list, sorted_fields_to_compare_list):
+    for fields_to_change in interface_operation_modify_compare(sorted_fetched_modem_list, sorted_read_modems_list):
         fields_to_change_list.append(fields_to_change)
     
     
-    from concurrent.futures import ThreadPoolExecutor
+    # from concurrent.futures import ThreadPoolExecutor
     
     # with ThreadPoolExecutor() as executor:
         
     #     f = executor.map(modem_login_init, ips_of_modified_modems, "", mode, None, None, fields_to_change)  
-    
+                                                            
     for ip, fields_to_change in zip(ips_of_modified_modems, fields_to_change_list):
-        t = threading.Thread(target=modem_login_init, args=(ip, "", mode, "", None, None, fields_to_change))
+        t = threading.Thread(target=operation_controller, args=(ip, "", mode, "", None, fields_to_change))
         threads.append(t)
         t.start()
         

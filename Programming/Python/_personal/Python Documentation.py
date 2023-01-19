@@ -111,33 +111,33 @@ dir(module_name) # -> CONST will show up here
 Underscore operator _
 """
 
-        """
-        Python automatically stores the value of the last expression in
-        the interpreter to a particular variable called "_."
-        You can also assign these value to another variable if you want.
-        """
+    """
+    Python automatically stores the value of the last expression in
+    the interpreter to a particular variable called "_."
+    You can also assign these value to another variable if you want.
+    """
         >>> 5 + 4
         9
         >>> _     # stores the result of the above expression
         9
         >>> _ + 6
         15
-        
-        """
-        Used in loop as anonymous filler
-        """
+    
+    """
+    Used in loop as anonymous filler
+    """
         for _ in range(0, 5):
             ...
-    
-        """
-        Ignoring values
-        """
+
+    """
+    Ignoring values
+    """
         a, _, b = (1, 2, 3) # a = 1, b = 3
-        
-        
-        """
-        Separating digits of numbers
-        """
+    
+    
+    """
+    Separating digits of numbers
+    """
         million = 1_000_000 # prints 1000000
         binary = 0b_0010
         octa = 0o_64
@@ -155,9 +155,9 @@ Underscore operator _
 String
 """
 
-        """
-        Multiline Strings
-        """
+    """
+    Multiline Strings
+    """
         _str = """
         sdasds
         asdsasa
@@ -165,15 +165,15 @@ String
         asdsadsa
         """
 
-        """
-        Formatted Strings
-        """
+    """
+    Formatted Strings
+    """
         varfetch = 5
         print(f"bla bla bla {varfetch}")
 
-        """
-        String Methods
-        """
+    """
+    String Methods
+    """
 
         str.split("@") # -> list
         str.index("kcl_")
@@ -195,14 +195,14 @@ List
 """
 nlist = [1, 2, [3, 4]]
 
-        """
-        List Comprehensions
-        """
+    """
+    List Comprehensions
+    """
         x = [i for i in range(5) if i > 1] # assigns [2, 3, 4] to x variable
 
-        """
-        List Methods
-        """
+    """
+    List Methods
+    """
 
         list.sort()
         list.clear()
@@ -234,9 +234,9 @@ for val in ndict.items(): # retrieves values from ndict
     ...
 
 
-        """
-        Dictionary Comprehension
-        """
+    """
+    Dictionary Comprehension
+    """
 
 
         dict = {key_expr:val_expr for item in iterable}
@@ -255,9 +255,9 @@ for val in ndict.items(): # retrieves values from ndict
                                                     # as those numbers in the list
 
 
-        """
-        Dictionary Mapping
-        """
+    """
+    Dictionary Mapping
+    """
 
         # How to map a key in dicts with the same key from other dicts and create a list of them.
         # e.g. I want ip addresses from the hosts but I want only the devices corresponding to those ips from the modems.
@@ -289,9 +289,9 @@ for val in ndict.items(): # retrieves values from ndict
         # mapped_list = ['192.168.5.2', '192.168.5.3', '192.168.5.4', ...]
 
 
-        """
-        Dictionary methods
-        """
+    """
+    Dictionary methods
+    """
         dict.pop(__key)
         dict.keys()
         dict.values()
@@ -366,9 +366,9 @@ else: # if not caught anything
     ...
 finally: # run this no matter what
     ...
-        """
-        How to get caught exception's name
-        """
+    """
+    How to get caught exception's name
+    """
 
         try:
 
@@ -421,9 +421,9 @@ Anonymous functions - Lambda
 func_name = lambda arg: arg*arg  #  func_name is now a function returning arg and can be called like func_name(3)
 multiparam = lambda x, y: x*y
 
-        """
-        Lambda list comprehension
-        """
+    """
+    Lambda list comprehension
+    """
 
         is_even_list = [lambda arg = x: arg * 10 for x in range(1, 5)]
 
@@ -449,15 +449,15 @@ def caller(func):
 
 
 def printer(): # ->   same  as    @caller
-    print("hello")              # def printer():
+    print("hello")                # def printer():
 
 
-printer = caller(printer)       #   print("hello")
+printer = caller(printer)         # printer()
 printer()
 
-        """
-        How to use parameters with decorator
-        """
+    """
+    How to use parameters with decorator
+    """
 
         def caller(func):
             def wrapper(*args, **kwargs):
@@ -472,7 +472,7 @@ printer()
             print(x+y)
 
 
-adder(2, 3)
+        adder(2, 3)
 
 """
 Generator
@@ -516,37 +516,37 @@ closure(2) # mlist = [1, 2]
 Unpacking values - Variable arguments
 """
 
+    """
+    Variable arguments
+    """
+    
         """
-        Variable arguments
+        *args
         """
         
-                """
-                *args
-                """
-                
-                def func(*args): # arguments are packed into a tuple
-                    for item in args:
-                        sum += item
-                    print(sum)
-                        
-                func(1, 2) # variable number of arguments
-                func(1, 2, 3)
-                
-                
-                """
-                **kwargs
-                """
-                
-                def func(**kwargs): # arguments are packed into a dictionary
-                    for k, v in kwargs.items():
-                        print(k, v)
+            def func(*args): # arguments are packed into a tuple
+                for item in args:
+                    sum += item
+                print(sum)
+                    
+            func(1, 2) # variable number of arguments
+            func(1, 2, 3)
+        
+        
+        """
+        **kwargs
+        """
+        
+            def func(**kwargs): # arguments are packed into a dictionary
+                for k, v in kwargs.items():
+                    print(k, v)
 
-                func(key1=value1, key2=value2) # variable number of keyword arguments
-                func(key1=value1, key2=value2, key3=value3)
-        #4EC9B0
-        """
-        Unpacking 
-        """
+            func(key1=value1, key2=value2) # variable number of keyword arguments
+            func(key1=value1, key2=value2, key3=value3)
+    #4EC9B0
+    """
+    Unpacking 
+    """
         def func(a, b, c): # a=1, b=2, c=3
             print(a+b+c)
         
@@ -568,44 +568,44 @@ Unpacking values - Variable arguments
         print(func(*mlist1, *mlist2, *mlist3)) # evaluates to : func(1,2,3,4,5,6,7,8,9)
         
         # sums up all of the elements of all the lists
+    
+        """
+        Split
+        """
         
-                """
-                Split
-                """
-                
-                my_list = [1, 2, 3, 4, 5, 6]
+            my_list = [1, 2, 3, 4, 5, 6]
 
-                a, *b, c = my_list # first value goes into a, last value goes into c, all inbetween goes to b
+            a, *b, c = my_list # first value goes into a, last value goes into c, all inbetween goes to b
 
-                print(a) # 1
-                print(b) # [2, 3, 4, 5]
-                print(c) # 6
-                
-                """
-                Merge
-                """
-                
-                my_first_list = [1, 2, 3]
-                my_second_list = [4, 5, 6]
-                my_merged_list = [*my_first_list, *my_second_list]
+            print(a) # 1
+            print(b) # [2, 3, 4, 5]
+            print(c) # 6
+        
+        """
+        Merge
+        """
+        
+            my_first_list = [1, 2, 3]
+            my_second_list = [4, 5, 6]
+            my_merged_list = [*my_first_list, *my_second_list]
 
-                print(my_merged_list) # [1, 2, 3, 4, 5, 6]
-                
-                # XXX XXX XXX
-                
-                my_first_dict = {"A": 1, "B": 2}
-                my_second_dict = {"C": 3, "D": 4}
-                my_merged_dict = {**my_first_dict, **my_second_dict}
+            print(my_merged_list) # [1, 2, 3, 4, 5, 6]
+            
+            # XXX XXX XXX
+            
+            my_first_dict = {"A": 1, "B": 2}
+            my_second_dict = {"C": 3, "D": 4}
+            my_merged_dict = {**my_first_dict, **my_second_dict}
 
-                print(my_merged_dict) # {"A": 1, "B": 2, "C": 3, "D": 4}
-                
-                """
-                Unpacking strings
-                """
-                
-                a = [*"Python"] # a = ['P', 'y', 't', 'h', 'o', 'n']
+            print(my_merged_dict) # {"A": 1, "B": 2, "C": 3, "D": 4}
+        
+        """
+        Unpacking strings
+        """
+        
+            a = [*"Python"] # a = ['P', 'y', 't', 'h', 'o', 'n']
 
-                *a, = "Python"  # a = ['P', 'y', 't', 'h', 'o', 'n']
+            *a, = "Python"  # a = ['P', 'y', 't', 'h', 'o', 'n']
 
 
 """"""""""""""""""""""""
@@ -634,6 +634,8 @@ if os.stat("total amount.txt").st_size == 0: # if empty
 """
 Directories
 """
+import os
+
 def create_directory(filename): # create directory based on filename e.g. = "./hosts/"
     # Extract the directory name from the file path
     dirname = os.path.dirname(filename)
@@ -642,6 +644,24 @@ def create_directory(filename): # create directory based on filename e.g. = "./h
     if not os.path.exists(dirname):
         os.makedirs(dirname)
 
+    """
+    Listing directory content
+    """
+        content = os.listdir("C:/odoo-15/odoo/") # -> list
+    
+    """
+    Concatenating paths
+    """
+        from os.path import join
+        full_path = join("C:/odoo-15/odoo", "bla.txt") # join(path, *paths) -> full_path == "C:/odoo-15/odoo/bla.txt"
+    
+    """
+    Check if it's directory
+    """
+        from os.path import isdir
+        if isdir("C:/odoo-15/odoo/"):
+            ...
+    
 
 """"""""""""""""""""""""
 """"""""""""""""""""""""
@@ -717,7 +737,7 @@ sorted_dict = sorted(mydict, key=mydict.get) # sort by values
 
 
 """
-Time & Date
+Time & Date & perf_counter
 """
 
 import time
@@ -725,6 +745,21 @@ print(time.strftime("%Y")) #year format %A : current day - Thursday, a% - Thu
 
 import datetime
 print(datetime.datetime.now())
+
+
+    """
+    Checking how much time passed
+    """
+        from time import perf_counter
+        
+        start = perf_counter()
+        ...
+        ...
+        ...
+        end = perf_counter()
+        
+        print(end-start)
+
 
 """
 Glob 
@@ -940,19 +975,19 @@ WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
 THREADS
 """
 
-        import threading
+    import threading
 
-        """
-        Simple threading
-        """
+    """
+    Simple threading
+    """
 
         def func():
             thread = threading.Thread(target=another_func, args=(arg1,)) # calls another function while running this function
             thread.start()
 
-        """
-        Multi threading
-        """
+    """
+    Multi threading
+    """
 
         threads = []
 
@@ -964,96 +999,96 @@ THREADS
         for t in threads: # wait for all threads to finish
             t.join() # parent thread is waiting
 
-                """
-                Returning values from Multithreaded functions
-                """
+        """
+        Returning values from Multithreaded functions
+        """
 
-                # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
-                # Queue object can be shared between different threads.
+            # XXX You can return values from threaded functions using Queue. This also works in multithreaded environment
+            # Queue object can be shared between different threads.
 
-                -- main.py --                                                       -- _module.py --
+            -- main.py --                                                       -- _module.py --
 
-                from _module import func                                            def func(queue):
-                from queue import Queue                                                 item = int(input())
-                                                                                        queue.put(item)
-                queue = Queue()
+            from _module import func                                            def func(queue):
+            from queue import Queue                                                 item = int(input())
+                                                                                    queue.put(item)
+            queue = Queue()
 
-                thread = threading.Thread(target=func, args=(queue,))
+            thread = threading.Thread(target=func, args=(queue,))
 
-                print(queue.get())
+            print(queue.get())
+    
+    """
+    Multithreading with ThreadPoolExecutor
+    """
+        """
+        ThreadPoolExecutor Submit
+        """
+            # XXX XXX
+            It is to submit one function at a time.
+            # XXX XXX
+            
+            from concurrent.futures import ThreadPoolExecutor
+            
+            # XXX XXX Calls func1 and func2 simultaneously
+            executor = ThreadPoolExecutor(max_workers=2)
+            future1 = executor.submit(func1, arg1, arg2) 
+            future2 = executor.submit(func2, arg1, arg2) 
+            executor.shutdown() # Release the resources held by executor
+
+        """
+        ThreadPoolExecutor Context Manager
+        """
+            # XXX XXX 
+            Automatically handles shutdown()
+            # XXX XXX
+            
+            def func1(arg1):
+                return arg1
+            
+            with ThreadPoolExecutor() as executor:
+                future1 = executor.submit(func1, arg1) 
+                future2 = executor.submit(func2, arg1) 
+                
+                print(future1.result()) # result() gets the return value from the future object
+                                        # that is the return value
+            # XXX XXX 
+            as_completed()
+            An iterator over the given futures that yields each as it completes.
+            # XXX XXX
+            
+            with ThreadPoolExecutor() as executor:
+                for arg in range(50): # 50 threads
+                    future = executor.submit(func, arg)
+                    futures.append(future)
+            
+                for future in as_completed(futures):
+                    print(future.result())                           
+            
         
         """
-        Multithreading with ThreadPoolExecutor
+        ThreadPoolExecutor multithreading with MAP
         """
-                """
-                ThreadPoolExecutor Submit
-                """
-                # XXX XXX
-                It is to submit one function at a time.
-                # XXX XXX
-                
-                from concurrent.futures import ThreadPoolExecutor
-                
-                # XXX XXX Calls func1 and func2 simultaneously
-                executor = ThreadPoolExecutor(max_workers=2)
-                future1 = executor.submit(func1, arg1, arg2) 
-                future2 = executor.submit(func2, arg1, arg2) 
-                executor.shutdown() # Release the resources held by executor
+            # XXX XXX 
+            Mainly used for calling the same function
+            Calls the function as many times as the length of the iterable by passing each item from the iterable as argument 
+            # XXX XXX
+            
+            with ThreadPoolExecutor() as executor:
+                results = executor.map(func1, [1, 2, 3]) # results is a generator that yields return values of each function call
+            
+            # XXX XXX
+            
+            with ThreadPoolExecutor() as executor:
+                results = executor.map(func, [i for i in range(50)]) # 50 threads
 
-                """
-                ThreadPoolExecutor Context Manager
-                """
-                # XXX XXX 
-                Automatically handles shutdown()
-                # XXX XXX
+            for res in results:
+                print(res)
                 
-                def func1(arg1):
-                    return arg1
-                
-                with ThreadPoolExecutor() as executor:
-                    future1 = executor.submit(func1, arg1) 
-                    future2 = executor.submit(func2, arg1) 
-                    
-                    print(future1.result()) # result() gets the return value from the future object
-                                            # that is the return value
-                # XXX XXX 
-                as_completed()
-                An iterator over the given futures that yields each as it completes.
-                # XXX XXX
-                
-                with ThreadPoolExecutor() as executor:
-                    for arg in range(50): # 50 threads
-                        future = executor.submit(func, arg)
-                        futures.append(future)
-                
-                    for future in as_completed(futures):
-                        print(future.result())                           
-                
-                
-                """
-                ThreadPoolExecutor multithreading with MAP
-                """
-                # XXX XXX 
-                Mainly used for calling the same function
-                Calls the function as many times as the length of the iterable by passing each item from the iterable as argument 
-                # XXX XXX
-                
-                with ThreadPoolExecutor() as executor:
-                    results = executor.map(func1, [1, 2, 3]) # results is a generator that yields return values of each function call
-                
-                # XXX XXX
-                
-                with ThreadPoolExecutor() as executor:
-                    results = executor.map(func, [i for i in range(50)]) # 50 threads
-        
-                for res in results:
-                    print(res)
-                    
 
-        
-        """
-        Thread Synchronisation with Mutex lock (Mutual exclusion object)
-        """
+    
+    """
+    Thread Synchronisation with Mutex lock (Mutual exclusion object)
+    """
         # XXX XXX 
         Prevents threads accessing to the same resource at the same time, eliminating race conditions
         # XXX XXX
@@ -1083,11 +1118,11 @@ THREADS
         Thread(target=ss.WorkerSubtractor, args=()).start()
         time.sleep(10)
         print(ss.money)
-        
-        """
-        Thread Synchronisation with join
-        """
-        
+    
+    """
+    Thread Synchronisation with join
+    """
+    
         def child():
             print("Child thread is doing work...")
             sleep(5)
@@ -1151,6 +1186,9 @@ def main(event):
 # XXX GUI XXX
 """"""""""""""""""""""""
 """"""""""""""""""""""""
+"""
+PySimpleGUI
+"""
 import PySimpleGUI
 
 label = PySimpleGUI.Text("Press Start")
@@ -1158,10 +1196,65 @@ label = PySimpleGUI.Text("Press Start")
 window = PySimpleGUI.Window("Modem Config Engine", layout=[""])
 window.read()
 window.close()
+"""
+tkinter
+"""
+    """
+    Simple GUI program
+    """
+        import tkinter
 
+        root = tkinter.Tk()
+        root.title("Modem Master Program")
 
+        root.mainloop()
 
+    """
+    Label and Entry
+    """
+        hotel_label = ttk.Label(root, text="Otel Adi Girin ------>")
+        hotel_label.grid(row=0, column=0, padx=10, pady=10)
 
+        hotel_name_input = ttk.Entry(root)
+        hotel_name_input.grid(row=0, column=1, padx=10, pady=10)
+    
+    """
+    Buttons
+    """
+        button = ttk.Button(root, text="Simdi Ag Taramasi Yap", command=lambda: button_function(output, ip_input.get()))
+        button.grid(row=0, column=2, columnspan=2, padx=10, pady=10)
+        
+        """
+        Enable/Disable Button
+        """
+            button.config(state="disable")
+    
+    """
+    Console
+    """
+        output = tkinter.Text(root)
+        output.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+        
+        """
+        Updating the console
+        """
+            output.update()
+        
+    """
+    Handling X button
+    """
+        root.protocol("WM_DELETE_WINDOW", on_closing)
+        
+        def on_closing():
+            """Called when you press the X button to close the program
+            """
+            sleep(0.5)
+            root.destroy()
+    
+    """
+    Timer
+    """
+        root.after(5000, lambda: button.config(state="enable")) # 5 seconds
 
 """
 #///////////////////////////////

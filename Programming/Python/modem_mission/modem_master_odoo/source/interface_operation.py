@@ -1,37 +1,7 @@
 from selenium_dependencies import *
-from queue import Queue
-#from multiprocessing import Queue
-
-from threading import Lock
-
 from time import sleep
-#from modem_login import modem_login, modem_logout
-
 from collections import OrderedDict
 import utility
-
-def modem_login_init(ip, mac, mode, x_hotel_name, read_queue, compare_queue, fields_to_change):
-    """function to set browser to run in background, initialize driver object
-
-    Returns:
-        Chrome driver: driver to return
-    """
-
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless") # silent browser
-    
-    # driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
-    
-    driver = webdriver.Chrome("./support/chromedriver")
-    
-    if mode == "read":
-        modem_read_result_dict = modem_login_control(driver, ip, mac, mode, x_hotel_name, None)
-    
-        read_queue.put(modem_read_result_dict)
-        compare_queue.put(modem_read_result_dict)
-        
-    elif mode == "modify":
-        modem_login_control(driver, ip, mac, mode, None, fields_to_change)
     
 def is_logged_out(driver):
     try:
@@ -67,26 +37,38 @@ def modem_login(driver, ip):
         print("Login failed!")
         ############################# XXX
         return -1 # XXX GOTTA CHANGE
-     
-def modem_login_control(driver, ip, mac, mode, x_hotel_name, fields_to_change):
-    """function to read username and password and open the login screen to log into the site
+
+def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_change):
+    """This function is supposed to be threaded. Called for each ip address. Separates the program into read and modify parts.
+    interface_operation_read returns the dictionary containing each field of the modem and queues it into read_queue that's passed
+    from the caller.
+
+    Args:
+        ip (str): _description_
+        mac (str): _description_
+        mode (str): _description_
+        x_hotel_name (str): _description_
+        read_queue (Queue): _description_
+        fields_to_change (dict): fields that need to be changed, used in modify mode.
+    """
+    chrome_options = Options()
+    chrome_options.add_argument("--headless") # silent browser
     
-    """  
-    modem_login(driver, ip)
-
-    return operation_controller(driver, mode, x_hotel_name, fields_to_change, mac, ip) 
-    #current_url = driver.current_url
-
-def operation_controller(driver, mode: str, x_hotel_name: str, fields_to_change, mac, ip_for_modify):
+    driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
      
-    # XXX global modem_read_result_dict XXX try this
+    # driver = webdriver.Chrome("./support/chromedriver")
+
+    modem_login(driver, ip)
      
     if mode == "read":
         #modem_read_result_dict = {}
-        return interface_operation_read(driver, x_hotel_name, mac)
+        modem_read_result_dict = interface_operation_read(driver, x_hotel_name, mac)
+        read_queue.put(modem_read_result_dict)
+        
     elif mode == "modify":
-        interface_operation_modify(driver, fields_to_change, ip_for_modify)
-    return None
+        interface_operation_modify(driver, fields_to_change, ip)
+
+    #current_url = driver.current_url
         
 def interface_operation_read(driver, x_hotel_name, mac):
     """function that does the actual search operation inside the page and retrieves elements
@@ -107,7 +89,7 @@ def interface_operation_read(driver, x_hotel_name, mac):
     #{"modem_image":False,"__last_update":False,"name":"protometa","x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_device_info":False,"x_ip":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"modem_id":False,"city":False,"live_status":"offline","last_action_user":3,"modem_status":False,"modem_home_mode":False,"customer_id":[[6,False,[]]],"modem_update":False,"modem_version":False}
     
     # "args" key of the dictionary has a list of dictionary. This dictionary will contain the fields of a record in Odoo.
-    obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
+    # obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
                                                                  #---------^
     # XXX START OF THE AUTOMATION XXX
     
@@ -256,8 +238,6 @@ def interface_operation_read(driver, x_hotel_name, mac):
 def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
     
     # fetched_modem_list = [{'x_ip': "192.168.5.1", ...}, {'x_ip: "192.168.5.2", ...}, ...]
-    
-    x_reboot_present = False
 
     print("Comparing values..")
     
@@ -275,13 +255,10 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
         print(fields_to_change, "\n")
         
         if 'x_reboot' in modem and 'x_reboot' == True: #This is a button so I can't check the state of it in the read operation
-            x_reboot_present = True
             fields_to_change['x_reboot'] = modem['x_reboot']
+            # fields_to_change.move_to_end('x_reboot', last=True)
             
         yield fields_to_change # modify for each modem
-        
-    if x_reboot_present:
-        fields_to_change.move_to_end('x_reboot', last=True)
         
     print("Values compared..")   
     
@@ -304,7 +281,7 @@ def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_m
                 LAN_Settings_task_list.append(k)
             case 'x_enable_wireless':
                 WLAN_task_list.append(k)
-                WLAN_task_list.append(v)
+                # WLAN_task_list.append(v)
             case 'x_enable_ssid1':
                 WLAN_task_list.append(k)
             case 'x_enable_ssid2':
@@ -404,7 +381,10 @@ def modify_WLAN_task_control(driver, WLAN_task_list):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "WLAN"))).click()
     sleep(1.5)
     
-    x_enable_wireless = True if True in WLAN_task_list else False
+    # x_enable_wireless = True if True in WLAN_task_list else False
+    
+    field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.wifi_ctrl_0\.enabled")))
+    x_enable_wireless = True if field.is_selected() else False
     
     for field in WLAN_task_list:
         match field:
