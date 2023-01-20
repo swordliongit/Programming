@@ -67,6 +67,7 @@ Important things to know
 # in = containment test operator
 # *arg -> variable argument
 # objects are passed as references(e.g. -> Queue() )
+# floating points are approximations so 0.1+0.2 == 0.3 will return false
 
 None # null
 ...  # -> means we don't know what to come
@@ -1091,6 +1092,9 @@ THREADS
     """
         # XXX XXX 
         Prevents threads accessing to the same resource at the same time, eliminating race conditions
+        mutex = Lock()
+        mutex.acquire()
+        mutex.release()
         # XXX XXX
         
         from threading import Thread, Lock
@@ -1118,6 +1122,50 @@ THREADS
         Thread(target=ss.WorkerSubtractor, args=()).start()
         time.sleep(10)
         print(ss.money)
+        
+    """
+    Thread Synchronisation with Condition Variable
+    """
+        # XXX XXX 
+        It is a lock but we additionally we can stop threads with wait() and then we can wake them with notify()
+        depending on the condition
+        cv = Condition()
+        cv.acquire()
+        cv.release()
+        cv.notify()
+        cv.wait() -> waits until notified, releases the lock
+        # XXX XXX
+        
+        import time
+        from threading import Thread, Condition
+        
+        class StingySpendy:
+            money = 100
+            cv = Condition()
+
+            def stingy(self):
+                for i in range(1000000):
+                    self.cv.acquire()
+                    self.money += 10
+                    self.cv.notify()
+                    self.cv.release()
+                print("Stingy Done")
+
+            def spendy(self):
+                for i in range(500000):
+                    self.cv.acquire()
+                    while self.money < 20:
+                        self.cv.wait()
+                    self.money -= 20
+                    self.cv.release()
+                print("Spendy Done")
+                
+        ss = StingySpendy()
+        Thread(target=ss.stingy, args=()).start()
+        Thread(target=ss.spendy, args=()).start()
+        time.sleep(5)
+        print("Money in the end", ss.money)
+        
     
     """
     Thread Synchronisation with join
@@ -1137,7 +1185,140 @@ THREADS
             
         parent()
     
+    """
+    Better join - Wait Group
+    """
+        # XXX XXX 
+        With join, we call join for each thread
+        # XXX XXX
+        
+        import os
+        from os.path import isdir, join
+        from threading import Lock, Thread
 
+        mutex = Lock()
+        matches = []
+
+        def file_search(root, filename):
+            print("Searching in:", root)
+            child_threads = []
+            for file in os.listdir(root):
+                full_path = join(root, file)
+                if filename in file:
+                    mutex.acquire()
+                    matches.append(full_path)
+                    mutex.release()
+                if isdir(full_path):
+                    t = Thread(target=file_search, args=([full_path, filename]))
+                    t.start()
+                    child_threads.append(t)
+            for t in child_threads:
+                t.join()
+
+        def main():
+            t = Thread(target=file_search, args=(["c:/tools", "README.md"]))
+            t.start()
+            t.join()
+            for m in matches:
+                print("Matched:", m)
+                
+        main()
+        
+        # XXX XXX 
+        With Wait Group. Each thread signals done after they finish and main thread waits until all finished.
+        cv = Condition()
+        cv.notify_all()
+        # XXX XXX
+    
+        # main file
+        import os
+        from os.path import isdir, join
+        from threading import Lock, Thread
+
+        from wait_group import WaitGroup
+
+        mutex = Lock()
+        matches = []
+
+
+        def file_search(root, filename, wait_group):
+            print("Searching in:", root)
+            for file in os.listdir(root):
+                full_path = join(root, file)
+                if filename in file:
+                    mutex.acquire()
+                    matches.append(full_path)
+                    mutex.release()
+                if isdir(full_path):
+                    wait_group.add(1)
+                    t = Thread(target=file_search, args=([full_path, filename, wait_group]))
+                    t.start()
+            wait_group.done()
+
+        def main():
+            wait_group = WaitGroup()
+            wait_group.add(1)
+            t = Thread(target=file_search, args=(["c:/tools", "README.md", wait_group]))
+            t.start()
+            wait_group.wait()
+            for m in matches:
+                print("Matched:", m)
+
+        main()
+    
+        # wait_group.py
+
+        from threading import Condition
+
+        class WaitGroup:
+            wait_count = 0
+            cv = Condition()
+            
+            def add(self, count):
+                self.cv.acquire()
+                self.wait_count += count
+                self.cv.release()
+                
+            def done(self):
+                self.cv.acquire()
+                if self.wait_count > 0:
+                    self.wait_count -= 1
+                if self.wait_count == 0:
+                    self.cv.notify_all()
+                self.cv.release()
+                
+            def wait(self):
+                self.cv.acquire()
+                while self.wait_count > 0:
+                    self.cv.wait()
+                self.cv.release()
+    """
+    Thread Synchronisation with Barrier
+    """
+    # XXX XXX 
+    When a thread calls barrier.wait(), it is blocked until another thread calls barrier.wait(), 
+    then they both continue.
+    barrier.wait()
+    barrier.abort() -> Place the barrier into a 'broken' state. Useful in case of error.
+    Any currently waiting threads and threads attempting to 'wait()' will have BrokenBarrierError raised.
+    # XXX XXX
+    
+    barrier = Barrier(2) # 2 threads
+
+    def wait_on_barrier(name, time_to_sleep):
+        for i in range(10):
+            print(name, "running")
+            time.sleep(time_to_sleep)
+            print(name, "is waiting on barrier")
+            barrier.wait()
+        print(name, "is finished")
+        
+        
+    red = Thread(target=wait_on_barrier, args=("red", 4))
+    blue = Thread(target=wait_on_barrier, args=("blue", 10))
+    red.start()
+    blue.start()
+    
 """
 PROCESSES
 """

@@ -1,42 +1,35 @@
 # pip install graphics.py -> used in the course
-from threading import Thread, Lock
-import os
-from os.path import isdir, join
+
+from random import Random
 from time import perf_counter
 
-matches = []
-mutex = Lock()
 
-def file_search(root, filename):
-    
-    child_threads = []
-    
-    print("Searching in:", root)
-    for file in os.listdir(root):
-        full_path = join(root, file)
-        if filename in file:
-            mutex.acquire()
-            matches.append(full_path)
-            mutex.release()
-        if isdir(full_path):
-            t = Thread(target=file_search, args=(full_path, filename))
-            t.start()
-            child_threads.append(t)
-    for t in child_threads:
-        t.join()
-    # print (os.listdir(root))
-    
-def main():
-    # print(os.listdir("C:/odoo-15/odoo/"))
-    start = perf_counter()
-    # file_search("C:/odoo-15/odoo/", "__init__.py")
-    t = Thread(target=file_search, args=("C:/odoo-15/odoo/", "__init__.py"))
-    t.start()
-    t.join()
-    for m in matches:
-        print("Matched:", m)
-    end = perf_counter()
-    
-    print(end-start)
-        
-main()
+matrix_size = 200
+
+matrix_a = [[0] * matrix_size for i in range(matrix_size)]
+matrix_b = [[0] * matrix_size for i in range(matrix_size)]
+result = [[0] * matrix_size for i in range(matrix_size)]
+
+random = Random()
+
+def generate_random_matrix(matrix):
+    for row in range(matrix_size):
+        for col in range(matrix_size):
+            matrix[row][col] = random.randint(-5, 5)
+
+
+start = perf_counter()
+for t in range(10):
+    generate_random_matrix(matrix_a)
+    generate_random_matrix(matrix_b)
+    result = [[0] * matrix_size for i in range(matrix_size)]
+    for row in range(matrix_size):
+        for col in range(matrix_size):
+            for i in range(matrix_size):
+                result[row][col] += matrix_a[row][i] * matrix_b[i][col]
+                
+    for row in range(matrix_size):
+        print(matrix_a[row], matrix_b[row], result[row])
+end = perf_counter()       
+
+print(end-start)

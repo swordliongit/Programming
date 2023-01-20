@@ -121,7 +121,8 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     
     odoo_login()
     
-    modem_read_result_list = {"modems":[]}
+    modem_read_result_list = {"modems":[]} # json format. This will be handled by the modem_data_send
+                                           # controller in modem/controller.py
     
     global modify_queue
 
