@@ -1,7 +1,10 @@
+
+
 from selenium_dependencies import *
 from time import sleep
 from collections import OrderedDict
 import utility
+    
     
 def is_logged_out(driver):
     try:
@@ -11,26 +14,25 @@ def is_logged_out(driver):
     else:
         return True
  
+ 
 def modem_logout(driver):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(0.5)  
  
+ 
 def modem_login(driver, ip):
     url = "http://" + ip + "/cgi-bin/luci"
-    
     username = utility.username
     password = utility.password
     
     try:
         # print("Trying to log in...")
-
         driver.get(url) # open the url
         driver.find_element(By.ID, "username").send_keys(username)
         driver.find_element(By.NAME, "password").send_keys(password)
         driver.find_element(By.ID, "login_in").click() # login button
         #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/form/div[3]/button[1]"))).click()
-
         #WebDriverWait(driver, 5).until(lambda driver: "http://192.168.1.1/cgi-bin/luci/admin/" != driver.current_url)
     except:
         ############################# XXX
@@ -53,22 +55,18 @@ def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_chan
     """
     chrome_options = Options()
     chrome_options.add_argument("--headless") # silent browser
-    
     driver = webdriver.Chrome("./support/chromedriver", options=chrome_options)
-     
     # driver = webdriver.Chrome("./support/chromedriver")
-
     modem_login(driver, ip)
      
     if mode == "read":
         #modem_read_result_dict = {}
         modem_read_result_dict = interface_operation_read(driver, x_hotel_name, mac)
         read_queue.put(modem_read_result_dict)
-        
     elif mode == "modify":
         interface_operation_modify(driver, fields_to_change, ip)
-
     #current_url = driver.current_url
+        
         
 def interface_operation_read(driver, x_hotel_name, mac):
     """function that does the actual search operation inside the page and retrieves elements
@@ -77,35 +75,29 @@ def interface_operation_read(driver, x_hotel_name, mac):
         driver (_type_): _description_
         output (_type_): GUI log screen output object to pass through
     """
-
     ############################# XXX
     print("Logged in successfully!")
     ############################# XXX
-
     ############################# XXX
     print("Read Operation launched..")
     ############################# XXX
-    
     #{"modem_image":False,"__last_update":False,"name":"protometa","x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_device_info":False,"x_ip":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"modem_id":False,"city":False,"live_status":"offline","last_action_user":3,"modem_status":False,"modem_home_mode":False,"customer_id":[[6,False,[]]],"modem_update":False,"modem_version":False}
-    
     # "args" key of the dictionary has a list of dictionary. This dictionary will contain the fields of a record in Odoo.
     # obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
                                                                  #---------^
     # XXX START OF THE AUTOMATION XXX
+
+    modem_read_result_dict = {}
     
     # Network -> Uptime
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Status"))).click()
-    
     sleep(0.5)
-    
-    modem_read_result_dict = {}
     
     x_uptime = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "uptime"))).text
     modem_read_result_dict['x_uptime'] = x_uptime
     
     # LAN Information -> Wireless Status & Channel & MAC & IP, device info
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "LAN Information"))).click()
-    
     sleep(0.5)
     
     x_wireless_status = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "wlan-ifc-status"))).text
@@ -128,10 +120,8 @@ def interface_operation_read(driver, x_hotel_name, mac):
     modem_read_result_dict['x_device_info'] = x_device_info
     
     # Network: LAN Settings -> IP, Subnet, dhcp
-    
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "LAN Settings"))).click()
-    
     sleep(0.5)
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.ipaddr')))
@@ -148,7 +138,6 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     # Network: WLAN -> Enable Wireless
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "WLAN"))).click()
-    
     sleep(1.5)
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.wifi_ctrl_0\.enabled")))
@@ -159,7 +148,7 @@ def interface_operation_read(driver, x_hotel_name, mac):
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra0\.enabled")))
         x_enable_ssid1 = True if field.is_selected() else False
         modem_read_result_dict['x_enable_ssid1'] = x_enable_ssid1
-        
+
         field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra1\.enabled")))
         x_enable_ssid2 = True if field.is_selected() else False
         modem_read_result_dict['x_enable_ssid2'] = x_enable_ssid2
@@ -187,11 +176,8 @@ def interface_operation_read(driver, x_hotel_name, mac):
         modem_read_result_dict['x_enable_ssid2'] = False
         modem_read_result_dict['x_enable_ssid3'] = False
         modem_read_result_dict['x_enable_ssid4'] = False
-        
     # Network: Time Synchronisation -> Manual Time
-    
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Time Synchronisation"))).click()
-    
     sleep(0.5)
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.ntpclient\.cfg04887d\.manual_time')))
@@ -200,24 +186,20 @@ def interface_operation_read(driver, x_hotel_name, mac):
     
     # System: Administration -> New Password
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "System"))).click()
-    
     sleep(0.5)
     
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#pw1')))
     x_new_password = field.get_attribute('value')
     modem_read_result_dict['x_new_password'] = x_new_password
     
-    
     modem_read_result_dict['x_hotel_name'] = x_hotel_name
     
     import datetime
-    
     modem_read_result_dict['x_update_date'] = str(datetime.datetime.now())
     
     ############################# XXX
     print("Read Operation Completed..")
     ############################# XXX
-    
     modem_logout(driver)
     
     # XXX END OF THE AUTOMATION XXX
@@ -227,13 +209,11 @@ def interface_operation_read(driver, x_hotel_name, mac):
     # for k, v in modem_read_result_dict.items():
     #     #obj_dict['params']['args'][0].update({k:v}) # add newly fetched fields into the main dict
     #     modem_read_result[k] = v
-    
     print("\n")
     #queue.put(obj_dict) 
-    
     #sleep(1)
-    
     return modem_read_result_dict
+       
        
 def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
     
@@ -244,34 +224,27 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
     fields_we_want = ['x_ip', 'x_subnet', 'x_dhcp', 'x_enable_wireless', 'x_enable_ssid1', 
                       'x_enable_ssid2', 'x_enable_ssid3', 'x_enable_ssid4', 'x_manual_time',
                       'x_new_password']
-    
     for modem, fields_to_compare in zip(fetched_modem_list, fields_to_compare_list): # modem = {'x_ip': "192.168.5.1", ...}
         filtered_modem = {key: modem[key] for key in fields_we_want}
         fields_to_change = OrderedDict()
-        
         for k, v in filtered_modem.items(): # e.g. k = 'x_ip' v = "192.168.5.1"
             if v != fields_to_compare[k]: # if "192.168.5.1" != modem_read_result_dict['x_ip']
                 fields_to_change[k] = v # if a field is modified, add it into our dict
         print(fields_to_change, "\n")
-        
         if 'x_reboot' in modem and 'x_reboot' == True: #This is a button so I can't check the state of it in the read operation
             fields_to_change['x_reboot'] = modem['x_reboot']
             # fields_to_change.move_to_end('x_reboot', last=True)
-            
         yield fields_to_change # modify for each modem
         
     print("Values compared..")   
     
 def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_modify):
     print("Modify Operation launched..")
-    
+
     WLAN_task_list = []
     LAN_Settings_task_list = []
-    
     x_manual_time = "" # if dhcp is modified, it will reset the manual time, so I have to handle this separately.
-    
     for k, v in fields_to_change.items():
-        
         match k:
             case 'x_ip':
                 LAN_Settings_task_list.append({k:v})
@@ -298,14 +271,14 @@ def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_m
                 pass
             
     if 'x_reboot' in fields_to_change:
-        LAN_Settings_task_list.append('x_reboot_present')            
-    
+        LAN_Settings_task_list.append('x_reboot_present') 
+                   
     if len(WLAN_task_list) != 0:
         if 'x_enable_wireless' in WLAN_task_list:
             WLAN_task_list.remove('x_enable_wireless')
             WLAN_task_list.insert(0, 'x_enable_wireless')      
         modify_WLAN_task_control(driver, WLAN_task_list)
-    
+        
     if len(LAN_Settings_task_list) != 0:
         modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_manual_time)
         
@@ -314,13 +287,14 @@ def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_m
         
     if 'x_reboot' in fields_to_change:
         modify_x_reboot(driver)
-    
+        
     print("Modify operation completed..")
     
     if is_logged_out(driver):
         return
     else:
         modem_logout(driver)
+
 
 def modify_x_reboot(driver):
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'System'))).click()
@@ -332,8 +306,8 @@ def modify_x_reboot(driver):
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
     sleep(60)
 
+
 def modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_manual_time):
-    
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "LAN Settings"))).click()
@@ -350,39 +324,35 @@ def modify_LAN_task_control(driver, LAN_Settings_task_list, ip_for_modify, x_man
                      
     # Apply button
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
-    
     WebDriverWait(driver, 10).until(lambda d: Alert(d)).accept()
-
     sleep(60)
     if 'x_reboot_present' in LAN_Settings_task_list or x_manual_time != 0:
         modem_login(driver, ip_for_modify)
     
-def modify_x_ip(driver, v):
     
+def modify_x_ip(driver, v):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.ipaddr')))
     field.clear()
     field.send_keys(v)
     
-def modify_x_subnet(driver, v):
     
+def modify_x_subnet(driver, v):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.netmask')))
     field.clear()
     field.send_keys(v)
     
+    
 def modify_x_dhcp(driver):
-
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.dhcp\.dnsmasq_0\.dhcp_en')))
     field.click()
     
-def modify_WLAN_task_control(driver, WLAN_task_list):
     
+def modify_WLAN_task_control(driver, WLAN_task_list):
     WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
     sleep(0.5)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "WLAN"))).click()
     sleep(1.5)
-    
     # x_enable_wireless = True if True in WLAN_task_list else False
-    
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.wifi_ctrl_0\.enabled")))
     x_enable_wireless = True if field.is_selected() else False
     
@@ -405,28 +375,28 @@ def modify_WLAN_task_control(driver, WLAN_task_list):
                     modify_x_enable_ssid4(driver)
     # Apply button
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
-    
     sleep(5)
 
-def modify_x_enable_ssid1(driver):
 
+def modify_x_enable_ssid1(driver):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra0\.enabled")))
     field.click()
        
+       
 def modify_x_enable_ssid2(driver):
-    
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra1\.enabled")))
     field.click()
      
+     
 def modify_x_enable_ssid3(driver):
-    
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra2\.enabled")))
     field.click()
     
+    
 def modify_x_enable_ssid4(driver):
-
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra3\.enabled")))
     field.click()
+    
     
 def modify_x_manual_time(driver, v, ip_for_modify):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()
@@ -436,13 +406,12 @@ def modify_x_manual_time(driver, v, ip_for_modify):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#cbid\.ntpclient\.cfg04887d\.manual_time')))
     field.clear()
     field.send_keys(v)
-    
     # Apply button
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#maincontent > form > div.cbi-section > div > div > input:nth-child(1)"))).click()
     sleep(5)
-    
     if is_logged_out(driver):
         modem_login(driver, ip_for_modify)
+    
     
 def modify_x_new_password(driver, v):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "System"))).click()

@@ -5,10 +5,14 @@ from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 import threading
 from queue import Queue
 #import PySimpleGUI as sg # left this gui method due to its incapability in multithreaded environment
+
+
 import tkinter # capable of multithreaded work
+
 
 needed_hosts = {} # global because network scan writes into this and modem read reads from this separately.
 modify_queue = Queue()  # global because modem read fills it and modem configure consumes it separately.
+
 
 def network_scan(output, target_ip, fhfile="./hosts/found_hosts.json", mhfile="./hosts/modem_hosts.json"):
     """Controls scapy_route network scanning functions.
@@ -21,7 +25,6 @@ def network_scan(output, target_ip, fhfile="./hosts/found_hosts.json", mhfile=".
 
     """
     mac_filter = ""
-    
     # information retrieval - pre operation phase
     import os
     if os.stat("./support/info.txt").st_size != 0:
@@ -33,35 +36,31 @@ def network_scan(output, target_ip, fhfile="./hosts/found_hosts.json", mhfile=".
             #file.writelines("target=192.168.5.0/24")
             file.writeline("mac_filter=1c:18:4a")
 
-    create_directory("./hosts/") # create our directory for our host files
-    
     global needed_hosts
     
+    create_directory("./hosts/") # create our directory for our host files
     target_ip = target_ip + "/24"
-    
     hosts: list[dict[str, str]] = host_finder(target_ip, output) # network scan
-
     host_writer(fhfile, hosts, output) # write found hosts into fhfile
-
     needed_hosts = host_analyzer(fhfile, mhfile, mac_filter) # filter found hosts based on 1c:18:4a mac and return a list of them
-    
     if not needed_hosts:
         print("No modems found!")
         return
-    
     # return needed_hosts
+
 
 def confirmation():
     """This function is not used. It was to prompt warning message before attempting to modify modems.
     Later replaced via buttons that need to be pressed to continue.
     """
     from tkinter import messagebox
-
+    
     fetch_warning = messagebox.askokcancel("Devam etmek icin modemleri kurgulayin, kurgulama bittiyse OK'a basin.")
     if fetch_warning:
         continue_execution = messagebox.askyesno("Degistirilen ayarlari uygulamak icin devam etmek istiyor musunuz?")
         if not continue_execution:
             exit()
+            
             
 def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, modem_configure_caller_button):
     """Function route:
@@ -76,17 +75,13 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
         modem_configure_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
 
     """
-    
     global needed_hosts
     
     ip_list = []
-    
     mac_list = []
-    
     for ip, mac in ip_retriever(needed_hosts): # yield ips of the filtered hosts one by one
         ip_list.append(ip)
         mac_list.append(mac)
-
     ########################
     """
     READ OPERATION START
@@ -96,45 +91,35 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     output.config(state='disabled')
     
     mode = "read"
-    
     threads = []
-    
-    read_queue = Queue()
-                                
+    read_queue = Queue()               
     for ip, mac in zip(ip_list, mac_list): # call multiple versions of the function simultaneously
         t = threading.Thread(target=operation_controller, args=(ip, mac, mode, x_hotel_name, read_queue, ""))
         threads.append(t)
         t.start()
-
     for t in threads:
         t.join()
     
     """
     READ OPERATION END
     """
-    #########################
 
-    ############################
     """
     ODOO POST START
     """ 
+    global modify_queue
     
     odoo_login()
     
-    modem_read_result_list = {"modems":[]} # json format. This will be handled by the modem_data_send
-                                           # controller in modem/controller.py
-    
-    global modify_queue
-
+    modem_read_result_list = {"modems":[]} # json format. This will be handled by the modem_data_send controller in modem/controller.py
     while not read_queue.empty():
         modem_read_result_list["modems"].append(read_queue.get())
-    
     # populate modify_queue with the results from the read_queue
     for read_modem in modem_read_result_list["modems"]:
         modify_queue.put(read_modem)
         
     send_datato_odoo(modem_read_result_list)
-
+    
     output.config(state='normal')
     output.insert(tkinter.END, "Veriler Odoo'ya gonderildi!..\n")
     output.config(state='disabled')
@@ -153,7 +138,7 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     output.config(state='disabled')
     # while not event_scan_or_fetch.is_set():
     #     pass
-    
+
     # event_scan_or_fetch.clear()
 
     
@@ -178,83 +163,61 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
     output.config(state='normal')
     output.insert(tkinter.END, "Odoo'dan veri toplaniyor..\n")
     output.config(state='disabled')
+    
     odoo_login()
     fetched_modem_list: list = fetch_datafrom_odoo()
-    
-    
     # if the ips are changed from Odoo interface, we can't go to those changed ip addresses to change the ip address.
     # we have to first go to the original ip address of the devices and THEN change it.
     # If we match the fetched modems using their mac addresses with the mac addresses from the network scan result, we can
-    # then create a list of ips from the network scan result. This new list will contain previous ips of these modified devices.
+    # then create a list of ips from the network scan result. This new list will contain previous ips of these modified devices. 
+    global needed_hosts
     
     ips_of_modified_modems = []
     sorted_fetched_modem_list = []
-    
     sorted_fetched_modem_list = sorted(fetched_modem_list, key=lambda x: x['x_ip'])
-    
     modem_mapping = {modem['x_mac']: modem['x_ip'] for modem in sorted_fetched_modem_list}
-    
-    global needed_hosts
-    
     ips_of_modified_modems = [host['ip'] for host in needed_hosts if host['mac'] in modem_mapping]
     
     """
     FETCH END
     """    
     
-    
     """
     MODIFY OPERATION START
     """
+    mode = "modify"
+    global modify_queue
+    
     output.config(state='normal')
     output.insert(tkinter.END, "Modem konfigurasyonu basladi. Bu islem zaman alabilir, lutfen bekleyin..\n")
     output.config(state='disabled')
     
-    mode = "modify"
-    
     threads = []
-    
     read_modems_list = []
-    
-    global modify_queue
-
     while not modify_queue.empty():
         read_modems_list.append(modify_queue.get()) 
-        
     # get rid of modems in read modem list that don't have their ips in the ips of modified modems list, so
     # we don't compare modems that's in the read result but not in the fetched modem list coming from Odoo.
-    
     for modem in read_modems_list:
         if not modem['x_ip'] in ips_of_modified_modems:
             read_modems_list.remove(modem)
-        
     sorted_read_modems_list = sorted(read_modems_list, key=lambda x: x['x_ip'])
-    
     fields_to_change_list = []
-    
     for fields_to_change in interface_operation_modify_compare(sorted_fetched_modem_list, sorted_read_modems_list):
         fields_to_change_list.append(fields_to_change)
-    
-    
     # from concurrent.futures import ThreadPoolExecutor
-    
     # with ThreadPoolExecutor() as executor:
-        
-    #     f = executor.map(modem_login_init, ips_of_modified_modems, "", mode, None, None, fields_to_change)  
-                                                            
+    #     f = executor.map(modem_login_init, ips_of_modified_modems, "", mode, None, None, fields_to_change)                                         
     for ip, fields_to_change in zip(ips_of_modified_modems, fields_to_change_list):
         t = threading.Thread(target=operation_controller, args=(ip, "", mode, "", None, fields_to_change))
         threads.append(t)
         t.start()
-        
     for t in threads:# wait for all threads to finish
         t.join()
-
-    #input("Press enter to loop again")
+        
     output.config(state='normal')
     output.insert(tkinter.END, "Modem konfigurasyonu bitti..\n")
     output.config(state='disabled')
-    
     """
     MODIFY OPERATION END
     """

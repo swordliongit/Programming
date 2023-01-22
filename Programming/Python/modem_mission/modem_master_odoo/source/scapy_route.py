@@ -4,8 +4,10 @@
 
 print(.decode("ascii"))"""
 
+
 import json
 import tkinter as tk
+
 
 def host_finder(target_ip: str, output) -> list[dict[str, str]]:
     """
@@ -15,14 +17,13 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
         returns a list of dictionaries of host info
     """
     from scapy.all import ARP, Ether, srp
-
+    
     ############################# XXX
     # print("\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
     output.config(state='normal')
     output.insert(tk.END, "\n" + "#"*15 + "\nAg taraniyor...\n" + "#"*15 + "\n")
     output.config(state='disabled')
     ############################# XXX
-
     #target_ip = "192.168.5.0/24"
     # IP Address for the destination
     # create ARP packet
@@ -32,16 +33,12 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     # stack them
     packet = ether/arp
-
     result = srp(packet, timeout=3, verbose=0)[0]
-
     # a list of clients, we will fill this in the upcoming loop
     clients = []
-
     for sent, received in result:
         # for each response, append ip and mac address to `clients` list
         clients.append({'ip': received.psrc, 'mac': received.hwsrc})
-    
     ############################# XXX
     # print("Found hosts!")    
     output.config(state='normal')
@@ -60,7 +57,6 @@ def host_writer(fhfile: str, clients: list, output):
         fhfile (file): found hosts file
         clients (list): result of network scan data
     """
-
     # print clients
     ############################# XXX
     # print("Available devices in the network:")
@@ -69,12 +65,10 @@ def host_writer(fhfile: str, clients: list, output):
     output.insert(tk.END, "Agdaki mevcut aygitlar:\n")
     output.insert(tk.END, "IP" + " "*20+"MAC\n")
     output.config(state='disabled')
-    
     ############################# XXX
-    
     with open(fhfile, "w") as file:
         json.dump(clients, file, indent=5)       
-               
+        
     for client in clients:
         #file.write(f"{client['ip']:16}    {client['mac']}\n")
         ############################# XXX
@@ -103,12 +97,9 @@ def host_analyzer(fhfile: str, mhfile: str, mac_filter: str) -> dict:
     
     with open(fhfile) as file:
         host_list = json.loads(file.read()) #read the hosts file
-        
         filtered_data = [d for d in host_list if d["mac"].find(mac_filter) == 0] #find our specific mac
-        
         with open(mhfile, "w") as file:
             json.dump(filtered_data, file, indent=5) # write the filtered data into modem hosts file
-            
         with open(mhfile, "r") as file:
             return json.loads(file.read())   # return the data from modem hosts file
         

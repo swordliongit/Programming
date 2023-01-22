@@ -39,9 +39,6 @@ def send_datato_odoo_one_by_one(modem_data: dict):
         "Cookie": cookie
         }
     myobj = modem_data 
-    
-    print("Im in...")
-    
     """{"id":43,"jsonrpc":"2.0","method":"call","params":{
         "args":[
             {"partner_gid":0,"additional_info":False,"image_1920":False,"__last_update":False,"is_company":False,"active":True,"company_type":"person","name":"proto5","parent_id":False,"company_name":False,"type":"contact","street":False,"street2":False,"city":False,"state_id":False,"zip":False,"country_id":False,"vat":False,"x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_ip":False,"x_device_info":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"x_wan_status":False,"x_lan_info":False,"phone":False,"mobile":False,"user_ids":[],"email":False,"message_follower_ids":[],"activity_ids":[],"message_ids":[]
@@ -82,10 +79,8 @@ def fetch_datafrom_odoo():
     myobj = {"id":20,"jsonrpc":"2.0","method":"call","params":{"model":"modem.profile","domain":[["x_device_update","=",True]],"fields":["x_hotel_name","x_update_date","x_uptime","x_wireless_status","x_channel","x_mac","x_device_info","x_ip","x_subnet","x_dhcp","x_enable_wireless","x_enable_ssid1","x_enable_ssid2","x_enable_ssid3","x_enable_ssid4","x_manual_time","x_new_password","x_reboot","name","modem_status","city","live_status"],"limit":80,"sort":"live_status DESC","context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1],"params":{"cids":1,"menu_id":129,"action":182,"model":"modem.profile","view_type":"list"},"bin_size":True}}}
     # {'jsonrpc': '2.0', 'id': 39, 'result': {'length': 2, 'records': [{'id': 5, 'x_uptime': False, 'x_wireless_status': False, 'x_channel': False, 'x_mac': False, 'x_device_info': False, 'x_ip': False, 'x_subnet': False, 'x_dhcp': False, 'x_enable_wireless': True, 'x_enable_ssid1': False, 'x_enable_ssid2': False, 'x_enable_ssid3': False, 'x_enable_ssid4': False, 'x_manual_time': False, 'x_new_password': False, 'name': 'protomet', 'modem_status': False, 'city': False, 'live_status': 'offline'}, {'id': 6, 'x_uptime': False, 'x_wireless_status': False, 'x_channel': False, 'x_mac': False, 'x_device_info': False, 'x_ip': False, 'x_subnet': False, 'x_dhcp': True, 'x_enable_wireless': False, 'x_enable_ssid1': False, 'x_enable_ssid2': False, 'x_enable_ssid3': False, 'x_enable_ssid4': False, 'x_manual_time': False, 'x_new_password': False, 'name': 'protomet2', 'modem_status': False, 
     # 'city': False, 'live_status': 'offline'}]}}
-
     # to access our modems : last_result['result']['records'][0] -> gives the first dict
-            
-        
+
     x = requests.post(url, json = myobj, headers=headers)
     #print the response text (the content of the requested file):
     #return str(x.content)

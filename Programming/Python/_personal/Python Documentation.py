@@ -1343,6 +1343,35 @@ if __name__ == "__main__":
         p = Process(target=do_work) # call do_work 5 times simultaneously
         p.start()
 
+    """
+    Memory sharing between Processes
+    """
+        # XXX XXX 
+        if you use standard lists, each process will copy it and we cannot change
+        the contents of it in a different process. multiprocessing.Array lets us
+        share it between different processes so the code below works as intended.
+        # XXX XXX
+    
+        import multiprocessing
+        from multiprocessing.context import Process
+
+        import time
+
+
+        def print_array_contents(array):
+            while True:
+                print(*array, sep = ", ")
+                time.sleep(1)
+                
+        if __name__ == "__main__":
+            arr = multiprocessing.Array('i', [-1]*10, lock=True)
+            p = Process(target=print_array_contents, args=(arr,))
+            p.start()
+            for j in range(10):
+                time.sleep(2)
+                for i in range(10):
+                    arr[i] = j
+    
 """
 Events
 """
