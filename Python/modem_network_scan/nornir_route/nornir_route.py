@@ -15,5 +15,3 @@ def main():
     # Display the result
     print_title("Display ARP table of the network devices")
     print_result(result)
-
-main()

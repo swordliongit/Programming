@@ -9,3 +9,8 @@ device2:
     groups:
         - device_discovered
 
+device3:
+    hostname: 192.168.5.2
+    groups:
+        - device_discovered
+
