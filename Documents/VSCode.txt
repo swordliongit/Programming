@@ -1,0 +1,34 @@
+
+
+HOW TO REMOVE A FOLDER RECURSIVELY:
+
+	rm -r .\folder_to_remove\
+	
+	
+CMAKE C++:
+
+	Configure CMAKE:
+		
+		cmd palette -> Cmake:Quick Start
+		
+		OR:
+	
+			cmd palette -> Cmake:Select Kit : Select compiler for Cmake
+			cmd palette -> Cmake:Configure : Create Build folder
+			cmd palette -> Cmake:Build : Creates the .exe file out of .cpp
+			
+			TO RUN THE BINARY FILE:
+				
+				Terminal -> .\exefilename
+	
+	SELECTING BUILD TYPE:
+	
+		cmd palette -> Cmake:Select Variant
+	
+	DEBUGGING BINARY FILE:
+	
+		cmd palette -> Cmake:Debug
+
+	HOW TO BUILD IN C++ 20 MODE:
+
+		Add into CMakeLists.txt -> target_compile_features(PUBLIC cxx_std_20)

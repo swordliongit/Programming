@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/SWORD/Desktop/Workspace/Programming/build",
+  "command": "C:\\mingw64\\bin\\g++.exe -DCpp_python_EXPORTS  -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\Cpp_python.dir\\main.cpp.obj -c C:\\Users\\SWORD\\Desktop\\Workspace\\Programming\\C++\\main.cpp",
+  "file": "C:/Users/SWORD/Desktop/Workspace/Programming/C++/main.cpp"
+}
+]
