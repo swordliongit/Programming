@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/C++"
+    "cmake.sourceDirectory": "${workspaceFolder}/C++/source",
+    "cmake.configureOnEdit": false,
+    "files.associations": {
+        "ostream": "cpp"
+    },
+    "cmake.configureOnOpen": true
 }

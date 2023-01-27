@@ -1,6 +1,6 @@
-from ctypes import*
+from ctypes import *
 
-lib = CDLL("build/libCpp_python.dll", winmode=0)
+lib = CDLL("../C++/build/libcpp_python.dll", winmode=0)
 
 lib.adder.restype = c_int
 lib.adder.argtypes = [c_int, c_int]

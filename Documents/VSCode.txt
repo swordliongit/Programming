@@ -5,6 +5,10 @@ HOW TO REMOVE A FOLDER RECURSIVELY:
 	rm -r .\folder_to_remove\
 	
 	
+Auto formatter:
+
+	Settings -> Editor:format on save ( needs autopep8 )
+	
 CMAKE C++:
 
 	Configure CMAKE:

@@ -4,6 +4,8 @@ import socket
 print ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1])
 """
 
+import netifaces as nif
+from getmac import get_mac_address
 import netifaces
 
 """def getmac(interface):
@@ -14,7 +16,7 @@ import netifaces
     return mac[0:17]
 
 """
-from getmac import get_mac_address
+
 
 def ip4_addresses():
     ip_list = []
@@ -24,11 +26,10 @@ def ip4_addresses():
             ip_list.append(link['addr'])
             mac_list.append(netifaces.ifaddresses(interface))
             print("\n")
-        
-            
+
     return ip_list
 
-import netifaces as nif
+
 def mac_for_ip(ip):
     'Returns a list of MACs for interfaces that have given IP, returns None if not found'
     for i in nif.interfaces():
@@ -36,7 +37,7 @@ def mac_for_ip(ip):
         try:
             if_mac = addrs[nif.AF_LINK][0]['addr']
             if_ip = addrs[nif.AF_INET][0]['addr']
-        except IndexError or KeyError: #ignore ifaces that dont have MAC or IP
+        except IndexError or KeyError:  # ignore ifaces that dont have MAC or IP
             if_mac = if_ip = None
         if if_ip == ip:
             return if_mac
@@ -44,17 +45,11 @@ def mac_for_ip(ip):
 
 
 print(ip4_addresses())
-#print(mac_for_ip('192.168.5.1'))
+# print(mac_for_ip('192.168.5.1'))
 """for i in ip4_addresses():
     print(mac_for_ip(i))"""
-#print(get_mac_address())
-#print(netifaces.gateways()['default'][netifaces.AF_INET])
+# print(get_mac_address())
+# print(netifaces.gateways()['default'][netifaces.AF_INET])
 
 
-
-
-
-      
-#1c184a
-
-
+# 1c184a
