@@ -6,7 +6,7 @@ include(CTest)
 enable_testing()
 
 # add the PcapPlusPlus include directory
-include_directories(${PCAPPLUSPLUS_INCLUDE_DIRS})
+# include_directories(include/)
 
 set(SOURCE_FILES main.cpp)
 

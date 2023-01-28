@@ -17,14 +17,15 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
         returns a list of dictionaries of host info
     """
     from scapy.all import ARP, Ether, srp
-    
-    ############################# XXX
+
+    # XXX
     # print("\n" + "#"*15 + "\nSearching the network...\n" + "#"*15 + "\n")
     output.config(state='normal')
-    output.insert(tk.END, "\n" + "#"*15 + "\nAg taraniyor...\n" + "#"*15 + "\n")
+    output.insert(tk.END, "\n" + "#"*15 +
+                  "\nAg taraniyor...\n" + "#"*15 + "\n")
     output.config(state='disabled')
-    ############################# XXX
-    #target_ip = "192.168.5.0/24"
+    # XXX
+    # target_ip = "192.168.5.0/24"
     # IP Address for the destination
     # create ARP packet
     arp = ARP(pdst=target_ip)
@@ -39,13 +40,13 @@ def host_finder(target_ip: str, output) -> list[dict[str, str]]:
     for sent, received in result:
         # for each response, append ip and mac address to `clients` list
         clients.append({'ip': received.psrc, 'mac': received.hwsrc})
-    ############################# XXX
-    # print("Found hosts!")    
+    # XXX
+    # print("Found hosts!")
     output.config(state='normal')
     output.insert(tk.END, "Aygitlar bulundu!\n")
     output.config(state='disabled')
-    ############################# XXX
-    
+    # XXX
+
     return clients
 
 
@@ -58,30 +59,32 @@ def host_writer(fhfile: str, clients: list, output):
         clients (list): result of network scan data
     """
     # print clients
-    ############################# XXX
+    # XXX
     # print("Available devices in the network:")
     # print("IP" + " "*20+"MAC")
     output.config(state='normal')
     output.insert(tk.END, "Agdaki mevcut aygitlar:\n")
     output.insert(tk.END, "IP" + " "*20+"MAC\n")
     output.config(state='disabled')
-    ############################# XXX
+    # XXX
     with open(fhfile, "w") as file:
-        json.dump(clients, file, indent=5)       
-        
+        json.dump(clients, file, indent=5)
+
     for client in clients:
-        #file.write(f"{client['ip']:16}    {client['mac']}\n")
-        ############################# XXX
+        # file.write(f"{client['ip']:16}    {client['mac']}\n")
+        # XXX
         # print("{:16}      {}\n".format(client['ip'], client['mac']))
         output.config(state='normal')
-        output.insert(tk.END, "{:16}      {}\n".format(client['ip'], client['mac']))
+        output.insert(tk.END, "{:16}      {}\n".format(
+            client['ip'], client['mac']))
         output.config(state='disabled')
-        ############################# XXX
-        
+        # XXX
+
     output.config(state='normal')
     output.insert(tk.END, "Ag taramasi bitti.\n" + "-"*15 + "\n")
     output.config(state='disabled')
-    
+
+
 def host_analyzer(fhfile: str, mhfile: str, mac_filter: str) -> dict:
     """
     This function takes a found hosts file and fetches only necessary mac addresses, then dumps them
@@ -94,15 +97,18 @@ def host_analyzer(fhfile: str, mhfile: str, mac_filter: str) -> dict:
     Returns:
         list: list of dictionaries fetched from the modem hosts file
     """
-    
+
     with open(fhfile) as file:
-        host_list = json.loads(file.read()) #read the hosts file
-        filtered_data = [d for d in host_list if d["mac"].find(mac_filter) == 0] #find our specific mac
+        host_list = json.loads(file.read())  # read the hosts file
+        filtered_data = [d for d in host_list if d["mac"].find(
+            mac_filter) == 0]  # find our specific mac
         with open(mhfile, "w") as file:
-            json.dump(filtered_data, file, indent=5) # write the filtered data into modem hosts file
+            # write the filtered data into modem hosts file
+            json.dump(filtered_data, file, indent=5)
         with open(mhfile, "r") as file:
-            return json.loads(file.read())   # return the data from modem hosts file
-        
+            # return the data from modem hosts file
+            return json.loads(file.read())
+
 
 def ip_retriever(filtered_hosts: dict):
     """This generator sends items values of elements with 'ip' keys to the caller.
@@ -115,5 +121,6 @@ def ip_retriever(filtered_hosts: dict):
         str: ip and mac values
     """
     for host in filtered_hosts:
-        yield host['ip'], host['mac'] # mac is for faulty mac that sometimes shows in modem's web interface.
-                                      # this will make it possible to change it later when it's doing a read operation.
+        # mac is for faulty mac that sometimes shows in modem's web interface.
+        yield host['ip'], host['mac']
+        # this will make it possible to change it later when it's doing a read operation.

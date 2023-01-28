@@ -8,6 +8,7 @@
 			"args": [
 				"-g",
 				"-std=c++20",
+				"-I${workspaceFolder}/../..",
 				"${workspaceFolder}/C++/*.cpp",
 				"-o",
 				"${fileDirname}/rooster"
