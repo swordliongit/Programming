@@ -1,6 +1,7 @@
 {
     "cmake.sourceDirectory": "${workspaceFolder}/C++/source",
     "cmake.configureOnEdit": false,
+    "cmake.configureOnOpen": false,
     "files.associations": {
         "ostream": "cpp",
         "array": "cpp",
@@ -52,6 +53,5 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp"
-    },
-    "cmake.configureOnOpen": true
+    }
 }

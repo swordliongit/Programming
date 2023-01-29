@@ -829,7 +829,17 @@ queue.put(obj)
 
 print(queue.get())
 
+"""
+functools
+"""
 
+    """
+    cache
+    """
+    
+    @cache # speeds up time
+    def func():
+        ...
 
 """"""""""""""""""""""""
 """"""""""""""""""""""""

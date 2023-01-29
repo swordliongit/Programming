@@ -5,15 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 include(CTest)
 enable_testing()
 
-# add the PcapPlusPlus include directory
-# include_directories(include/)
-
+# find_package(pybind11 REQUIRED)
+# add_compile_definitions(MS_WIN64)
 set(SOURCE_FILES main.cpp)
 
 # find_package(HDF5 REQUIRED COMPONENTS C)
 
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-# add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+# add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
