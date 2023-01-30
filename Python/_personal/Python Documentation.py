@@ -837,7 +837,7 @@ functools
     cache
     """
     
-    @cache # speeds up time
+    @cache # speeds up time you can use lru_cache() as well
     def func():
         ...
 

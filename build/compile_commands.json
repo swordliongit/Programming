@@ -1,7 +1,0 @@
-[
-{
-  "directory": "C:/Users/aslan/Desktop/Workspace/Programming/build",
-  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe -DMS_WIN64 @CMakeFiles/cpp_python.dir/includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\cpp_python.dir\\main.cpp.obj -c C:\\Users\\aslan\\Desktop\\Workspace\\Programming\\C++\\source\\main.cpp",
-  "file": "C:/Users/aslan/Desktop/Workspace/Programming/C++/source/main.cpp"
-}
-]
