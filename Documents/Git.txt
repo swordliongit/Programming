@@ -4,3 +4,7 @@ INITIALIZE REPOSITORY:
 	
 STAGE A FILE:
 	git add "filename"
+	
+	
+COMMIT CHANGES:
+	git commit -m "this is example msg"
