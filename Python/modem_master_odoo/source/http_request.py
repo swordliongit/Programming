@@ -3,7 +3,7 @@ import json
 
 
 def odoo_login():
-    url = 'http://localhost:8069/web/session/authenticate'
+    url = 'https://modem.nitrawork.com/web/session/authenticate'
     headers = {
         "Connection": "keep-alive",
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
@@ -12,8 +12,8 @@ def odoo_login():
     myobj = {
         "jsonrpc": "2.0",
         "params": {
-            "login": "kilicarslan.business@gmail.com",
-            "password": "0987612345",
+            "login": "admin",
+            "password": "Artin.modems",
             "db": "modems"
         }
     }
@@ -60,7 +60,7 @@ def send_datato_odoo_one_by_one(modem_data: dict):
 
 def send_datato_odoo(modem_data: dict):
     # need to check this for multiple databases position
-    url = 'http://localhost:8069/create/modems_from_data'
+    url = 'https://modem.nitrawork.com/create/modems_from_data'
     headers = {
         "Connection": "keep-alive",
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
@@ -72,7 +72,7 @@ def send_datato_odoo(modem_data: dict):
 
 
 def fetch_datafrom_odoo():
-    url = 'http://localhost:8069/web/dataset/search_read'
+    url = 'https://modem.nitrawork.com/web/dataset/search_read'
     headers = {
         "Connection": "keep-alive",
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",

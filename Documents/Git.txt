@@ -1,0 +1,6 @@
+
+INITIALIZE REPOSITORY:
+	git init
+	
+STAGE A FILE:
+	git add "filename"
