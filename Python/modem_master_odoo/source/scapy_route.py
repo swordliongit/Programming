@@ -1,8 +1,12 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
 
-"""import subprocess
- = subprocess.check_(("arp", "-a"))
 
-print(.decode("ascii"))"""
+# """import subprocess
+#  = subprocess.check_(("arp", "-a"))
+
+# print(.decode("ascii"))"""
 
 
 import json

@@ -1,3 +1,8 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
+
+
 from time import sleep
 import tkinter
 from tkinter import ttk

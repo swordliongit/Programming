@@ -1,3 +1,6 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
 
 
 from selenium_dependencies import *

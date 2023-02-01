@@ -1,3 +1,8 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
+
+
 import requests
 import json
 

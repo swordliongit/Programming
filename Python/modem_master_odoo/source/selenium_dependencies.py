@@ -1,3 +1,6 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
 
 
 from selenium.webdriver.common.by import By

@@ -1,3 +1,8 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
+
+
 from scapy_route import host_finder, host_writer, host_analyzer, ip_retriever
 from utility import create_directory
 from interface_operation import operation_controller, interface_operation_modify_compare
