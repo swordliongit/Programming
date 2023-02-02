@@ -3,6 +3,7 @@
 #
 
 
+import sys
 from time import sleep
 import tkinter
 from tkinter import ttk
@@ -16,6 +17,7 @@ from utility import u_p_setter
 # XXX
 # tkinter GUI application
 # XXX
+
 
 def modem_configure_caller():
     """This button function calls the function that modifies each modem
@@ -95,6 +97,7 @@ def on_closing():
     """Called when you press the X button to close the program
     """
     sleep(0.5)
+    # sleep(1)
     root.destroy()
 
 

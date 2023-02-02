@@ -49,7 +49,7 @@ def modem_login(driver, ip):
         return -1  # XXX GOTTA CHANGE
 
 
-def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_change):
+def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_change, thread_semaphore, wait_group):
     """This function is supposed to be threaded. Called for each ip address. Separates the program into read and modify subroutines.
     interface_operation_read returns the dictionary containing each field of the modem and queues it into read_queue that's passed
     from the caller.
@@ -62,20 +62,24 @@ def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_chan
         read_queue (Queue): _description_
         fields_to_change (dict): fields that need to be changed, used in modify mode.
     """
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless")  # silent browser
-    # driver = webdriver.Chrome("Python/modem_master_odoo/support/chromedriver", options=chrome_options)
-    driver = webdriver.Chrome("Python/modem_master_odoo/support/chromedriver")
-    modem_login(driver, ip)
-    
-    if mode == "read":
-        # modem_read_result_dict = {}
-        modem_read_result_dict = interface_operation_read(driver, x_hotel_name, mac)
-        read_queue.put(modem_read_result_dict)
-    elif mode == "modify":
-        interface_operation_modify(driver, fields_to_change, ip)
-    # current_url = driver.current_url
-
+    wait_group.add(1)
+    with thread_semaphore:
+        
+        #options
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")  # silent browser
+        driver = webdriver.Chrome("Python/modem_master_odoo/support/chromedriver", options=chrome_options)
+        # driver = webdriver.Chrome("Python/modem_master_odoo/support/chromedriver")
+        modem_login(driver, ip)
+        
+        if mode == "read":
+            # modem_read_result_dict = {}
+            modem_read_result_dict = interface_operation_read(driver, x_hotel_name, mac)
+            read_queue.put(modem_read_result_dict)
+        elif mode == "modify":
+            interface_operation_modify(driver, fields_to_change, ip)
+        # current_url = driver.current_url
+    wait_group.done()
 
 def interface_operation_read(driver, x_hotel_name, mac):
     """function that does the actual search operation inside the page and retrieves elements

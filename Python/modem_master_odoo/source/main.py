@@ -86,7 +86,6 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
         x_hotel_name (str): hotel name that's passed from the tkinter GUI and then passed into Odoo by passing it into the json data dictionary.
         network_scan_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
         modem_configure_caller_button: button that's passed from tkinter GUI that we need to enable/disable for our specific operations.
-
     """
     global needed_hosts
 
@@ -106,17 +105,35 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     output.config(state='disabled')
 
     mode = "read"
+    # threads = []
+    # read_queue = Queue()
+    # # call multiple versions of the function simultaneously
+    # for ip, mac in zip(ip_list, mac_list):
+    #     t = threading.Thread(target=operation_controller, args=(
+    #         ip, mac, mode, x_hotel_name, read_queue, ""))
+    #     threads.append(t)
+    #     t.start()
+    # for t in threads:
+    #     t.join()
+
+    # XXX TEST
     threads = []
     read_queue = Queue()
-    # call multiple versions of the function simultaneously
+    
+    thread_limit = 25
+    thread_semaphore = threading.Semaphore(thread_limit)
+
+    from WaitGroup import WaitGroup
+    wait_group = WaitGroup()
+    
     for ip, mac in zip(ip_list, mac_list):
         t = threading.Thread(target=operation_controller, args=(
-            ip, mac, mode, x_hotel_name, read_queue, ""))
+            ip, mac, mode, x_hotel_name, read_queue, "", thread_semaphore, wait_group))
         threads.append(t)
         t.start()
     for t in threads:
-        t.join()
-
+        wait_group.wait()
+    # XXX TEST  
     """
     READ OPERATION END
     """
