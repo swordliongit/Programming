@@ -1,3 +1,6 @@
 [submodule "Python/Master-Modem-Odoo"]
 	path = Python/Master-Modem-Odoo
 	url = https://github.com/swordliongit/Master-Modem-Odoo
+[submodule "Python"]
+	path = Python
+	url = https://github.com/swordliongit/Python
