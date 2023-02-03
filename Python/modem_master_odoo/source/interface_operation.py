@@ -43,11 +43,10 @@ def modem_login(driver, ip):
         # WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/form/div[3]/button[1]"))).click()
         # WebDriverWait(driver, 5).until(lambda driver: "http://192.168.1.1/cgi-bin/luci/admin/" != driver.current_url)
     except:
-        # XXX
         print("Login failed!")
-        # XXX
         return -1  # XXX GOTTA CHANGE
-
+    
+    print("Logged in successfully!")
 
 def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_change, thread_semaphore, wait_group):
     """This function is supposed to be threaded. Called for each ip address. Separates the program into read and modify subroutines.
@@ -61,10 +60,13 @@ def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_chan
         x_hotel_name (str): _description_
         read_queue (Queue): _description_
         fields_to_change (dict): fields that need to be changed, used in modify mode.
+        thread_semaphore (threading.Semaphore): semaphore needed to control number of active threads
+        wait_group (WaitGroup): class used for custom join operations
     """
+    # add each thread to the group
     wait_group.add(1)
+    # start the semaphore
     with thread_semaphore:
-        
         #options
         chrome_options = Options()
         chrome_options.add_argument("--headless")  # silent browser
@@ -79,6 +81,7 @@ def operation_controller(ip, mac, mode, x_hotel_name, read_queue, fields_to_chan
         elif mode == "modify":
             interface_operation_modify(driver, fields_to_change, ip)
         # current_url = driver.current_url
+    # signal for finish
     wait_group.done()
 
 def interface_operation_read(driver, x_hotel_name, mac):
@@ -88,18 +91,14 @@ def interface_operation_read(driver, x_hotel_name, mac):
         driver (_type_): _description_
         output (_type_): GUI log screen output object to pass through
     """
-    # XXX
-    print("Logged in successfully!")
-    # XXX
-    # XXX
-    print("Read Operation launched..")
-    # XXX
+    
     # {"modem_image":False,"__last_update":False,"name":"protometa","x_uptime":False,"x_wireless_status":False,"x_channel":False,"x_mac":False,"x_device_info":False,"x_ip":False,"x_subnet":False,"x_dhcp":False,"x_enable_wireless":False,"x_enable_ssid1":False,"x_enable_ssid2":False,"x_enable_ssid3":False,"x_enable_ssid4":False,"x_manual_time":False,"x_new_password":False,"modem_id":False,"city":False,"live_status":"offline","last_action_user":3,"modem_status":False,"modem_home_mode":False,"customer_id":[[6,False,[]]],"modem_update":False,"modem_version":False}
     # "args" key of the dictionary has a list of dictionary. This dictionary will contain the fields of a record in Odoo.
     # obj_dict =  {"id":63,"jsonrpc":"2.0","method":"call","params":{"args":[{}],"model":"modem.profile","method":"create","kwargs":{"context":{"lang":"en_US","tz":"Europe/Istanbul","uid":2,"allowed_company_ids":[1]}}}}
     # ---------^
     # XXX START OF THE AUTOMATION XXX
-
+    print("Read Operation launched..")
+    
     modem_read_result_dict = {}
 
     # Network -> Uptime
@@ -225,13 +224,12 @@ def interface_operation_read(driver, x_hotel_name, mac):
     # for k, v in modem_read_result_dict.items():
     #     #obj_dict['params']['args'][0].update({k:v}) # add newly fetched fields into the main dict
     #     modem_read_result[k] = v
-    print("\n")
     # queue.put(obj_dict)
     # sleep(1)
     return modem_read_result_dict
 
 
-def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list):
+def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compare_list: list) -> OrderedDict():
 
     # fetched_modem_list = [{'x_ip': "192.168.5.1", ...}, {'x_ip: "192.168.5.2", ...}, ...]
 
@@ -240,7 +238,7 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
     fields_we_want = ['x_ip', 'x_subnet', 'x_dhcp', 'x_enable_wireless', 'x_enable_ssid1',
                       'x_enable_ssid2', 'x_enable_ssid3', 'x_enable_ssid4', 'x_manual_time',
                       'x_new_password']
-    # modem = {'x_ip': "192.168.5.1", ...}
+    # e.g. modem = {'x_ip': "192.168.5.1", ...}
     for modem, fields_to_compare in zip(fetched_modem_list, fields_to_compare_list):
         filtered_modem = {key: modem[key] for key in fields_we_want}
         fields_to_change = OrderedDict()
@@ -249,7 +247,7 @@ def interface_operation_modify_compare(fetched_modem_list: list, fields_to_compa
             if v != fields_to_compare[k]:
                 # if a field is modified, add it into our dict
                 fields_to_change[k] = v
-        print(fields_to_change, "\n")
+        print(f"Modem {modem['x_mac']} change list: {list(fields_to_change)}")
         # This is a button so I can't check the state of it in the read operation
         if 'x_reboot' in modem and 'x_reboot' == True:
             fields_to_change['x_reboot'] = modem['x_reboot']
@@ -319,11 +317,9 @@ def interface_operation_modify(driver, fields_to_change: OrderedDict(), ip_for_m
 
 
 def modify_x_reboot(driver):
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.LINK_TEXT, 'System'))).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'System'))).click()
     sleep(0.5)
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.LINK_TEXT, 'Reboot'))).click()
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Reboot'))).click()
     sleep(0.5)
     # reboot button
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(
@@ -420,6 +416,7 @@ def modify_x_enable_ssid3(driver):
 def modify_x_enable_ssid4(driver):
     field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cbid\.wireless\.ra3\.enabled")))
     field.click()
+
 
 def modify_x_manual_time(driver, v):
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Network"))).click()

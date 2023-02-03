@@ -1,3 +1,12 @@
+#
+# Author: Kılıçarslan SIMSIKI
+#
+
+# 
+# This class is for custom join operation on threads that optimizes speed. 
+# Instead of main thread calling join on each thread, each thread calls wait and adds itself to the count of threads,
+# and removes itself when the task is done. Improves speed. Initialized in main.py
+
 from threading import Condition
 
 class WaitGroup:

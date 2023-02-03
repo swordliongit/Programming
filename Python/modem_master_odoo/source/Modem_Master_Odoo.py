@@ -45,6 +45,8 @@ def network_scan_caller(output, target_ip):
         target_ip (_type_): ip interval to scan
     """
     # modem_configure_caller_button.config(state="disable")
+    network_scan_caller_button.config(state="disable")
+    modem_configure_caller_button.config(state="disable")
     modem_read_and_odoo_post_caller_button.config(state="disable")
 
     # global event_scan_or_fetch
@@ -55,8 +57,6 @@ def network_scan_caller(output, target_ip):
     # else:
     #     first_press = True
     #     event_scan_or_fetch.set()
-
-    network_scan_caller_button.config(state="disable")
 
     thread = Thread(target=network_scan, args=(output, target_ip))
     thread.start()
@@ -77,14 +77,13 @@ def modem_read_and_odoo_post_caller(output, x_hotel_name):
         output (_type_): _description_
         x_hotel_name (_type_): _description_
     """
-
     u_p_setter(username_input.get(), password_input.get())
 
     network_scan_caller_button.config(state="disable")
     modem_configure_caller_button.config(state="disable")
     modem_read_and_odoo_post_caller_button.config(state="disable")
 
-    thread = Thread(target=modem_read_and_odoo_post, args=(output, x_hotel_name, network_scan_caller_button, modem_configure_caller_button))
+    thread = Thread(target=modem_read_and_odoo_post, args=(output, x_hotel_name, network_scan_caller_button, modem_read_and_odoo_post_caller_button, modem_configure_caller_button))
     thread.start()
     output.update()
 
@@ -97,7 +96,6 @@ def on_closing():
     """Called when you press the X button to close the program
     """
     sleep(0.5)
-    # sleep(1)
     root.destroy()
 
 
@@ -155,9 +153,6 @@ modem_configure_caller_button.grid(row=2, column=2, padx=10, pady=10)
 # console
 output = tkinter.Text(root)
 output.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
-
-modem_configure_caller_button.config(state="disable")
-modem_read_and_odoo_post_caller_button.config(state="disable")
 
 root.mainloop()  # GUI launched
 

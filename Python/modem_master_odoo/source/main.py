@@ -8,6 +8,7 @@ from utility import create_directory
 from interface_operation import operation_controller, interface_operation_modify_compare
 from http_request import odoo_login, send_datato_odoo, fetch_datafrom_odoo
 import threading
+from threading import Semaphore
 from queue import Queue
 # import PySimpleGUI as sg # left this gui method due to its incapability in multithreaded environment
 
@@ -75,7 +76,7 @@ def confirmation():
             exit()
 
 
-def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, modem_configure_caller_button):
+def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, modem_read_and_odoo_post_caller_button, modem_configure_caller_button):
     """Function route:
     1 - Retrieve ip addresses of the devices that we need.
     2 - Read all of the modem interfaces multithreaded by calling the operation_controller sub routine for each ip address.
@@ -121,18 +122,18 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     read_queue = Queue()
     
     thread_limit = 25
-    thread_semaphore = threading.Semaphore(thread_limit)
-
+    thread_semaphore = Semaphore(thread_limit)
+    
     from WaitGroup import WaitGroup
-    wait_group = WaitGroup()
+    wait_group_r = WaitGroup()
     
     for ip, mac in zip(ip_list, mac_list):
         t = threading.Thread(target=operation_controller, args=(
-            ip, mac, mode, x_hotel_name, read_queue, "", thread_semaphore, wait_group))
+            ip, mac, mode, x_hotel_name, read_queue, "", thread_semaphore, wait_group_r))
         threads.append(t)
         t.start()
     for t in threads:
-        wait_group.wait()
+        wait_group_r.wait()
     # XXX TEST  
     """
     READ OPERATION END
@@ -167,10 +168,13 @@ def modem_read_and_odoo_post(output, x_hotel_name, network_scan_caller_button, m
     # tkinterthread.call_nosync(confirmation)
     network_scan_caller_button.config(state="normal")
     modem_configure_caller_button.config(state="normal")
+    modem_read_and_odoo_post_caller_button.config(state="normal")
 
     output.config(state='normal')
     output.insert(tkinter.END, "Veriler Odoo'ya gönderildi, degisiklik yaptiginiz ayarlari uygulamak icin\n'Web Ayarlarini Uygula Butonuna' basin. Tekrar ag taramasi yapmak icin\n'Ag Taramasi' butonuna basin.\n" + "-"*15 + "\n")
     output.config(state='disabled')
+    
+    print("---------------------------")
     # while not event_scan_or_fetch.is_set():
     #     pass
 
@@ -227,7 +231,7 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
     output.insert(tkinter.END, "Modem konfigurasyonu basladi. Bu islem zaman alabilir, lutfen bekleyin..\n")
     output.config(state='disabled')
 
-    threads = []
+    
     read_modems_list = []
     while not modify_queue.empty():
         read_modems_list.append(modify_queue.get())
@@ -243,16 +247,24 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
     # from concurrent.futures import ThreadPoolExecutor
     # with ThreadPoolExecutor() as executor:
     #     f = executor.map(modem_login_init, ips_of_modified_modems, "", mode, None, None, fields_to_change)
+    from WaitGroup import WaitGroup
+    threads = []
+    thread_limit = 25
+    thread_semaphore = Semaphore(thread_limit)
+    wait_group_w = WaitGroup()
     for ip, fields_to_change in zip(ips_of_modified_modems, fields_to_change_list):
-        t = threading.Thread(target=operation_controller, args=(ip, "", mode, "", None, fields_to_change))
+        t = threading.Thread(target=operation_controller, args=(
+            ip, "", mode, "", None, fields_to_change, thread_semaphore, wait_group_w))
         threads.append(t)
         t.start()
     for t in threads:  # wait for all threads to finish
-        t.join()
+        wait_group_w.wait()
 
     output.config(state='normal')
     output.insert(tkinter.END, "Modem konfigurasyonu bitti..\n")
     output.config(state='disabled')
+    
+    print("---------------------------")
     """
     MODIFY OPERATION END
     """
@@ -264,4 +276,4 @@ def modem_configure(output, network_scan_caller_button, modem_read_and_odoo_post
 
     modem_read_and_odoo_post_caller_button.config(state="normal")
     network_scan_caller_button.config(state="normal")
-    modem_configure_caller_button.config(state="disable")
+    modem_configure_caller_button.config(state="normal")
