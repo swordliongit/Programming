@@ -68,6 +68,16 @@ Important things to know
 # objects are passed as references(e.g. -> Queue() )
 # floating points are approximations so 0.1+0.2 == 0.3 will return false
 
+# TODO: used to indicate a task that needs to be done
+# FIXME: used to indicate a problem that needs to be fixed
+# XXX: used to indicate a potential issue that needs attention
+# HACK: used to indicate a temporary solution to a problem that needs a better solution in the future
+# NOTE: used to add a note or additional information to the code
+# OPTIMIZE: used to indicate a section of code that can be optimized for performance
+# REVIEW: used to indicate that a section of code needs to be reviewed by a team member
+# BUG: used to indicate a known bug in the code
+
+
 None # null
 ...  # -> means we don't know what to come
 pass # empty code
@@ -371,10 +381,10 @@ finally: # run this no matter what
     """
 
         try:
-
-        except Exception as exc:
-            print(type(exc)) # prints type of the exception
-            print(exc.value) # prints the exception message
+            raise Exception("Dummy Exception")
+        except Exception as e:
+            print(e.__class__.__name__) # prints the name of exception -> Exception
+            print(e.args[0]) # prints the exception's message -> Dummy Exception
 
 """
 With Context Manager

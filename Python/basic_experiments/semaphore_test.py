@@ -1,6 +1,7 @@
 
 
-ip_list = ["192.168.5.1" for _ in range(30)]
-
-
-print(ip_list)
+try:
+    if True:
+        raise Exception("bla")
+except Exception as e:
+    print(e.__class__.__name__)
