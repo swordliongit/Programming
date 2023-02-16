@@ -1,5 +1,5 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/C++/source",
+    "cmake.sourceDirectory": "${workspaceFolder}/Cpp/source",
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
     "files.associations": {
