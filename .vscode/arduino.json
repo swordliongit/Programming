@@ -1,6 +1,0 @@
-{
-    "configuration": "PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none",
-    "board": "esp32:esp32:esp32",
-    "sketch": "Cpp\\Arduino\\esp32-arduino\\active_workspace\\Xsarj - Led Panel\\led_panel_v1\\led_panel_v1.ino",
-    "port": "COM3"
-}
