@@ -7,3 +7,9 @@
 [submodule "Cpp"]
 	path = Cpp
 	url = https://github.com/swordliongit/Cpp
+[submodule "Arduino-ESP32"]
+	path = Arduino-ESP32
+	url = https://github.com/swordliongit/Arduino-ESP32
+[submodule "PlatformIO"]
+	path = PlatformIO
+	url = https://github.com/swordliongit/PlatformIO
