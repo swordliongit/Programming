@@ -1,0 +1,10 @@
+{
+  "folders": [
+	{
+		"path": "Python/ocpp"
+	},
+	{
+		"path": "Cpp/PlatformIO/MicroOcpp"
+	}
+]
+}
