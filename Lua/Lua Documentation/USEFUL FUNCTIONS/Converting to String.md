@@ -1,0 +1,4 @@
+
+```lua
+tostring(var)
+```

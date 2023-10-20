@@ -1,0 +1,135 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "file:For Loop",
+      "color": {
+        "a": 1,
+        "rgb": 6690726
+      }
+    },
+    {
+      "query": "path:Iterating Over an Ar",
+      "color": {
+        "a": 1,
+        "rgb": 6690726
+      }
+    },
+    {
+      "query": "path:While Loop",
+      "color": {
+        "a": 1,
+        "rgb": 14718802
+      }
+    },
+    {
+      "query": "path:Converting",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "path:Operators",
+      "color": {
+        "a": 1,
+        "rgb": 2966452
+      }
+    },
+    {
+      "query": "path:Math",
+      "color": {
+        "a": 1,
+        "rgb": 2997906
+      }
+    },
+    {
+      "query": "path:Repeat Until",
+      "color": {
+        "a": 1,
+        "rgb": 10749938
+      }
+    },
+    {
+      "query": "path:Variables",
+      "color": {
+        "a": 1,
+        "rgb": 14736466
+      }
+    },
+    {
+      "query": "file:Strings",
+      "color": {
+        "a": 1,
+        "rgb": 14736466
+      }
+    },
+    {
+      "query": "file:Loading a File",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "file:Sorting Tab",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    },
+    {
+      "query": "file:Removing From Tab",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    },
+    {
+      "query": "file:Length of a Tab",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    },
+    {
+      "query": "file:Displaying a Tab",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    },
+    {
+      "query": "file:Inserting Into Tab",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    },
+    {
+      "query": "file:Multi-dim",
+      "color": {
+        "a": 1,
+        "rgb": 4116613
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -3,
+  "nodeSizeMultiplier": 1.26375,
+  "lineSizeMultiplier": 1.325,
+  "collapse-forces": false,
+  "centerStrength": 0.508333333333333,
+  "repelStrength": 13.4166666666667,
+  "linkStrength": 0.733333333333333,
+  "linkDistance": 54,
+  "scale": 0.42967809143425434,
+  "close": true
+}

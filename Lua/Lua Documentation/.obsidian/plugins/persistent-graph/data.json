@@ -1,0 +1,225 @@
+{
+  "nodePositions": [
+    {
+      "id": "CONTROL FLOW/CONTROL FLOW.md",
+      "x": -959.1423950195312,
+      "y": -432.07220458984375
+    },
+    {
+      "id": "CONTROL FLOW/For Loop.md",
+      "x": -557.8497924804688,
+      "y": -350.843017578125
+    },
+    {
+      "id": "CONTROL FLOW/Iterating Over an Array.md",
+      "x": -395.60205078125,
+      "y": -366.699951171875
+    },
+    {
+      "id": "CONTROL FLOW/LOOPS.md",
+      "x": -780.4237670898438,
+      "y": -376.431884765625
+    },
+    {
+      "id": "CONTROL FLOW/Repeat Until.md",
+      "x": -786.0820922851562,
+      "y": -546.6591796875
+    },
+    {
+      "id": "CONTROL FLOW/While Loop.md",
+      "x": -885.2437744140625,
+      "y": -243.06936645507812
+    },
+    {
+      "id": "COROUTINES/COROUTINES.md",
+      "x": 149.3914337158203,
+      "y": 959.7501220703125
+    },
+    {
+      "id": "COROUTINES/Creating Coroutines.md",
+      "x": 100.90570068359375,
+      "y": 1093.9815673828125
+    },
+    {
+      "id": "DATA TYPES/DATA TYPES.md",
+      "x": 315.23394775390625,
+      "y": -37.861534118652344
+    },
+    {
+      "id": "DATA TYPES/Destroying Variables.md",
+      "x": 209.906494140625,
+      "y": -422.06317138671875
+    },
+    {
+      "id": "DATA TYPES/Strings.md",
+      "x": 148.76182556152344,
+      "y": -71.2092056274414
+    },
+    {
+      "id": "DATA TYPES/Variables/Global Variables.md",
+      "x": 499.2377014160156,
+      "y": 372.8123779296875
+    },
+    {
+      "id": "DATA TYPES/Variables/Local Variables.md",
+      "x": 147.40264892578125,
+      "y": 267.1562805175781
+    },
+    {
+      "id": "DATA TYPES/Variables/Making a Local Variable Global.md",
+      "x": 649.4983520507812,
+      "y": 315.16558837890625
+    },
+    {
+      "id": "DATA TYPES/Variables/Multi Assigment.md",
+      "x": 246.44935607910156,
+      "y": 434.80877685546875
+    },
+    {
+      "id": "DATA TYPES/Variables/Variables.md",
+      "x": 320.9637145996094,
+      "y": 259.5780944824219
+    },
+    {
+      "id": "DATA TYPES/nil.md",
+      "x": 294.6519470214844,
+      "y": -280.16748046875
+    },
+    {
+      "id": "FILES/FILES.md",
+      "x": 572.8021850585938,
+      "y": -1051.826171875
+    },
+    {
+      "id": "FUNCTIONS/FUNCTIONS.md",
+      "x": 938.9710083007812,
+      "y": -484.0907287597656
+    },
+    {
+      "id": "FUNCTIONS/Local Functions.md",
+      "x": 1091.65234375,
+      "y": -404.3080139160156
+    },
+    {
+      "id": "FUNCTIONS/Returning Functions.md",
+      "x": 886.1477661132812,
+      "y": -324.7678527832031
+    },
+    {
+      "id": "FUNCTIONS/Returning Multiple Values.md",
+      "x": 782.607177734375,
+      "y": -556.7962646484375
+    },
+    {
+      "id": "FUNCTIONS/Variable Arguments.md",
+      "x": 984.9984741210938,
+      "y": -645.299072265625
+    },
+    {
+      "id": "Math.md",
+      "x": 212.66636657714844,
+      "y": -1163.9393310546875
+    },
+    {
+      "id": "Random Numbers.md",
+      "x": 240.8238983154297,
+      "y": -815.7869873046875
+    },
+    {
+      "id": "TABLES/Displaying a Table by Concatenation.md",
+      "x": -900.3185424804688,
+      "y": 565.4938354492188
+    },
+    {
+      "id": "TABLES/Inserting Into Tables.md",
+      "x": -479.3279113769531,
+      "y": 487.0171203613281
+    },
+    {
+      "id": "TABLES/Length of a Table.md",
+      "x": -867.6715698242188,
+      "y": 420.3552551269531
+    },
+    {
+      "id": "TABLES/Multi-dimensional Tables.md",
+      "x": -705.0294799804688,
+      "y": 782.2075805664062
+    },
+    {
+      "id": "TABLES/Removing From Tables.md",
+      "x": -836.3311157226562,
+      "y": 703.2291259765625
+    },
+    {
+      "id": "TABLES/Sorting Tables.md",
+      "x": -582.1676635742188,
+      "y": 372.8614501953125
+    },
+    {
+      "id": "TABLES/TABLES.md",
+      "x": -681.5720825195312,
+      "y": 564.896728515625
+    },
+    {
+      "id": "USEFUL FUNCTIONS/Converting to Number.md",
+      "x": -286.3459777832031,
+      "y": -886.4781494140625
+    },
+    {
+      "id": "USEFUL FUNCTIONS/Converting to String.md",
+      "x": -263.0093994140625,
+      "y": -1130.918212890625
+    },
+    {
+      "id": "USEFUL FUNCTIONS/Loading a File.md",
+      "x": -536.0480346679688,
+      "y": -1028.707763671875
+    },
+    {
+      "id": "USEFUL FUNCTIONS/USEFUL FUNCTIONS.md",
+      "x": -377.9178161621094,
+      "y": -1019.72265625
+    },
+    {
+      "id": "USER INPUT/Expecting Input and Reading Input.md",
+      "x": 901.9271850585938,
+      "y": 832.0027465820312
+    },
+    {
+      "id": "USER INPUT/Reading Input.md",
+      "x": 656.4537353515625,
+      "y": 837.7306518554688
+    },
+    {
+      "id": "USER INPUT/USER INPUT.md",
+      "x": 786.1851196289062,
+      "y": 737.1631469726562
+    },
+    {
+      "id": "EXPRESSIONS/EXPRESSIONS.md",
+      "x": 1156.5172119140625,
+      "y": 224.1692352294922
+    },
+    {
+      "id": "EXPRESSIONS/Logical Operators/Logical Operators.md",
+      "x": 1155.201416015625,
+      "y": 371.9866638183594
+    },
+    {
+      "id": "TABLES/Linked Lists.md",
+      "x": -733.939208984375,
+      "y": 354.5399475097656
+    },
+    {
+      "id": "TABLES/Table Constructors and Records.md",
+      "x": -482.2742004394531,
+      "y": 636.958984375
+    },
+    {
+      "id": "TABLES/Complex Tables.md",
+      "x": -554.6226806640625,
+      "y": 765.3154296875
+    }
+  ],
+  "automaticallyRestoreNodePositions": false
+}
