@@ -1,0 +1,4 @@
+This will cause an error
+Hello from main function
+Hello from sub-function
+This will not cause an error

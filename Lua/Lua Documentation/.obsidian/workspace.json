@@ -160,8 +160,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "fbd17ddb2d4f0413",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -228,6 +241,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -244,6 +258,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -265,7 +280,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md"
+              }
             }
           }
         ]
@@ -285,7 +302,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8d3183efc7b1baa8",
+  "active": "fbd17ddb2d4f0413",
   "lastOpenFiles": [
     "TABLES/Multi-dimensional Tables.md",
     "FUNCTIONS/Unpack.md",
