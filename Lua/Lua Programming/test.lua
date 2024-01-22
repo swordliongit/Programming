@@ -1,13 +1,16 @@
-function Cfunc()
-    return io.close("asdsa")
-end
+success, result, error = pcall(dofile, "mod.lua")
 
-local success, result = pcall(Cfunc)
+print(success, result, error)
 
-if success then
-    print("File opened successfully")
-else
-    print("An error occurred:", result)
-end
 
-print("Continuing...")
+-- local socket = require 'socket'
+
+-- local function myFunction()
+--     print("Before sleep")
+--     socket.sleep(4)
+--     print("After sleep")
+--     socket.sleep(2)
+-- end
+
+-- local success, error_message = io.popen("myFunction")
+-- print("After pcall")

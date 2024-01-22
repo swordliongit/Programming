@@ -172,9 +172,117 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "eaa17819c7903b27",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STATEMENTS/Variables/Variables.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6a2f6be5abdfe567",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TABLES/TABLES.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a5c7f0a934fb3bd4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2391b9c7d961c0df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "FUNCTIONS/Unpack.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d98a7daaddd2eb53",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STATEMENTS/Variables/Block Variables.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e23eeebbeb0cb041",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STATEMENTS/Variables/Local Variables.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "942d6a3fc8726a4d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TABLES/Table Constructors and Records.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ed8680714e88ec00",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CONTROL FLOW/Iterating Over an Array.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "699782cd8e7d8f7f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "COROUTINES/Creating Coroutines.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 13
+        "currentTab": 22
       }
     ],
     "direction": "vertical"
@@ -241,7 +349,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
+                "file": "COROUTINES/Creating Coroutines.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -258,7 +366,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md",
+                "file": "COROUTINES/Creating Coroutines.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -281,7 +389,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "EXPRESSIONS/Logical Operators/Logical Operators.md"
+                "file": "COROUTINES/Creating Coroutines.md"
               }
             }
           }
@@ -302,10 +410,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fbd17ddb2d4f0413",
+  "active": "699782cd8e7d8f7f",
   "lastOpenFiles": [
-    "TABLES/Multi-dimensional Tables.md",
+    "CONTROL FLOW/Iterating Over an Array.md",
+    "TABLES/Table Constructors and Records.md",
+    "STATEMENTS/Variables/Local Variables.md",
+    "STATEMENTS/Variables/Block Variables.md",
     "FUNCTIONS/Unpack.md",
+    "EXPRESSIONS/Logical Operators/Logical Operators.md",
+    "TABLES/TABLES.md",
+    "STATEMENTS/Variables/Variables.md",
+    "TABLES/Multi-dimensional Tables.md",
     "USEFUL FUNCTIONS/Loading a File.md",
     "FUNCTIONS/Returning Functions.md",
     "STATEMENTS/Strings.md",
@@ -319,17 +434,10 @@
     "CONTROL FLOW/CONTROL FLOW.md",
     "TABLES/Removing From Tables.md",
     "CONTROL FLOW/For Loop.md",
-    "TABLES/Table Constructors and Records.md",
     "TABLES/Linked Lists.md",
     "TABLES/Starting from Index 0.md",
     "TABLES/Inserting Into Tables.md",
     "TABLES/Complex Tables.md",
-    "STATEMENTS/nil.md",
-    "COROUTINES/COROUTINES.md",
-    "STATEMENTS/Variables/Making a Local Variable Global.md",
-    "STATEMENTS/Variables/Global Variables.md",
-    "STATEMENTS/Variables/Local Variables.md",
-    "STATEMENTS/Variables/Block Variables.md",
     "EXPRESSIONS/Logical Operators",
     "Untitled.canvas",
     "EXPRESSIONS",
