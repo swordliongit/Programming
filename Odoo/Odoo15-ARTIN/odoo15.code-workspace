@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://ssh-remote+89.252.165.116/odoo/odoo15"
+		}
+	],
+    "remoteAuthority": "ssh-remote+89.252.165.116",
+    "settings": {
+        "python.languageServer": "None"
+    }
+}

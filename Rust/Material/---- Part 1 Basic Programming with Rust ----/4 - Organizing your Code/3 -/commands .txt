@@ -1,0 +1,5 @@
+// cargo install cargo-modules
+// cargo modules generate tree (Now changed to cargo modules structure)
+//cargo modules generate tree --lib (Now changed to cargo modules structure --lib)
+
+

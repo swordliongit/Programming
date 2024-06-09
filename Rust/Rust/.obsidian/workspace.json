@@ -1,0 +1,274 @@
+{
+  "main": {
+    "id": "ac6a4789ef681ec3",
+    "type": "split",
+    "children": [
+      {
+        "id": "088eccae57c0405d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "809c0b0be7b1e860",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Compound Types.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e64d4c18e1047d4a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Types.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "89ef160ef0327a50",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Unit Testing/Unit Testing.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b1952f334a596707",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Unit Testing/Integration Tests.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "40cd510cf020126d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Struct.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7fe89801b9e7e8f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Enums.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c4e5f89c0311d3c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Compound Types.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bdc683b9bfef3263",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cargo.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c01dcc1c0648b2cf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "72a06c1ac5e9f6d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "dd261ff2f1c26a11",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "70350a691253ae9d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4f30642da5fe026c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "12db410ad02dbd12",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3ba2e29e532ce947",
+    "type": "split",
+    "children": [
+      {
+        "id": "01a7e6c0deb80395",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7229d8ac49c0123c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Data Types.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5efcd9c79fba5d16",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Data Types.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c6b8bc85fe806e0b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a2db302ca87f4fbb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Data Types.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "e64d4c18e1047d4a",
+  "lastOpenFiles": [
+    "Borrowing.md",
+    "Ownership.md",
+    "Struct.md",
+    "Math Related Values.md",
+    "General.md",
+    "Data Types.md",
+    "Compound Types.md",
+    "Hash Map.md",
+    "Unit Testing/Unit Testing.md",
+    "Unit Testing/Benchmark Testing.md",
+    "Unit Testing/Integration Tests.md",
+    "Functions.md",
+    "Enums.md",
+    "Cargo.md",
+    "Variables.md",
+    "Memory Layout.md",
+    "Unit Testing",
+    "Screenshot 2024-06-05 163757.png",
+    "Option.md",
+    "Screenshot 2024-05-31 114606.png",
+    "Screenshot 2024-05-31 114311.png",
+    "Screenshot 2024-05-31 113417.png",
+    "Screenshot 2024-05-31 114325.png",
+    "Screenshot 2024-05-31 113503.png",
+    "Welcome.md"
+  ]
+}

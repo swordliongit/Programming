@@ -1,0 +1,10 @@
+[package]
+name = "test_package_swordlion"
+version = "0.1.0"
+edition = "2021"
+description = "Crate for testing purposes"
+license = "MIT"
+
+
+[dependencies]
+array_tool = "1.0.3"
